@@ -2,7 +2,6 @@ package sk.stu.fei.mproj.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
