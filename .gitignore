@@ -186,3 +186,5 @@ Temporary Items
 
 /src/main/resources/application-default.properties
 /src/main/generated/
+*.iml
+.idea/
