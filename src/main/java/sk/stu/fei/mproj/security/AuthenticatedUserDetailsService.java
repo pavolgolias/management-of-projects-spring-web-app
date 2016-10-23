@@ -22,10 +22,10 @@ public class AuthenticatedUserDetailsService implements UserDetailsService {
         final Account account = this.accountDao.findByEmail(username);
 
         if ( account == null ) {
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+            throw new UsernameNotFoundException(String.format("No user found with email %s", username));
         }
         else if ( account.getActive() == Boolean.FALSE ) {
-            throw new DisabledException(String.format("Account %s is not activated", username));
+            throw new DisabledException(String.format("Account email=%s is not activated", username));
         }
         else {
             return new AuthenticatedUserDetails(account);

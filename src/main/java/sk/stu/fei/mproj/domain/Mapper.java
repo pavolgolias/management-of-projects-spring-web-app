@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,9 @@ public class Mapper {
         mapperFactory.classMap(CreateAccountRequestDto.class, Account.class)
                 .byDefault()
                 .register();
+        mapperFactory.classMap(UpdateAccountRequestDto.class, Account.class)
+                .byDefault()
+                .register();
     }
 
     public AccountDto toAccountDto(@NotNull Account account) {
@@ -39,5 +43,12 @@ public class Mapper {
         Objects.requireNonNull(dto);
 
         return mapperFactory.getMapperFacade().map(dto, Account.class);
+    }
+
+    public void fillAccount(@NotNull UpdateAccountRequestDto dto, @NotNull Account account) {
+        Objects.requireNonNull(dto);
+        Objects.requireNonNull(account);
+
+        mapperFactory.getMapperFacade().map(dto, account);
     }
 }

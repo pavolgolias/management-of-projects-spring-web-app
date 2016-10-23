@@ -28,7 +28,7 @@ public class Account {
     @NotNull
     private String lastName;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     @Email
     @NotNull
     private String email;

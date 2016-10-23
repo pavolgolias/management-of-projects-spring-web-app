@@ -5,19 +5,17 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @ApiModel
 @Getter
 @Setter
-public class AccountDto {
-    @ApiModelProperty(value = "Account ID", required = true)
-    private Long accountId;
-
+public class UpdateAccountRequestDto {
     @ApiModelProperty(value = "First name", required = true)
+    @NotNull
     private String firstName;
 
     @ApiModelProperty(value = "Last name", required = true)
+    @NotNull
     private String lastName;
-
-    @ApiModelProperty(value = "Email address", required = true)
-    private String email;
 }

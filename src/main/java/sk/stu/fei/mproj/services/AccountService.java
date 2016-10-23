@@ -17,11 +17,11 @@ import sk.stu.fei.mproj.domain.dao.AccountDao;
 import sk.stu.fei.mproj.domain.dao.DaoBase;
 import sk.stu.fei.mproj.domain.dto.LoginResponse;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.account.UpdatePasswordRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.enums.AccountRole;
-import sk.stu.fei.mproj.security.AuthenticatedUserDetails;
-import sk.stu.fei.mproj.security.AuthenticatedUserDetailsService;
-import sk.stu.fei.mproj.security.TokenUtils;
+import sk.stu.fei.mproj.security.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
@@ -36,22 +36,23 @@ public class AccountService {
     private final Mapper mapper;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
+    private final AuthorizationManager authorizationManager;
     @Autowired
     public AccountService(TokenUtils tokenUtils, Mapper mapper, AccountDao accountDao, AuthenticatedUserDetailsService userDetailsService,
-                          PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+                          PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, AuthorizationManager authorizationManager) {
         this.tokenUtils = tokenUtils;
         this.mapper = mapper;
         this.accountDao = accountDao;
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.authorizationManager = authorizationManager;
     }
 
-    private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String message) {
+    private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
         final T item = dao.findById(id);
         if ( item == null ) {
-            throw new EntityNotFoundException(message);
+            throw new EntityNotFoundException(exceptionMessage);
         }
         return item;
     }
@@ -67,7 +68,10 @@ public class AccountService {
     public void authenticate(String email, String password) throws AuthenticationException {
         Account account = getAccount(email);
         if ( !account.getActive() ) {
-            throw new SecurityException("Account not activated");
+            throw new SecurityException(String.format("Account email=%s not activated", email));
+        }
+        if ( account.getDeletedAt() != null ) {
+            throw new SecurityException(String.format("Account email=%s was deleted", email));
         }
 
         Authentication authentication = this.authenticationManager.authenticate(
@@ -80,7 +84,6 @@ public class AccountService {
     public LoginResponse createLoginResponse(String email) {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
         final String token = tokenUtils.generateToken(userDetails);
-
 
         final LoginResponse result = new LoginResponse();
         result.setToken(token);
@@ -103,10 +106,12 @@ public class AccountService {
     public Account createAccount(@NotNull CreateAccountRequestDto dto) {
         Objects.requireNonNull(dto);
 
+        if ( accountDao.findByEmail(dto.getEmail()) != null ) {
+            throw new IllegalArgumentException(String.format("Email=%s is already used by another account.", dto.getEmail()));
+        }
         Account account = mapper.toAccount(dto);
         //TODO set account to inactive later on
         account.setActive(true);
-        //TODO account role setup
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
@@ -115,5 +120,61 @@ public class AccountService {
         accountDao.persist(account);
 
         return account;
+    }
+
+    @RoleSecured
+    public Account getAccount(Long accountId) {
+        return getOrElseThrowEntityNotFoundEx(accountId, accountDao, String.format("Account id=%d not found", accountId));
+    }
+
+    private void checkUpdateEligibilityOrElseThrowSecurityEx(Account target, Account who, String exceptionMessage) {
+        if ( !target.equals(who) ) {
+            throw new SecurityException(exceptionMessage);
+        }
+    }
+
+    @RoleSecured
+    public Account updateAccount(Long accountId, @NotNull UpdateAccountRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        Account account = getAccount(accountId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                account,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update account id=%d information", accountId)
+        );
+        mapper.fillAccount(dto, account);
+        accountDao.persist(account);
+
+        return account;
+    }
+
+    @RoleSecured
+    public void updatePassword(Long accountId, @NotNull UpdatePasswordRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        Account account = getAccount(accountId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                account,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update account id=%d information", accountId)
+        );
+        authenticate(account.getEmail(), dto.getOldPassword());
+        if ( !dto.getNewPassword().equals(dto.getRepeatNewPassword()) ) {
+            throw new IllegalArgumentException("Password and repeat password must be same.");
+        }
+        account.setPasswordHash(passwordEncoder.encode(dto.getNewPassword()));
+        accountDao.persist(account);
+    }
+
+    @RoleSecured
+    public void deleteAccount(Long accountId) {
+        Account account = getAccount(accountId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                account,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update account id=%d information", accountId)
+        );
+        accountDao.delete(account);
     }
 }
