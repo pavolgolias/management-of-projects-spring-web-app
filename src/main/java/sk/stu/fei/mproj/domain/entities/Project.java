@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -37,6 +38,13 @@ public class Project {
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date deletedAt;
+
+    @ManyToMany
+    @JoinTable
+    private Set<Account> participants;
+
+    @OneToMany(mappedBy = "project")
+    private Set<Task> tasks;
 }
 
 

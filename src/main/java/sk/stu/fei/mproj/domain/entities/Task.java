@@ -68,4 +68,18 @@ public class Task {
 
     @Column
     private Long timeEstimatedForTaskInMillis;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    @NotNull
+    private Project project;
+
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    @NotNull
+    private Account creator;
+
+    @OneToOne
+    @JoinColumn
+    private Account assignee;
 }

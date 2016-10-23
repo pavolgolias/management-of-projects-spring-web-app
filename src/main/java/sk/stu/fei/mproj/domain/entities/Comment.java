@@ -27,4 +27,14 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date updatedAt;
+
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    @NotNull
+    private Account author;
+
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    @NotNull
+    private Task task;
 }
