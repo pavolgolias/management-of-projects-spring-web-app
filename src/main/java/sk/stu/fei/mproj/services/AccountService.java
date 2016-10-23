@@ -37,6 +37,7 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final AuthorizationManager authorizationManager;
+
     @Autowired
     public AccountService(TokenUtils tokenUtils, Mapper mapper, AccountDao accountDao, AuthenticatedUserDetailsService userDetailsService,
                           PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, AuthorizationManager authorizationManager) {

@@ -22,10 +22,13 @@ public class AuthenticatedUserDetailsService implements UserDetailsService {
         final Account account = this.accountDao.findByEmail(username);
 
         if ( account == null ) {
-            throw new UsernameNotFoundException(String.format("No user found with email %s", username));
+            throw new UsernameNotFoundException(String.format("No account found with email %s", username));
         }
-        else if ( account.getActive() == Boolean.FALSE ) {
+        else if ( !account.getActive() ) {
             throw new DisabledException(String.format("Account email=%s is not activated", username));
+        }
+        else if ( account.getDeletedAt() != null ) {
+            throw new SecurityException(String.format("Account email=%s was deleted", username));
         }
         else {
             return new AuthenticatedUserDetails(account);

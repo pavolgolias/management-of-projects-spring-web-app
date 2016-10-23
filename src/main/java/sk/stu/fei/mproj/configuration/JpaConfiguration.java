@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 
 @Configuration
 public class JpaConfiguration {
-
     @PersistenceContext
     private EntityManager em;
 

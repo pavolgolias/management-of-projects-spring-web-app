@@ -13,9 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 public class WebMvcConfiguration extends WebMvcAutoConfiguration {
+    private final JwtProperties jwtProperties;
 
     @Autowired
-    private JwtProperties jwtProperties;
+    public WebMvcConfiguration(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

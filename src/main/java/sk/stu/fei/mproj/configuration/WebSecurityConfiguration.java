@@ -30,12 +30,16 @@ import java.io.IOException;
 @EnableWebSecurity
 @EnableConfigurationProperties(JwtProperties.class)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private final JwtProperties jwtProperties;
+    private final EntryPointUnauthorizedHandler unauthorizedHandler;
+    private final UserDetailsService userDetailsService;
+
     @Autowired
-    private JwtProperties jwtProperties;
-    @Autowired
-    private EntryPointUnauthorizedHandler unauthorizedHandler;
-    @Autowired
-    private UserDetailsService userDetailsService;
+    public WebSecurityConfiguration(JwtProperties jwtProperties, EntryPointUnauthorizedHandler unauthorizedHandler, UserDetailsService userDetailsService) {
+        this.jwtProperties = jwtProperties;
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
