@@ -35,6 +35,24 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
     @Autowired
     private AuthenticatedUserDetailsService userDetailsService;
 
+    private static String extractAuthToken(String authHeader) {
+        if ( authHeader != null ) {
+            Pattern p = Pattern.compile("[Bb]earer (.*)");
+            Matcher m = p.matcher(authHeader);
+            if ( m.find() ) {
+                return m.group(1);
+            }
+        }
+
+        return null;
+    }
+
+    private static List<GrantedAuthority> anonymousAuthority() {
+        final List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+        return authorities;
+    }
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
@@ -74,23 +92,5 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
         }
 
         return false;
-    }
-
-    private static String extractAuthToken(String authHeader) {
-        if ( authHeader != null ) {
-            Pattern p = Pattern.compile("[Bb]earer (.*)");
-            Matcher m = p.matcher(authHeader);
-            if ( m.find() ) {
-                return m.group(1);
-            }
-        }
-
-        return null;
-    }
-
-    private static List<GrantedAuthority> anonymousAuthority() {
-        final List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-        return authorities;
     }
 }

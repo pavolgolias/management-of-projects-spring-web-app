@@ -107,9 +107,10 @@ public class AccountService {
         //TODO set account to inactive later on
         account.setActive(true);
         //TODO account role setup
-        account.setRole(AccountRole.Administrator);
-        if (!dto.getPassword().equals(dto.getRepeatPassword()))
+        account.setRole(AccountRole.StandardUser);
+        if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
+        }
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         accountDao.persist(account);
 

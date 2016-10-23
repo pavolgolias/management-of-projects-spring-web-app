@@ -73,20 +73,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .exceptionHandling()
+                .exceptionHandling()
                 .authenticationEntryPoint(this.unauthorizedHandler)
                 .and()
-            .sessionManagement()
+                .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/accounts").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/attempt").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
-            .formLogin()
+                .formLogin()
                 .failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
@@ -94,7 +94,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .and()
-            .csrf()
+                .csrf()
                 .disable()
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -41,6 +41,10 @@ public class Project {
 
     @ManyToMany
     @JoinTable
+    private Set<Account> administrators;
+
+    @ManyToMany
+    @JoinTable
     private Set<Account> participants;
 
     @OneToMany(mappedBy = "project")

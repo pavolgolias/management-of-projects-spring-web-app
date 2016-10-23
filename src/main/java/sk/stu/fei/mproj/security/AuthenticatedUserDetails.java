@@ -21,13 +21,13 @@ public class AuthenticatedUserDetails extends User {
         this.account = account;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
     private static List<GrantedAuthority> createAuthorities(Account account) {
         final List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + account.getRole().name().toUpperCase()));
         return authorities;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 }
