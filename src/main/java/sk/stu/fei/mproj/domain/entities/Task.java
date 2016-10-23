@@ -74,12 +74,12 @@ public class Task {
     @NotNull
     private Project project;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
     @NotNull
     private Account creator;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Account assignee;
 }

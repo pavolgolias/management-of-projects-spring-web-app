@@ -28,12 +28,12 @@ public class Comment {
     @Column
     private Date updatedAt;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
     @NotNull
     private Account author;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
     @NotNull
     private Task task;

@@ -45,6 +45,11 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     private Set<Task> tasks;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    @NotNull
+    private Account author;
 }
 
 
