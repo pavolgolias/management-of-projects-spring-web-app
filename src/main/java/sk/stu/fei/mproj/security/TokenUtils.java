@@ -109,7 +109,7 @@ public class TokenUtils {
         if (userDetails instanceof AuthenticatedUserDetails) {
             final AuthenticatedUserDetails auth = (AuthenticatedUserDetails) userDetails;
             final Account account = auth.getAccount();
-            claims.setId(Long.toString(account.getId()));
+            claims.setId(Long.toString(account.getAccountId()));
         }
         return this.generateToken(claims);
     }

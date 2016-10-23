@@ -3,8 +3,9 @@ package sk.stu.fei.mproj.domain.entities;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Email;
-import sk.stu.fei.mproj.domain.enums.AccountRole;
+import sk.stu.fei.mproj.domain.enums.TaskPriority;
+import sk.stu.fei.mproj.domain.enums.TaskStatus;
+import sk.stu.fei.mproj.domain.enums.TaskType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,46 +13,35 @@ import java.util.Date;
 
 @Entity
 @Data
-@EqualsAndHashCode(of = "accountId")
-@ToString(of = {"accountId", "email"})
-public class Account {
+@EqualsAndHashCode(of = "taskId")
+@ToString(of = {"taskId", "name"})
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private Long accountId;
+    private Long taskId;
 
     @Column(nullable = false)
     @NotNull
-    private String firstName;
+    private String name;
 
     @Column(nullable = false)
     @NotNull
-    private String lastName;
+    private String description;
 
-    @Column(nullable = false, unique = true)
-    @Email
-    @NotNull
-    private String email;
-
-    @Column
-    @NotNull
-    private String passwordHash;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
-    private AccountRole role;
+    private TaskType type;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
-    private Boolean active;
-
-    @Column(length = 128, unique = true)
-    private String actionToken;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column
-    private Date actionTokenValidUntil;
+    private TaskPriority priority;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
@@ -67,5 +57,15 @@ public class Account {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    private Date lastActiveAt;
+    private Date completionDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column
+    private Date aimedCompletionDate;
+
+    @Column
+    private Long timeSpentOnTaskInMillis;
+
+    @Column
+    private Long timeEstimatedForTaskInMillis;
 }
