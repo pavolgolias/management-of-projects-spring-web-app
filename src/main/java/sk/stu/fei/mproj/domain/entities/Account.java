@@ -64,8 +64,4 @@ public class Account {
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date deletedAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column
-    private Date lastActiveAt;
 }
