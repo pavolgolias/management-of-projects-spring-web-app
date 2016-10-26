@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-           <!-- <scope>provided</scope> --><!-- ensure that the embedded servlet container does not interfere with the servlet container -->
+            <scope>provided</scope> <!-- ensure that the embedded servlet container does not interfere with the servlet container -->
         </dependency>
         <!-- databases and orm -->
         <dependency>
