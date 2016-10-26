@@ -9,15 +9,15 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class WebAppApplication extends SpringBootServletInitializer {
+public class WebAppApplication /*extends SpringBootServletInitializer*/ {
     public static void main(String[] args) {
         SpringApplication.run(WebAppApplication.class, args);
     }
 
-    @Override
+   /* @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(WebAppApplication.class);
-    }
+    }*/
 
     @Bean
     public MapperFactory mapperFactory() {
