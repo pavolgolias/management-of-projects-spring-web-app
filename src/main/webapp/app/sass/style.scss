@@ -1,19 +1,21 @@
 @import 'base';
 @import 'variables';
 @import 'functions';
-@import 'global';
+@import 'fonts';
 @import 'font-awesome';
+@import 'global';
 
 .base {
-  // Blocks & Elements
-
-  // Header
-  @import 'header';
-
-  // Pages Start
-  @import 'homepage';
-  // Pages End
-
-  // Footer
-  @import 'footer';
+    // Blocks & Elements
+    @import 'page';
+    
+    // Header
+    @import 'header';
+    
+    // Pages Start
+    @import 'homepage';
+    // Pages End
+    
+    // Footer
+    @import 'footer';
 }

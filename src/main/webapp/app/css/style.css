@@ -7967,6 +7967,49 @@ input {
   margin: 0;
 }
 
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-Regular.otf);
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-Bold.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-It.otf);
+  font-style: italic;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-Medium.otf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-MediumIt.otf);
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-UltLt.otf);
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../fonts/AvenirNextLTPro-UltLtIt.otf);
+  font-weight: 100;
+  font-style: italic;
+}
+
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -10729,4 +10772,116 @@ input {
   margin: 0;
   overflow: visible;
   clip: auto;
+}
+
+.background {
+  background: url(../images/background_2560x1600.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  font-family: avenirNext;
+}
+
+.base .page--home {
+  height: 100%;
+  width: 100%;
+}
+
+.base .login_section {
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+
+.base .login_section img {
+  margin-bottom: 120px;
+}
+
+.base .login_section input {
+  width: 100%;
+  padding: 5px;
+  padding: 5px 50px;
+  margin-bottom: 2px;
+  border: none;
+  background-color: #234c55;
+  border-color: #234c55;
+  opacity: 0.4;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+}
+
+.base .login_section input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: white;
+  opacity: 1;
+}
+
+.base .login_section input :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  opacity: 1;
+}
+
+.base .login_section input ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  opacity: 1;
+}
+
+.base .login_section input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.base .login_section input.top {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.base .login_section input.email {
+  background-image: url(../images/icons/mail.png);
+}
+
+.base .login_section input.psw {
+  background-image: url(../images/icons/key.png);
+}
+
+.base .login_section__btn-group {
+  width: 100%;
+  clear: both;
+}
+
+.base .login_section__btn-group a {
+  padding: 5px;
+  background-color: #234c55;
+  opacity: 0.5;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+}
+
+.base .login_section__btn-group a:hover {
+  opacity: 0.7;
+}
+
+.base .login_section__btn-group .left {
+  float: left;
+  width: 50%;
+  border-bottom-left-radius: 5px;
+}
+
+.base .login_section__btn-group .right {
+  float: right;
+  width: 49.5%;
+  border-bottom-right-radius: 5px;
 }
