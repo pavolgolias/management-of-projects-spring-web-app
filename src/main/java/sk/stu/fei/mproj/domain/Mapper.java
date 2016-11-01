@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component;
 import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
+import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
+import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
+import sk.stu.fei.mproj.domain.entities.Project;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -31,6 +35,15 @@ public class Mapper {
         mapperFactory.classMap(UpdateAccountRequestDto.class, Account.class)
                 .byDefault()
                 .register();
+        mapperFactory.classMap(Project.class, ProjectDto.class)
+                .byDefault()
+                .register();
+        mapperFactory.classMap(CreateProjectRequestDto.class, Project.class)
+                .byDefault()
+                .register();
+        mapperFactory.classMap(UpdateProjectRequestDto.class, Project.class)
+                .byDefault()
+                .register();
     }
 
     public AccountDto toAccountDto(@NotNull Account account) {
@@ -50,5 +63,24 @@ public class Mapper {
         Objects.requireNonNull(account);
 
         mapperFactory.getMapperFacade().map(dto, account);
+    }
+
+    public Project toProject(@NotNull CreateProjectRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        return mapperFactory.getMapperFacade().map(dto, Project.class);
+    }
+
+    public ProjectDto toProjectDto(@NotNull Project project) {
+        Objects.requireNonNull(project);
+
+        return mapperFactory.getMapperFacade().map(project, ProjectDto.class);
+    }
+
+    public void fillProject(@NotNull UpdateProjectRequestDto dto, @NotNull Project project) {
+        Objects.requireNonNull(dto);
+        Objects.requireNonNull(project);
+
+        mapperFactory.getMapperFacade().map(dto, project);
     }
 }
