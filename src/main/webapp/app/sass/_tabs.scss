@@ -1,0 +1,43 @@
+.tab-section {
+	border: none;
+	
+	li {
+		
+		&.active {
+			
+			a {
+				background-color: $gray-blue;
+				color: $background-color;
+			}
+		}
+		a {
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: $gray-blue;
+			font-size: 25px;
+
+			&:hover {
+				background-color: $gray-blue;
+				color: $background-color;
+				opacity: $op_button;
+			}
+			&.tab {
+				border: 1.5px solid $gray-blue;
+
+				&--left {
+					border-top-left-radius: $r_default;
+					border-bottom-left-radius: $r_default;
+				}
+				&--middle {
+					border-left: none;
+					border-right: none;
+				}
+				&--right {
+					border-top-right-radius: $r_default;
+					border-bottom-right-radius: $r_default;
+				}
+			}
+		}
+	}
+}

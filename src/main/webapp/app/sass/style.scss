@@ -8,6 +8,8 @@
 .base {
     // Blocks & Elements
     @import 'page';
+	@import 'nav';
+	@import 'tabs';
     
     // Header
     @import 'header';

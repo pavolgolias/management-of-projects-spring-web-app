@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj app</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="base page page--projects background">
+
+	<nav id="side-navbar" class="side-navbar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#">My projects</a>
+		<a href="#">Profile</a>
+		<a href="#">Notifications</a>
+		<a href="#">Settings</a>
+		<a href="#">About</a>
+		<a href="#">Logout</a>
+	</nav>
+	
+	<!-- --------------------------------------------------------------------------------- -->
+
+	<nav class="navbar-section">
+		<div class="container-fluid float--clear">
+			<div class="col-xs-4">
+				<img src="images/icons/Menu.png" alt="menu icon" onclick="openNav()">
+			</div>
+			<div class="col-xs-4 text-center">
+				<p>Projects</p>
+			</div>
+			<div class="col-xs-4">
+				<img class="float--right" src="images/icons/Plus%20Math.png" alt="tiles icon">
+			</div>
+		</div>
+	</nav>
+   
+	<div class="container">
+		<div class="tab-section nav-tabs">
+			<ul>
+				<li>
+					<div class="col-xs-4 nopadding--right">
+						<a class="tab tab--left" data-toggle="tab" href="#tab1">Assigned</a>
+					</div>
+				</li>
+				<li class="active">
+					<div class="col-xs-4 text-center nopadding">
+						<a class="tab tab--middle" data-toggle="tab" href="#tab2">All</a>
+					</div>
+				</li>
+				<li>
+					<div class="col-xs-4 text-center nopadding--left">
+						<a class="tab tab--right" data-toggle="tab" href="#tab3">Created</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="tab-content">
+			<!-- Content here -->
+			<div id="tab1" class="tab-pane fade">
+				<h3>Tab 1</h3>
+			</div>
+			<div id="tab2" class="tab-pane fade in active">
+				<h3>Tab 2</h3>
+			</div>
+			<div id="tab3" class="tab-pane fade">
+				<h3>Tab 3</h3>
+			</div>
+		</div>
+	</div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>

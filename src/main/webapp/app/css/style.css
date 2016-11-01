@@ -10774,21 +10774,140 @@ input {
   clip: auto;
 }
 
+body {
+  font-family: avenirNext;
+}
+
 .background {
   background: url(../images/background_2560x1600.png) no-repeat center center fixed;
   background-size: cover;
 }
 
-body {
-  font-family: avenirNext;
+.float {
+  position: relative;
 }
 
-.base .page--home {
+.float--left {
+  float: left;
+}
+
+.float--right {
+  float: right;
+}
+
+.float--clear {
+  clear: both;
+}
+
+.nomargin--left {
+  margin-left: 0;
+}
+
+.nomargin--right {
+  margin-right: 0;
+}
+
+.nopadding--left {
+  padding-left: 0;
+}
+
+.nopadding--right {
+  padding-right: 0;
+}
+
+.base .page {
   height: 100%;
   width: 100%;
 }
 
-.base .login_section {
+.base .side-navbar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.base .side-navbar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.base .side-navbar a:hover {
+  color: #f1f1f1;
+}
+
+.base .side-navbar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.base .navbar-section img {
+  cursor: pointer;
+}
+
+.base .navbar-section p {
+  color: white;
+  font-size: 55px;
+  font-weight: 100;
+  margin-top: 10px;
+}
+
+.base .tab-section {
+  border: none;
+}
+
+.base .tab-section li.active a {
+  background-color: #547076;
+  color: #789EA7;
+}
+
+.base .tab-section li a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #547076;
+  font-size: 25px;
+}
+
+.base .tab-section li a:hover {
+  background-color: #547076;
+  color: #789EA7;
+  opacity: 0.7;
+}
+
+.base .tab-section li a.tab {
+  border: 1.5px solid #547076;
+}
+
+.base .tab-section li a.tab--left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.base .tab-section li a.tab--middle {
+  border-left: none;
+  border-right: none;
+}
+
+.base .tab-section li a.tab--right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.base .login-section {
   position: absolute;
   height: 400px;
   width: 300px;
@@ -10800,11 +10919,11 @@ body {
   text-align: center;
 }
 
-.base .login_section img {
+.base .login-section img {
   margin-bottom: 120px;
 }
 
-.base .login_section input {
+.base .login-section input {
   width: 100%;
   padding: 5px;
   padding: 5px 50px;
@@ -10820,48 +10939,48 @@ body {
   background-position: 15px center;
 }
 
-.base .login_section input::-webkit-input-placeholder {
+.base .login-section input::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: white;
   opacity: 1;
 }
 
-.base .login_section input :-moz-placeholder {
+.base .login-section input :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: white;
   opacity: 1;
 }
 
-.base .login_section input ::-moz-placeholder {
+.base .login-section input ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: white;
   opacity: 1;
 }
 
-.base .login_section input :-ms-input-placeholder {
+.base .login-section input :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
 }
 
-.base .login_section input.top {
+.base .login-section input.top {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.base .login_section input.email {
+.base .login-section input.email {
   background-image: url(../images/icons/mail.png);
 }
 
-.base .login_section input.psw {
+.base .login-section input.psw {
   background-image: url(../images/icons/key.png);
 }
 
-.base .login_section__btn-group {
+.base .login-section__btn-group {
   width: 100%;
   clear: both;
 }
 
-.base .login_section__btn-group a {
+.base .login-section__btn-group a {
   padding: 5px;
   background-color: #234c55;
   opacity: 0.7;
@@ -10870,17 +10989,17 @@ body {
   color: white;
 }
 
-.base .login_section__btn-group a:hover {
+.base .login-section__btn-group a:hover {
   opacity: 0.8;
 }
 
-.base .login_section__btn-group .left {
+.base .login-section__btn-group .left {
   float: left;
   width: 50%;
   border-bottom-left-radius: 5px;
 }
 
-.base .login_section__btn-group .right {
+.base .login-section__btn-group .right {
   float: right;
   width: 49.5%;
   border-bottom-right-radius: 5px;

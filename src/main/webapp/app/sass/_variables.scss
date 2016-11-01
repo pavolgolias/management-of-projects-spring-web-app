@@ -1,6 +1,8 @@
 // Colors
 $primary:				#234c55;
 $primary-darker:		#183238;
+$gray-blue:				#547076;
+$background-color:		#789EA7;
 
 // Opacities
 $op_default:			0.5;
@@ -11,5 +13,6 @@ $op_button:				0.7;
 // Fonts
 
 // Dimensions (paddings & margins)
-$p_default:				5px;
-//$m_general: 			5px;
+$p_default:				5px;	// Padding
+//$m_general: 			5px;	// Margin
+$r_default:				5px;	// Radius

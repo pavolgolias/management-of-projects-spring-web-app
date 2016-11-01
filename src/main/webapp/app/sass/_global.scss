@@ -1,12 +1,45 @@
+body {
+	font-family: avenirNext;
+}
+
 .background {
 	background: url(../images/background_2560x1600.png) no-repeat center center fixed;
-//	background: #7198A1 no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
 
-body {
-	font-family: avenirNext;
+.float {
+	position: relative;
+	
+	&--left {
+		float: left;
+	}
+	&--right {
+		float: right;
+	}
+	&--clear {
+		clear: both;
+	}
+}
+
+.nomargin {
+	
+	&--left {
+		margin-left: 0;
+	}
+	&--right {
+		margin-right: 0;
+	}
+}
+
+.nopadding {
+	
+	&--left {
+		padding-left: 0;
+	}
+	&--right {
+		padding-right: 0;
+	}
 }
