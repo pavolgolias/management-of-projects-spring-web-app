@@ -10928,9 +10928,9 @@ body {
 
 .base .card {
   width: 100%;
-  height: 300px;
   min-width: 300px;
   color: white;
+  margin-bottom: 30px;
 }
 
 .base .card header {
