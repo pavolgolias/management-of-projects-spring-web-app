@@ -10883,6 +10883,13 @@ body {
   margin-top: 10px;
 }
 
+@media all and (max-width: 768px) {
+  .base .navbar-section p {
+    font-size: 35px;
+    margin-top: 0;
+  }
+}
+
 .base .tab-section {
   border: none;
   margin-bottom: 100px;
