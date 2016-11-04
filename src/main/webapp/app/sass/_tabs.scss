@@ -1,5 +1,6 @@
 .tab-section {
 	border: none;
+	margin-bottom: 100px;
 	
 	li {
 		
@@ -20,7 +21,7 @@
 			&:hover {
 				background-color: $gray-blue;
 				color: $background-color;
-				opacity: $op_button;
+				opacity: $op_middle;
 			}
 			&.tab {
 				border: 1.5px solid $gray-blue;

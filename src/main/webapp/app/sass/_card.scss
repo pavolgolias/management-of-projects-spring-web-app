@@ -1,0 +1,54 @@
+.card {
+	width: 100%;
+	height: 300px;
+	min-width: 300px;
+	color: white;
+	
+	header {
+		height: 30px;
+		background-color: $gray-blue;
+		padding: $p_default;
+		border-top-left-radius: $r_default;
+		border-top-right-radius: $r_default;
+		
+		h4 {
+			font-weight: 100;
+		}
+	}
+	section {
+		background-color: $gray-blue--op_middle;
+		border-bottom-left-radius: $r_default;
+		border-bottom-right-radius: $r_default;
+		min-height: 200px;
+		
+		> img {
+			position: absolute;
+			width: 100px;
+			max-height: 100px;
+			margin: 10px;
+		}
+		article {
+			position: relative;
+			margin-left: 120px;
+			padding-top: 10px;
+	
+			h3 {
+				font-size: 20px;
+				margin-bottom: 10px;
+			}
+			p {
+//				font-weight: 100;
+			}
+		}
+		ul {
+			position: relative;
+			margin-left: 120px;
+
+			li {
+				float: left;
+				margin-right: $m_default;
+				margin-bottom: $m_default;
+			}
+		}
+	}
+}

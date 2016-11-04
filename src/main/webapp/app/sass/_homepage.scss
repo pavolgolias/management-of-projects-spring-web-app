@@ -16,9 +16,9 @@
 		padding: $p_default 50px;
 		margin-bottom: 2px;
 		border: none;
-		background-color: $primary;
-		border-color: $primary;
-		opacity: $op_default;
+		background-color: $primary--op_default;
+		border-color: $primary--op_default;
+//		opacity: $op_default;
 		font-size: 20px;
 		font-weight: 100;
 		color: white;
@@ -28,15 +28,15 @@
 		
 		&::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 			color: white;
-			opacity: 1;
+			opacity: $op_default;
 		}
 		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 			color: white;
-			opacity: 1;
+			opacity: $op_default;
 		}
 		::-moz-placeholder { /* Mozilla Firefox 19+ */
 			color: white;
-			opacity: 1;
+			opacity: $op_default;
 		}
 		:-ms-input-placeholder { /* Internet Explorer 10-11 */
 			color: white;
@@ -60,14 +60,14 @@
 		
 		a {
 			padding: $p_default;
-			background-color: $primary;
-			opacity: $op_button;
+			background-color: $primary--op_middle; 
+//			opacity: $op_button; 
 			font-size: 20px;
 			font-weight: 100;
 			color: white;
 			
 			&:hover {
-				opacity: $op_more;
+				background-color: $primary--op_more;
 			}
 		}
 		.left {
