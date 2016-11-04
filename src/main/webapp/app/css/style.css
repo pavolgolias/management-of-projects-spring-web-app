@@ -10774,6 +10774,24 @@ input {
   clip: auto;
 }
 
+::-webkit-scrollbar {
+  width: 0.75em;
+  height: 0.75em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #547076;
+}
+
+::-webkit-scrollbar-track {
+  background: #aab8bb;
+}
+
+body {
+  scrollbar-face-color: #547076;
+  scrollbar-track-color: #aab8bb;
+}
+
 body {
   font-family: avenirNext;
 }
