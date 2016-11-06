@@ -6,7 +6,6 @@
 	
 	header {
 		height: 30px;
-		background-color: $gray-blue;
 		padding: $p_default;
 		border-top-left-radius: $r_default;
 		border-top-right-radius: $r_default;
@@ -29,11 +28,12 @@
 		}
 		article {
 			position: relative;
-			margin-left: 120px;
 			padding-top: 10px;
+			padding-left: $p_default;
+			padding-right: $op_default;
 	
 			a {
-				color: $href;
+				color: white;
 				transition: 0.3s;
 				
 				h3 {
@@ -41,7 +41,7 @@
 					margin-bottom: 10px;
 				}
 				&:hover {
-					color: white;
+					text-decoration: underline;
 				}
 			}
 			
@@ -51,13 +51,61 @@
 		}
 		ul {
 			position: relative;
-			margin-left: 120px;
 
 			li {
 				float: left;
 				margin-right: $m_default;
 				margin-bottom: $m_default;
 			}
+		}
+	}
+	
+	&--project {
+		
+		header {
+			background-color: $gray-blue;
+		}
+		article {
+			margin-left: 120px;
+		}
+		ul {
+			margin-left: 120px;
+		}
+	}
+	&--task {
+		
+		header {
+			background-color: $task;
+		}		
+		article {
+			margin-left: 0;
+		}
+		ul {
+			margin-left: 0;
+		}
+	}
+	&--info {
+		
+		header {
+			background-color: $info !important;
+		}
+	}
+	&--bug {
+		
+		header {
+			background-color: $bug !important;
+		}
+	}
+	&--review {
+		
+		header {
+			background-color: $review !important;
+		}
+	}
+	&--feature {
+		
+		header {
+			background-color: $feature !important;
 		}
 	}
 }

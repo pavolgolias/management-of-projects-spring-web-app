@@ -10948,7 +10948,6 @@ body {
 
 .base .card header {
   height: 30px;
-  background-color: #547076;
   padding: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -10974,12 +10973,13 @@ body {
 
 .base .card section article {
   position: relative;
-  margin-left: 120px;
   padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 0.5;
 }
 
 .base .card section article a {
-  color: #c7c0c0;
+  color: white;
   transition: 0.3s;
 }
 
@@ -10989,18 +10989,57 @@ body {
 }
 
 .base .card section article a:hover {
-  color: white;
+  text-decoration: underline;
 }
 
 .base .card section ul {
   position: relative;
-  margin-left: 120px;
 }
 
 .base .card section ul li {
   float: left;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+
+.base .card--project header {
+  background-color: #547076;
+}
+
+.base .card--project article {
+  margin-left: 120px;
+}
+
+.base .card--project ul {
+  margin-left: 120px;
+}
+
+.base .card--task header {
+  background-color: #afaf4f;
+}
+
+.base .card--task article {
+  margin-left: 0;
+}
+
+.base .card--task ul {
+  margin-left: 0;
+}
+
+.base .card--info header {
+  background-color: #5656c7 !important;
+}
+
+.base .card--bug header {
+  background-color: #a04646 !important;
+}
+
+.base .card--review header {
+  background-color: #5da044 !important;
+}
+
+.base .card--feature header {
+  background-color: #873f90 !important;
 }
 
 .base .login-section {
