@@ -76,6 +76,10 @@
 		
 		header {
 			background-color: $task;
+			
+			h4 {
+				text-transform: uppercase;
+			}
 		}		
 		article {
 			margin-left: 0;
