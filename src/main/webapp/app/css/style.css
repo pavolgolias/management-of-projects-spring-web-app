@@ -10912,6 +10912,7 @@ body {
   font-size: 55px;
   font-weight: 100;
   margin-top: 10px;
+  white-space: nowrap;
 }
 
 @media all and (max-width: 768px) {
@@ -10984,7 +10985,7 @@ body {
 
 .base .card header {
   height: 30px;
-  padding: 5px;
+  padding: 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -11010,7 +11011,7 @@ body {
 .base .card section article {
   position: relative;
   padding-top: 10px;
-  padding-left: 5px;
+  padding-left: 10px;
   padding-right: 0.5;
 }
 
@@ -11043,11 +11044,11 @@ body {
 }
 
 .base .card--project article {
-  margin-left: 120px;
+  margin-left: 110px;
 }
 
 .base .card--project ul {
-  margin-left: 120px;
+  margin-left: 110px;
 }
 
 .base .card--task header {
