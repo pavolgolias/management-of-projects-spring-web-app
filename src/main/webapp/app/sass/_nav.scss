@@ -32,9 +32,9 @@
 			color: white;
             
             img{
- display: none;  
+ 				display: none;  
             }
-}
+		}
             
         &:first-child
         {
@@ -89,7 +89,14 @@
 #navimage {
     padding-left: 40px;
     opacity: 0.3;
-    bottom: 20px;
-    position: absolute;
+    bottom: 0px;
+    position: relative;
+}
+
+.navbar-top {
+		
+	article {
+		margin-top: 40px;
+	}
 }
 
