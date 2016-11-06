@@ -10817,6 +10817,12 @@ body {
   clear: both;
 }
 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 .nomargin--left {
   margin-left: 0;
 }
@@ -10913,6 +10919,13 @@ body {
     font-size: 35px;
     margin-top: 0;
   }
+}
+
+.base #navimage {
+  padding-left: 40px;
+  opacity: 0.3;
+  bottom: 20px;
+  position: absolute;
 }
 
 .base .tab-section {
