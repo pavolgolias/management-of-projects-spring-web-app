@@ -61,6 +61,12 @@ public class ProjectService {
         Objects.requireNonNull(dto);
 
         Project project = getProject(projectId);
+
+        Project found = projectDao.findByName(dto.getName());
+        if ( found != null && !found.equals(project) ) {
+            throw new IllegalArgumentException(String.format("Name=%s is already used by another project.", dto.getName()));
+        }
+
         checkUpdateEligibilityOrElseThrowSecurityEx(
                 project,
                 authorizationManager.getCurrentAccount(),
