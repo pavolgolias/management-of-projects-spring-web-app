@@ -10978,9 +10978,18 @@ body {
   padding-top: 10px;
 }
 
-.base .card section article h3 {
+.base .card section article a {
+  color: #c7c0c0;
+  transition: 0.3s;
+}
+
+.base .card section article a h3 {
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+.base .card section article a:hover {
+  color: white;
 }
 
 .base .card section ul {
