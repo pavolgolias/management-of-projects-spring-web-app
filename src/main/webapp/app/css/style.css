@@ -11018,6 +11018,10 @@ body {
   background-color: #afaf4f;
 }
 
+.base .card--task header h4 {
+  text-transform: uppercase;
+}
+
 .base .card--task article {
   margin-left: 0;
 }
