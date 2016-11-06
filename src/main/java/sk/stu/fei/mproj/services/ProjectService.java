@@ -18,9 +18,6 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 
-/**
- * Created by Martin on 31.10.2016.
- */
 @Service
 @Transactional
 public class ProjectService {
@@ -55,12 +52,17 @@ public class ProjectService {
     }
 
     @RoleSecured
+    public Project getProject(Long projectId) {
+        return getOrElseThrowEntityNotFoundEx(projectId, projectDao, String.format("Project id=%d not found", projectId));
+    }
+
+    @RoleSecured
     public Project updateProject(Long projectId, @NotNull UpdateProjectRequestDto dto) {
         Objects.requireNonNull(dto);
 
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
-                project.getAuthor(),
+                project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible to update project id=%d information", projectId)
         );
@@ -74,16 +76,11 @@ public class ProjectService {
     public void deleteProject(Long projectId) {
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
-                project.getAuthor(),
+                project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible to delete project id=%d", projectId)
         );
         projectDao.delete(project);
-    }
-
-    @RoleSecured
-    public Project getProject(Long projectId) {
-        return getOrElseThrowEntityNotFoundEx(projectId, projectDao, String.format("Project id=%d not found", projectId));
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
@@ -94,8 +91,8 @@ public class ProjectService {
         return item;
     }
 
-    private void checkUpdateEligibilityOrElseThrowSecurityEx(Account target, Account who, String exceptionMessage) {
-        if ( !target.equals(who) ) {
+    private void checkUpdateEligibilityOrElseThrowSecurityEx(Project updateTarget, Account who, String exceptionMessage) {
+        if ( !updateTarget.getAdministrators().contains(who) ) {
             throw new SecurityException(exceptionMessage);
         }
     }

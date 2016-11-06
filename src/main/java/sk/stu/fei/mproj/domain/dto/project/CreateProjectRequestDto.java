@@ -5,10 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
-import sk.stu.fei.mproj.domain.entities.Account;
-import sk.stu.fei.mproj.domain.entities.Task;
-
-import java.util.Set;
 
 @ApiModel
 @Getter

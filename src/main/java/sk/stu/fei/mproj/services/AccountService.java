@@ -128,8 +128,8 @@ public class AccountService {
         return getOrElseThrowEntityNotFoundEx(accountId, accountDao, String.format("Account id=%d not found", accountId));
     }
 
-    private void checkUpdateEligibilityOrElseThrowSecurityEx(Account target, Account who, String exceptionMessage) {
-        if ( !target.equals(who) ) {
+    private void checkUpdateEligibilityOrElseThrowSecurityEx(Account updateTarget, Account who, String exceptionMessage) {
+        if ( !updateTarget.equals(who) ) {
             throw new SecurityException(exceptionMessage);
         }
     }
