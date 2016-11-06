@@ -5,22 +5,33 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: $gray-blue;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    white-space: nowrap;
+    
+//    hr {
+//        margin-left: 30px;
+//        border-color: #c7c0c0;
+//    }
 	
 	a {
 		padding: 8px 8px 8px 32px;
 		text-decoration: none;
 		font-size: 25px;
-		color: #818181;
+		color: #c7c0c0;
 		display: block;
 		transition: 0.3s;
+        border-bottom: 1px solid #c7c0c0;
 			
 		&:hover {
-			color: #f1f1f1;
+			color: white;
 		}	
+        &:last-child{
+             border-bottom:none;
+        }
+        
 	}
 	
 	.closebtn {
