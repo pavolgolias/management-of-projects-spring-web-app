@@ -10853,21 +10853,40 @@ body {
 }
 
 .base .side-navbar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 0px;
   text-decoration: none;
   font-size: 25px;
   color: #c7c0c0;
   display: block;
-  transition: 0.3s;
+  transition: 0.5s;
   border-bottom: 1px solid #c7c0c0;
+  display: inherit;
+  height: 50px;
+  clear: both;
+  overflow: hidden;
+  margin-left: 40px;
 }
 
 .base .side-navbar a:hover {
   color: white;
 }
 
+.base .side-navbar a:hover img {
+  display: none;
+}
+
+.base .side-navbar a:first-child {
+  border-bottom: none;
+}
+
 .base .side-navbar a:last-child {
   border-bottom: none;
+}
+
+.base .side-navbar a img {
+  width: 56px;
+  margin-top: -2px;
+  padding-right: 20px;
 }
 
 .base .side-navbar .closebtn {
