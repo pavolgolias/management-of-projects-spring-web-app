@@ -76,6 +76,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
             .exceptionHandling()
                 .authenticationEntryPoint(this.unauthorizedHandler)
@@ -101,5 +102,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf()
                 .disable()
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        // @formatter:on
     }
 }

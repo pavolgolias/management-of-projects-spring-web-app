@@ -4,17 +4,18 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
-import sk.stu.fei.mproj.domain.entities.Project;
+import sk.stu.fei.mproj.domain.enums.ModifyProjectUsersAction;
 import sk.stu.fei.mproj.security.RoleSecured;
-import sk.stu.fei.mproj.services.AccountService;
 import sk.stu.fei.mproj.services.ProjectService;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Transactional
@@ -22,71 +23,51 @@ import sk.stu.fei.mproj.services.ProjectService;
 public class ProjectUsersController {
 
     private final ProjectService projectService;
-    private final AccountService accountService;
     private final Mapper mapper;
 
     @Autowired
-    public ProjectUsersController(ProjectService projectService, AccountService accountService, Mapper mapper) {
+    public ProjectUsersController(ProjectService projectService, Mapper mapper) {
         this.projectService = projectService;
-        this.accountService = accountService;
         this.mapper = mapper;
     }
 
-    @ApiOperation(value = "Add administrator")
+    @ApiOperation(value = "Modify project administrators")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 422, message = "Unprocessable")
-    })
-    @RequestMapping(value = "/{projectId}/administrators/{accountId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    @RoleSecured
-    public DataResponse<ProjectDto> addAdministrator(@PathVariable Long projectId, @PathVariable Long accountId) {
-        Project project = projectService.addAdministrator(projectId,accountService.getAccount(accountId));
-        return new DataResponse<>(mapper.toProjectDto(project));
-    }
-
-    @ApiOperation(value = "Add participant")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 422, message = "Unprocessable")
-    })
-    @RequestMapping(value = "/{projectId}/participants/{accountId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    @RoleSecured
-    public DataResponse<ProjectDto> addParticipant(@PathVariable Long projectId, @PathVariable Long accountId) {
-        Project project = projectService.addParticipant(projectId,accountService.getAccount(accountId));
-        return new DataResponse<>(mapper.toProjectDto(project));
-    }
-
-    @ApiOperation(value = "Remove administrator")
-    @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not found")
+            @ApiResponse(code = 422, message = "Unprocessable")
     })
-    @RequestMapping(value = "/{projectId}/administrators/{accountId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "/{projectId}/administrators", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<Void> removeAdministrator(@PathVariable Long projectId, @PathVariable Long accountId) {
-        projectService.removeAdministrator(projectId,accountService.getAccount(accountId));
-        return new DataResponse<>();
+    public DataResponse<ProjectDto> modifyAdministrators(@PathVariable Long projectId, @RequestParam ModifyProjectUsersAction action, @RequestBody @Valid List<Long> administratorAccountIds) {
+        switch ( action ) {
+            case Add:
+                return new DataResponse<>(mapper.toProjectDto(projectService.addAdministrators(projectId, administratorAccountIds)));
+            case Remove:
+                return new DataResponse<>(mapper.toProjectDto(projectService.removeAdministrators(projectId, administratorAccountIds)));
+            default:
+                throw new IllegalArgumentException("Wrong action parameter");
+        }
     }
 
-    @ApiOperation(value = "Remove participant")
+    @ApiOperation(value = "Modify project participants")
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not found")
+            @ApiResponse(code = 422, message = "Unprocessable")
     })
-    @RequestMapping(value = "/{projectId}/participants/{accountId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "/{projectId}/participants", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<Void> removeParticipant(@PathVariable Long projectId, @PathVariable Long accountId) {
-        projectService.removeParticipant(projectId,accountService.getAccount(accountId));
-        return new DataResponse<>();
+    public DataResponse<ProjectDto> modifyParticipants(@PathVariable Long projectId, @RequestParam ModifyProjectUsersAction action, @RequestBody List<Long> participantsAccountIds) {
+        switch ( action ) {
+            case Add:
+                return new DataResponse<>(mapper.toProjectDto(projectService.addParticipants(projectId, participantsAccountIds)));
+            case Remove:
+                return new DataResponse<>(mapper.toProjectDto(projectService.removeParticipants(projectId, participantsAccountIds)));
+            default:
+                throw new IllegalArgumentException("Wrong action parameter");
+        }
     }
 }

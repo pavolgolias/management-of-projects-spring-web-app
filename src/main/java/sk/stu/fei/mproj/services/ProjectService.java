@@ -17,7 +17,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -98,45 +98,51 @@ public class ProjectService {
     }
 
     @RoleSecured
-    public Project addAdministrator(Long projectId, Account account) {
+    public Project addAdministrators(Long projectId, List<Long> administratorAccountIds) {
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
                 project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible add administrator for this project id=%d", projectId)
         );
-        project.getParticipants().remove(account);
-        project.getAdministrators().add(account);
+        List<Account> accounts = accountDao.findAllByIds(administratorAccountIds);
+        project.getParticipants().removeAll(accounts);
+        project.getAdministrators().addAll(accounts);
         projectDao.persist(project);
 
         return project;
     }
 
     @RoleSecured
-    public Project addParticipant(Long projectId, Account account) {
+    public Project addParticipants(Long projectId, List<Long> participantsAccountIds) {
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
                 project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible add participant for this project id=%d", projectId)
         );
-        project.getAdministrators().remove(account);
-        project.getParticipants().add(account);
+        List<Account> accounts = accountDao.findAllByIds(participantsAccountIds);
+        project.getAdministrators().removeAll(accounts);
+        if ( project.getAdministrators().isEmpty() ) {
+            throw new IllegalStateException("There must be at least one administrator in the project");
+        }
+        project.getParticipants().addAll(accounts);
         projectDao.persist(project);
 
         return project;
     }
 
     @RoleSecured
-    public Project removeAdministrator(Long projectId, Account account) {
+    public Project removeAdministrators(Long projectId, List<Long> administratorAccountIds) {
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
                 project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible remove administrator for this project id=%d", projectId)
         );
-        project.getAdministrators().remove(account);
-        if (project.getAdministrators().isEmpty()) {
+        List<Account> accounts = accountDao.findAllByIds(administratorAccountIds);
+        project.getAdministrators().removeAll(accounts);
+        if ( project.getAdministrators().isEmpty() ) {
             throw new IllegalStateException("There must be at least one administrator in the project");
         }
         projectDao.persist(project);
@@ -145,14 +151,15 @@ public class ProjectService {
     }
 
     @RoleSecured
-    public Project removeParticipant(Long projectId, Account account) {
+    public Project removeParticipants(Long projectId, List<Long> participantsAccountIds) {
         Project project = getProject(projectId);
         checkUpdateEligibilityOrElseThrowSecurityEx(
                 project,
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible remove participant for this project id=%d", projectId)
         );
-        project.getParticipants().remove(account);
+        List<Account> accounts = accountDao.findAllByIds(participantsAccountIds);
+        project.getParticipants().removeAll(accounts);
         projectDao.persist(project);
 
         return project;
