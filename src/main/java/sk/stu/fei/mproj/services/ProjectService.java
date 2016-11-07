@@ -89,6 +89,69 @@ public class ProjectService {
         projectDao.delete(project);
     }
 
+    @RoleSecured
+    public Project addAdministrator(Long projectId, Account account) {
+        Project project = getProject(projectId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                project,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible add administrator for this project id=%d", projectId)
+        );
+        project.getAdministrators().add(account);
+        projectDao.persist(project);
+
+        return project;
+    }
+
+    @RoleSecured
+    public Project addParticipant(Long projectId, Account account) {
+        Project project = getProject(projectId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                project,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible add participant for this project id=%d", projectId)
+        );
+
+        if(project.getParticipants() != null){
+            project.getParticipants().add(account);
+        }else{
+            project.setParticipants(new HashSet<Account>());
+            project.getParticipants().add(account);
+        }
+
+        projectDao.persist(project);
+
+        return project;
+    }
+
+    @RoleSecured
+    public Project removeAdministrator(Long projectId, Account account) {
+        Project project = getProject(projectId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                project,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible remove administrator for this project id=%d", projectId)
+        );
+        project.getAdministrators().remove(account);
+        projectDao.persist(project);
+
+        return project;
+    }
+
+    @RoleSecured
+    public Project removeParticipant(Long projectId, Account account) {
+        Project project = getProject(projectId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                project,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible remove participant for this project id=%d", projectId)
+        );
+        project.getParticipants().remove(account);
+        projectDao.persist(project);
+
+        return project;
+    }
+
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
         final T item = dao.findById(id);
         if ( item == null ) {
