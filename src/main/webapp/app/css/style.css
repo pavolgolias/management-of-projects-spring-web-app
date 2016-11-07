@@ -10780,16 +10780,16 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #547076;
+  background: rgba(24, 50, 56, 0.7);
 }
 
 ::-webkit-scrollbar-track {
-  background: #aab8bb;
+  background: rgba(174, 183, 185, 0.85);
 }
 
 body {
-  scrollbar-face-color: #547076;
-  scrollbar-track-color: #aab8bb;
+  scrollbar-face-color: rgba(24, 50, 56, 0.7);
+  scrollbar-track-color: rgba(174, 183, 185, 0.85);
 }
 
 body {
@@ -11065,6 +11065,10 @@ body {
   border-top-right-radius: 5px;
 }
 
+.base .card--default header {
+  background-color: #547076;
+}
+
 .base .card--project header {
   background-color: #547076;
 }
@@ -11107,6 +11111,75 @@ body {
 
 .base .card--feature header {
   background-color: #873f90 !important;
+}
+
+.base .card-row {
+  width: 100%;
+  background-color: rgba(84, 112, 118, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.base .card-row h3 {
+  line-height: 28.5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.base .card-row p {
+  margin: 0;
+  color: #789EA7;
+  font-size: 20px;
+}
+
+.base .card-row--user {
+  overflow: hidden;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.base .card-row--user img {
+  width: 100px;
+  max-height: 100px;
+  margin-right: 10px;
+}
+
+.base .card-row--user article {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+}
+
+.base .card-row--user article h4 {
+  color: white;
+  font-size: 20px;
+  font-weight: 100;
+  white-space: nowrap;
+}
+
+.base .card-row--user article p {
+  font-size: 15px;
+}
+
+.base a.card-button {
+  display: inline-block;
+  width: 100%;
+  background-color: rgba(84, 112, 118, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.base a.card-button:hover {
+  background-color: rgba(24, 50, 56, 0.7);
 }
 
 .base .login-section {
