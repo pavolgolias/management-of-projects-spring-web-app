@@ -11142,9 +11142,6 @@ body {
 
 .base .card-row--user {
   overflow: hidden;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .base .card-row--user img {
@@ -11155,13 +11152,8 @@ body {
 
 .base .card-row--user article {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
+  left: 130px;
+  top: 40px;
 }
 
 .base .card-row--user article h4 {

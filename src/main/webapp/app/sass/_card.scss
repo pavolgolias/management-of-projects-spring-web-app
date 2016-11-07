@@ -155,7 +155,10 @@
 			margin-right: 10px;
 		}
 		article {
-			@include centerVertically();
+//			@include centerVertically();
+			position: absolute;
+			left: 130px;
+			top: 40px;
 			
 			h4 {
 				color: white;
