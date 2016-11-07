@@ -1,6 +1,6 @@
 .card {
 	width: 100%;
-	min-width: 300px;
+//	min-width: 300px;
 	color: white;
 	margin-bottom: 30px;
 	
@@ -18,7 +18,7 @@
 		background-color: $gray-blue--op_middle;
 		border-bottom-left-radius: $r_default;
 		border-bottom-right-radius: $r_default;
-		min-height: 200px;
+//		min-height: 200px;
 		
 		> img {
 			position: absolute;
@@ -28,13 +28,11 @@
 		}
 		article {
 			position: relative;
-			padding-top: 10px;
-			padding-left: $p_more;
-			padding-right: $op_default;
+            padding: $p_more;
 	
 			a {
 				color: white;
-				transition: 0.3s;
+				transition: 0.3s; 
 				
 				h3 {
 					font-size: 20px;
@@ -47,6 +45,7 @@
 			
 			p {
 //				font-weight: 100;
+                margin-bottom: 0;
 			}
 		}
 		ul {
@@ -60,6 +59,13 @@
 		}
 	}
 	
+    &--no-header {
+        
+        section {
+            border-top-left-radius: $r_default;
+		    border-top-right-radius: $r_default;
+        }
+    }
 	&--project {
 		
 		header {
