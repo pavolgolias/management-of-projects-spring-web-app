@@ -36,7 +36,12 @@
 		       font-size: 20px;
                 white-space: nowrap;
                
+               &:first-child{
+             font-weight: bold;
+        }
+               
            }
+           
         }
     }
 

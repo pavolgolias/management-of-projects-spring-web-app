@@ -10876,6 +10876,10 @@ body {
   white-space: nowrap;
 }
 
+.base .side-navbar header article p:first-child {
+  font-weight: bold;
+}
+
 .base .side-navbar a {
   padding: 8px 8px 8px 0px;
   text-decoration: none;
