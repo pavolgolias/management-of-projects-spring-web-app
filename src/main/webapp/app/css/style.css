@@ -10874,6 +10874,7 @@ body {
   text-decoration: none;
   font-size: 20px;
   white-space: nowrap;
+  outline: 0;
 }
 
 .base .side-navbar header article p:first-child {
@@ -10893,6 +10894,7 @@ body {
   clear: both;
   overflow: hidden;
   margin-left: 40px;
+  outline: 0;
 }
 
 .base .side-navbar a:hover {
@@ -11207,4 +11209,88 @@ body {
   float: right;
   width: 49.5%;
   border-bottom-right-radius: 5px;
+}
+
+.base .registration-section {
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+
+.base .registration-section img {
+  margin-bottom: 80px;
+}
+
+.base .registration-section input {
+  width: 100%;
+  padding: 5px;
+  padding: 5px 50px;
+  margin-bottom: 2px;
+  border: none;
+  background-color: rgba(35, 76, 85, 0.5);
+  border-color: rgba(35, 76, 85, 0.5);
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+}
+
+.base .registration-section input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .registration-section input :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .registration-section input ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .registration-section input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.base .registration-section input.top {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.base .registration-section__btn {
+  width: 100%;
+}
+
+.base .registration-section__btn img {
+  width: 24px;
+  margin-left: -65px;
+  position: absolute;
+}
+
+.base .registration-section__btn a {
+  padding: 5px;
+  background-color: rgba(35, 76, 85, 0.7);
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: block;
+}
+
+.base .registration-section__btn a:hover {
+  background-color: rgba(35, 76, 85, 0.8);
 }
