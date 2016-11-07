@@ -16,9 +16,6 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.AccountService;
 import sk.stu.fei.mproj.services.ProjectService;
 
-/**
- * Created by Martin on 6.11.2016.
- */
 @RestController
 @Transactional
 @RequestMapping("/api/projects")

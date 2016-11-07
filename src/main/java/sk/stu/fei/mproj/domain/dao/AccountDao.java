@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.entities.Account;
 
 import java.util.Date;
+import java.util.List;
 
 import static sk.stu.fei.mproj.domain.entities.QAccount.account;
 
@@ -22,6 +23,12 @@ public class AccountDao extends DaoBase<Account, Long> {
         return queryFactory.selectFrom(account)
                 .where(account.actionToken.eq(actionToken))
                 .fetchOne();
+    }
+
+    public List<Account> findAllByIds(List<Long> ids) {
+        return queryFactory.selectFrom(account)
+                .where(account.accountId.in(ids))
+                .fetch();
     }
 
     @Override

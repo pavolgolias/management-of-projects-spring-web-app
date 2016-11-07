@@ -3,6 +3,7 @@ package sk.stu.fei.mproj.domain;
 import ma.glasnost.orika.MapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
@@ -26,6 +27,9 @@ public class Mapper {
     }
 
     private void configure(MapperFactory mapperFactory) {
+        mapperFactory.classMap(Account.class, AccountBaseDto.class)
+                .byDefault()
+                .register();
         mapperFactory.classMap(Account.class, AccountDto.class)
                 .byDefault()
                 .register();
@@ -42,6 +46,12 @@ public class Mapper {
                 .byDefault()
                 .register();
         mapperFactory.classMap(UpdateProjectRequestDto.class, Project.class)
+                .byDefault()
+                .register();
+        mapperFactory.classMap(Account.class, ProjectDto.Administrator.class)
+                .byDefault()
+                .register();
+        mapperFactory.classMap(Account.class, ProjectDto.Participant.class)
                 .byDefault()
                 .register();
     }

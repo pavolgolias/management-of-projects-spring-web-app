@@ -1,9 +1,11 @@
 package sk.stu.fei.mproj.services;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.Mapper;
+import sk.stu.fei.mproj.domain.dao.AccountDao;
 import sk.stu.fei.mproj.domain.dao.DaoBase;
 import sk.stu.fei.mproj.domain.dao.ProjectDao;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
@@ -25,12 +27,14 @@ public class ProjectService {
     private final ProjectDao projectDao;
     private final Mapper mapper;
     private final AuthorizationManager authorizationManager;
+    private final AccountDao accountDao;
 
     @Autowired
-    public ProjectService(Mapper mapper, ProjectDao projectDao, AuthorizationManager authorizationManager) {
+    public ProjectService(Mapper mapper, ProjectDao projectDao, AuthorizationManager authorizationManager, AccountDao accountDao) {
         this.mapper = mapper;
         this.projectDao = projectDao;
         this.authorizationManager = authorizationManager;
+        this.accountDao = accountDao;
     }
 
     @RoleSecured
@@ -43,8 +47,12 @@ public class ProjectService {
 
         Project project = mapper.toProject(dto);
         Account account = authorizationManager.getCurrentAccount();
-        project.setAdministrators(new HashSet<Account>());
         project.getAdministrators().add(account);
+        project.getAdministrators().addAll(accountDao.findAllByIds(dto.getAdministratorAccountIds()));
+        project.getParticipants().addAll(accountDao.findAllByIds(dto.getParticipantsAccountIds()));
+        if ( !CollectionUtils.intersection(project.getAdministrators(), project.getParticipants()).isEmpty() ) {
+            throw new IllegalArgumentException("An account cannot be administrator and participant at the same time.");
+        }
         project.setAuthor(account);
         projectDao.persist(project);
 
@@ -97,6 +105,7 @@ public class ProjectService {
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible add administrator for this project id=%d", projectId)
         );
+        project.getParticipants().remove(account);
         project.getAdministrators().add(account);
         projectDao.persist(project);
 
@@ -111,14 +120,8 @@ public class ProjectService {
                 authorizationManager.getCurrentAccount(),
                 String.format("You are not eligible add participant for this project id=%d", projectId)
         );
-
-        if(project.getParticipants() != null){
-            project.getParticipants().add(account);
-        }else{
-            project.setParticipants(new HashSet<Account>());
-            project.getParticipants().add(account);
-        }
-
+        project.getAdministrators().remove(account);
+        project.getParticipants().add(account);
         projectDao.persist(project);
 
         return project;
@@ -133,6 +136,9 @@ public class ProjectService {
                 String.format("You are not eligible remove administrator for this project id=%d", projectId)
         );
         project.getAdministrators().remove(account);
+        if (project.getAdministrators().isEmpty()) {
+            throw new IllegalStateException("There must be at least one administrator in the project");
+        }
         projectDao.persist(project);
 
         return project;

@@ -8,16 +8,7 @@ import lombok.Setter;
 @ApiModel
 @Getter
 @Setter
-public class AccountDto {
-    @ApiModelProperty(value = "Account ID", required = true)
-    private Long accountId;
-
-    @ApiModelProperty(value = "First name", required = true)
-    private String firstName;
-
-    @ApiModelProperty(value = "Last name", required = true)
-    private String lastName;
-
+public class AccountDto extends AccountBaseDto {
     @ApiModelProperty(value = "Email address", required = true)
     private String email;
 }
