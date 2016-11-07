@@ -10856,6 +10856,24 @@ body {
   transition: 0.5s;
   padding-top: 60px;
   white-space: nowrap;
+  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.71);
+}
+
+.base .side-navbar header img {
+  width: 150px;
+  position: relative;
+}
+
+.base .side-navbar header article {
+  margin-top: 25px;
+  position: relative;
+}
+
+.base .side-navbar header article p {
+  color: #c7c0c0;
+  text-decoration: none;
+  font-size: 20px;
+  white-space: nowrap;
 }
 
 .base .side-navbar a {
@@ -10881,10 +10899,6 @@ body {
   display: none;
 }
 
-.base .side-navbar a:first-child {
-  border-bottom: none;
-}
-
 .base .side-navbar a:last-child {
   border-bottom: none;
 }
@@ -10895,7 +10909,12 @@ body {
   padding-right: 20px;
 }
 
+.base .side-navbar .nav-links {
+  margin-top: 70px;
+}
+
 .base .side-navbar .closebtn {
+  border-bottom: none;
   position: absolute;
   top: 0;
   right: 25px;
@@ -10915,6 +10934,13 @@ body {
   white-space: nowrap;
 }
 
+.base .nav-footer {
+  position: absolute;
+  bottom: 10px;
+  opacity: 0.3;
+  margin-left: 40px;
+}
+
 @media all and (max-width: 768px) {
   .base .navbar-section p {
     font-size: 35px;
@@ -10922,15 +10948,10 @@ body {
   }
 }
 
-.base #navimage {
-  padding-left: 40px;
-  opacity: 0.3;
-  bottom: 0px;
-  position: relative;
-}
-
-.base .navbar-top article {
-  margin-top: 40px;
+@media all and (max-height: 720px) {
+  .base .nav-footer {
+    display: none;
+  }
 }
 
 .base .tab-section {
