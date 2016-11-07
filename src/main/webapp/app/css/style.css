@@ -11003,7 +11003,6 @@ body {
 
 .base .card {
   width: 100%;
-  min-width: 300px;
   color: white;
   margin-bottom: 30px;
 }
@@ -11023,7 +11022,6 @@ body {
   background-color: rgba(84, 112, 118, 0.7);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  min-height: 200px;
 }
 
 .base .card section > img {
@@ -11035,9 +11033,7 @@ body {
 
 .base .card section article {
   position: relative;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 0.5;
+  padding: 10px;
 }
 
 .base .card section article a {
@@ -11054,6 +11050,10 @@ body {
   text-decoration: underline;
 }
 
+.base .card section article p {
+  margin-bottom: 0;
+}
+
 .base .card section ul {
   position: relative;
 }
@@ -11062,6 +11062,11 @@ body {
   float: left;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+
+.base .card--no-header section {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .base .card--project header {
