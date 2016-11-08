@@ -85,5 +85,7 @@ public class AccountDao extends DaoBase<Account, Long> {
     @Override
     public void delete(Account entity) {
         entity.setDeletedAt(new Date());
+        entity.setActive(false);
+        super.persist(entity);
     }
 }

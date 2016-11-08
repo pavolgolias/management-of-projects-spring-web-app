@@ -25,6 +25,7 @@ import sk.stu.fei.mproj.security.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,7 +60,7 @@ public class AccountService {
         return item;
     }
 
-    private Account getAccount(String email) {
+    private Account getAccountByEmail(String email) {
         final Account account = accountDao.findByEmail(email);
         if ( account == null ) {
             throw new EntityNotFoundException(String.format("Account email=%s not found", email));
@@ -67,8 +68,16 @@ public class AccountService {
         return account;
     }
 
+    private Account getAccountByActionToken(String actionToken) {
+        final Account account = accountDao.findByActionToken(actionToken);
+        if ( account == null ) {
+            throw new EntityNotFoundException(String.format("Account with token=%s not found.", actionToken));
+        }
+        return account;
+    }
+
     public void authenticate(String email, String password) throws AuthenticationException {
-        Account account = getAccount(email);
+        Account account = getAccountByEmail(email);
         if ( !account.getActive() ) {
             throw new SecurityException(String.format("Account email=%s not activated", email));
         }
@@ -96,13 +105,18 @@ public class AccountService {
         return result;
     }
 
-    public void setActionToken(@NotNull Account account) {
+    private void setActionToken(@NotNull Account account) {
         Objects.requireNonNull(account);
 
         account.setActionToken(RandomStringUtils.randomNumeric(12));
         account.setActionTokenValidUntil(DateTime.now().plusDays(7).toDate());
+    }
 
-        accountDao.persist(account);
+    private void eraseActionToken(@NotNull Account account) {
+        Objects.requireNonNull(account);
+
+        account.setActionToken(null);
+        account.setActionTokenValidUntil(null);
     }
 
     public Account createAccount(@NotNull CreateAccountRequestDto dto) {
@@ -112,8 +126,11 @@ public class AccountService {
             throw new IllegalArgumentException(String.format("Email=%s is already used by another account.", dto.getEmail()));
         }
         Account account = mapper.toAccount(dto);
-        //TODO set account to inactive later on
+        //TODO set account to inactive later on and create action token for it
+//        account.setActive(false);
+//        setActionToken(account);
         account.setActive(true);
+
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
@@ -183,5 +200,35 @@ public class AccountService {
     @RoleSecured
     public List<Account> suggestAccounts(String searchKey, Long limit) {
         return accountDao.findAllBySearchKeyLimitBy(searchKey, limit);
+    }
+
+    public void activateAccount(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActionTokenValidUntil().before(new Date()) ) {
+            throw new IllegalStateException("Token is not valid");
+        }
+        if ( account.getDeletedAt() != null ) {
+            throw new IllegalStateException("Account was deleted.");
+        }
+        if ( !account.getActive() ) {
+            throw new IllegalStateException("Account is already active");
+        }
+        account.setActive(true);
+        eraseActionToken(account);
+        accountDao.persist(account);
+    }
+
+    public void recoverAccount(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActionTokenValidUntil().before(new Date()) ) {
+            throw new IllegalStateException("Token is not valid");
+        }
+        if ( account.getDeletedAt() == null || account.getActive() ) {
+            throw new IllegalStateException("Cannot recover active account");
+        }
+        account.setActive(true);
+        account.setDeletedAt(null);
+        eraseActionToken(account);
+        accountDao.persist(account);
     }
 }

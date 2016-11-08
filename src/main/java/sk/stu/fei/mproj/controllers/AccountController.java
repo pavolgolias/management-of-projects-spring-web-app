@@ -125,4 +125,28 @@ public class AccountController {
     public DataResponse<List<AccountDto>> searchAccounts(@RequestParam String searchKey, @RequestParam Long limit) {
         return new DataResponse<>(mapper.toAccountDtoList(accountService.suggestAccounts(searchKey, limit)));
     }
+
+    @ApiOperation(value = "Activate account specified by action token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/activate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> activateAccount(@RequestParam String token) {
+        accountService.activateAccount(token);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Recover account specified by action token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/recover", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> recoverAccount(@RequestParam String token) {
+        accountService.recoverAccount(token);
+        return new DataResponse<>();
+    }
 }
