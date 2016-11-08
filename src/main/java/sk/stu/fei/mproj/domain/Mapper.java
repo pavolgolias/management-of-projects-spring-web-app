@@ -14,6 +14,7 @@ import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.entities.Project;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -92,5 +93,11 @@ public class Mapper {
         Objects.requireNonNull(project);
 
         mapperFactory.getMapperFacade().map(dto, project);
+    }
+
+    public List<AccountDto> toAccountDtoList(@NotNull List<Account> accounts) {
+        Objects.requireNonNull(accounts);
+
+        return mapperFactory.getMapperFacade().mapAsList(accounts, AccountDto.class);
     }
 }

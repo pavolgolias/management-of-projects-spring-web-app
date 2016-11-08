@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
+import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.enums.ModifyProjectUsersAction;
 import sk.stu.fei.mproj.security.RoleSecured;
@@ -51,6 +52,18 @@ public class ProjectUsersController {
         }
     }
 
+    @ApiOperation(value = "Search for users that can be added as project administrators")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 422, message = "Unprocessable")
+    })
+    @RequestMapping(value = "/{projectId}/administrators/suggest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<List<AccountDto>> suggestAdministrators(@PathVariable Long projectId, @RequestParam String searchKey, @RequestParam Long limit) {
+        return new DataResponse<>(mapper.toAccountDtoList(projectService.suggestAdministratorsToAdd(projectId, searchKey, limit)));
+    }
+
     @ApiOperation(value = "Modify project participants")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
@@ -69,5 +82,17 @@ public class ProjectUsersController {
             default:
                 throw new IllegalArgumentException("Wrong action parameter");
         }
+    }
+
+    @ApiOperation(value = "Search for users that can be added as project participants")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 422, message = "Unprocessable")
+    })
+    @RequestMapping(value = "/{projectId}/participants/suggest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<List<AccountDto>> suggestParticipants(@PathVariable Long projectId, @RequestParam String searchKey, @RequestParam Long limit) {
+        return new DataResponse<>(mapper.toAccountDtoList(projectService.suggestParticipantsToAdd(projectId, searchKey, limit)));
     }
 }

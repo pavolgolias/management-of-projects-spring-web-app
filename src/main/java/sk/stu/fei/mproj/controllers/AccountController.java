@@ -20,6 +20,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.AccountService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Transactional
@@ -112,5 +113,16 @@ public class AccountController {
     public DataResponse<Void> deleteAccount(@PathVariable Long accountId) {
         accountService.deleteAccount(accountId);
         return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Search for users by specified search key")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized")
+    })
+    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<List<AccountDto>> searchAccounts(@RequestParam String searchKey, @RequestParam Long limit) {
+        return new DataResponse<>(mapper.toAccountDtoList(accountService.suggestAccounts(searchKey, limit)));
     }
 }

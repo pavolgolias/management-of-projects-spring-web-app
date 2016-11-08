@@ -25,6 +25,7 @@ import sk.stu.fei.mproj.security.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -177,5 +178,10 @@ public class AccountService {
                 String.format("You are not eligible to update account id=%d information", accountId)
         );
         accountDao.delete(account);
+    }
+
+    @RoleSecured
+    public List<Account> suggestAccounts(String searchKey, Long limit) {
+        return accountDao.findAllBySearchKey(searchKey, limit);
     }
 }

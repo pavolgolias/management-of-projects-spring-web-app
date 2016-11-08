@@ -165,6 +165,18 @@ public class ProjectService {
         return project;
     }
 
+    @RoleSecured
+    public List<Account> suggestAdministratorsToAdd(Long projectId, String searchKey, Long limit) {
+        Project project = getProject(projectId);
+        return accountDao.findAllBySearchKeyNotInProjectAdministratorsLimitBy(searchKey, project, limit);
+    }
+
+    @RoleSecured
+    public List<Account> suggestParticipantsToAdd(Long projectId, String searchKey, Long limit) {
+        Project project = getProject(projectId);
+        return accountDao.findAllBySearchKeyNotInProjectParticipantsLimitBy(searchKey, project, limit);
+    }
+
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
         final T item = dao.findById(id);
         if ( item == null ) {

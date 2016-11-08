@@ -3,6 +3,7 @@ package sk.stu.fei.mproj.domain.dao;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.entities.Account;
+import sk.stu.fei.mproj.domain.entities.Project;
 
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,39 @@ public class AccountDao extends DaoBase<Account, Long> {
     public List<Account> findAllByIds(List<Long> ids) {
         return queryFactory.selectFrom(account)
                 .where(account.accountId.in(ids))
+                .fetch();
+    }
+
+    public List<Account> findAllBySearchKeyNotInProjectAdministratorsLimitBy(String searchKey, Project project, Long limit) {
+        return queryFactory.selectFrom(account)
+                .where(
+                        account.administeredProjects.contains(project).not()
+                                .andAnyOf(
+                                        account.email.containsIgnoreCase(searchKey),
+                                        account.firstName.containsIgnoreCase(searchKey),
+                                        account.lastName.containsIgnoreCase(searchKey)
+                                )
+                )
+                .limit(limit)
+                .fetch();
+    }
+
+    public List<Account> findAllBySearchKeyNotInProjectParticipantsLimitBy(String searchKey, Project project, Long limit) {
+        return queryFactory.selectFrom(account)
+                .where(account.participatedProjects.contains(project).not()
+                        .andAnyOf(account.email.containsIgnoreCase(searchKey),
+                                account.firstName.containsIgnoreCase(searchKey),
+                                account.lastName.containsIgnoreCase(searchKey)))
+                .limit(limit)
+                .fetch();
+    }
+
+    public List<Account> findAllBySearchKey(String searchKey, Long limit) {
+        return queryFactory.selectFrom(account)
+                .where(account.email.containsIgnoreCase(searchKey)
+                        .or(account.firstName.containsIgnoreCase(searchKey))
+                        .or(account.lastName.containsIgnoreCase(searchKey)))
+                .limit(limit)
                 .fetch();
     }
 

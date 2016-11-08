@@ -9,6 +9,7 @@ import sk.stu.fei.mproj.domain.enums.AccountRole;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -64,4 +65,18 @@ public class Account {
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date deletedAt;
+
+    /**
+     * Projects where this account is administrator account.
+     * This is not owning side of the JPA relation!
+     */
+    @ManyToMany(mappedBy = "administrators")
+    private Set<Project> administeredProjects;
+
+    /**
+     * Projects where this account is participant account.
+     * This is not owning side of the JPA relation!
+     */
+    @ManyToMany(mappedBy = "participants")
+    private Set<Project> participatedProjects;
 }
