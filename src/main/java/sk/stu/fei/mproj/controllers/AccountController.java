@@ -10,16 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
-import sk.stu.fei.mproj.domain.dto.account.AccountDto;
-import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
-import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
-import sk.stu.fei.mproj.domain.dto.account.UpdatePasswordRequestDto;
+import sk.stu.fei.mproj.domain.dto.account.*;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.security.AuthorizationManager;
 import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.AccountService;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.net.MalformedURLException;
 import java.util.List;
 
 @RestController
@@ -44,7 +43,7 @@ public class AccountController {
     })
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public DataResponse<AccountDto> signUp(@RequestBody @Valid CreateAccountRequestDto dto) {
+    public DataResponse<AccountDto> signUp(@RequestBody @Valid CreateAccountRequestDto dto) throws MessagingException, MalformedURLException {
         Account account = accountService.createAccount(dto);
         return new DataResponse<>(mapper.toAccountDto(account));
     }
@@ -124,5 +123,51 @@ public class AccountController {
     @RoleSecured
     public DataResponse<List<AccountDto>> searchAccounts(@RequestParam String searchKey, @RequestParam Long limit) {
         return new DataResponse<>(mapper.toAccountDtoList(accountService.suggestAccounts(searchKey, limit)));
+    }
+
+    @ApiOperation(value = "Activate account specified by action token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/activate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> activateAccount(@RequestParam String token) {
+        accountService.activateAccount(token);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Request account recovery email")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/request-recovery", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> requestAccountRecovery(@RequestParam String email) throws MalformedURLException, MessagingException {
+        accountService.requestAccountRecovery(email);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Discard account recovery token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/discard-recovery", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> discardAccountRecovery(@RequestParam String token) {
+        accountService.discardAccountRecovery(token);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Recover account specified by action token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/recover", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> recoverAccount(@RequestParam String token, @RequestBody @Valid RecoverPasswordRequestDto dto) {
+        accountService.recoverAccount(token, dto);
+        return new DataResponse<>();
     }
 }

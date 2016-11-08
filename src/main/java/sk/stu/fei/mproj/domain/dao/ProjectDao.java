@@ -34,6 +34,7 @@ public class ProjectDao extends DaoBase<Project, Long> {
     @Override
     public void delete(Project entity) {
         entity.setDeletedAt(new Date());
+        super.persist(entity);
     }
 
 }

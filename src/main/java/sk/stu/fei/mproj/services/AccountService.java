@@ -12,19 +12,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sk.stu.fei.mproj.configuration.ApplicationProperties;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dao.AccountDao;
 import sk.stu.fei.mproj.domain.dao.DaoBase;
 import sk.stu.fei.mproj.domain.dto.LoginResponse;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.account.RecoverPasswordRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdatePasswordRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.enums.AccountRole;
 import sk.stu.fei.mproj.security.*;
 
+import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
+import java.net.MalformedURLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,10 +43,13 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final AuthorizationManager authorizationManager;
+    private final ApplicationProperties applicationProperties;
+    private final MailService mailService;
 
     @Autowired
     public AccountService(TokenUtils tokenUtils, Mapper mapper, AccountDao accountDao, AuthenticatedUserDetailsService userDetailsService,
-                          PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, AuthorizationManager authorizationManager) {
+                          PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, AuthorizationManager authorizationManager,
+                          ApplicationProperties applicationProperties, MailService mailService) {
         this.tokenUtils = tokenUtils;
         this.mapper = mapper;
         this.accountDao = accountDao;
@@ -49,6 +57,8 @@ public class AccountService {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.authorizationManager = authorizationManager;
+        this.applicationProperties = applicationProperties;
+        this.mailService = mailService;
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
@@ -59,7 +69,7 @@ public class AccountService {
         return item;
     }
 
-    private Account getAccount(String email) {
+    private Account getAccountByEmail(String email) {
         final Account account = accountDao.findByEmail(email);
         if ( account == null ) {
             throw new EntityNotFoundException(String.format("Account email=%s not found", email));
@@ -67,8 +77,16 @@ public class AccountService {
         return account;
     }
 
+    private Account getAccountByActionToken(String actionToken) {
+        final Account account = accountDao.findByActionToken(actionToken);
+        if ( account == null ) {
+            throw new EntityNotFoundException(String.format("Account with token=%s not found.", actionToken));
+        }
+        return account;
+    }
+
     public void authenticate(String email, String password) throws AuthenticationException {
-        Account account = getAccount(email);
+        Account account = getAccountByEmail(email);
         if ( !account.getActive() ) {
             throw new SecurityException(String.format("Account email=%s not activated", email));
         }
@@ -96,23 +114,30 @@ public class AccountService {
         return result;
     }
 
-    public void setActionToken(@NotNull Account account) {
+    private void setActionToken(@NotNull Account account) {
         Objects.requireNonNull(account);
 
-        account.setActionToken(RandomStringUtils.randomNumeric(12));
+        account.setActionToken(RandomStringUtils.randomAlphanumeric(12));
         account.setActionTokenValidUntil(DateTime.now().plusDays(7).toDate());
-
-        accountDao.persist(account);
     }
 
-    public Account createAccount(@NotNull CreateAccountRequestDto dto) {
+    private void eraseActionToken(@NotNull Account account) {
+        Objects.requireNonNull(account);
+
+        account.setActionToken(null);
+        account.setActionTokenValidUntil(null);
+    }
+
+    public Account createAccount(@NotNull CreateAccountRequestDto dto) throws MessagingException, MalformedURLException {
         Objects.requireNonNull(dto);
 
         if ( accountDao.findByEmail(dto.getEmail()) != null ) {
             throw new IllegalArgumentException(String.format("Email=%s is already used by another account.", dto.getEmail()));
         }
         Account account = mapper.toAccount(dto);
-        //TODO set account to inactive later on
+        //TODO set account to inactive later on and create action token for it
+//        account.setActive(false);
+//        setActionToken(account);
         account.setActive(true);
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
@@ -120,6 +145,11 @@ public class AccountService {
         }
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         accountDao.persist(account);
+
+        mailService.sendPlainTextEmail(account.getEmail(), "Projects account activation",
+                "Your account was created and needs to be activated. \n" +
+                        "For activation go to " + applicationProperties.buildFrontendUrl("/activate-account.html").toString() + "\n" +
+                        "Your activation code is: " + account.getActionToken());
 
         return account;
     }
@@ -182,6 +212,58 @@ public class AccountService {
 
     @RoleSecured
     public List<Account> suggestAccounts(String searchKey, Long limit) {
-        return accountDao.findAllBySearchKey(searchKey, limit);
+        return accountDao.findAllBySearchKeyLimitBy(searchKey, limit);
+    }
+
+    public void activateAccount(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActionTokenValidUntil().before(new Date()) ) {
+            throw new IllegalStateException("Token is not valid.");
+        }
+        if ( account.getDeletedAt() != null ) {
+            throw new IllegalStateException("Account was deleted.");
+        }
+        if ( account.getActive() ) {
+            throw new IllegalStateException("Account is already active.");
+        }
+        account.setActive(true);
+        eraseActionToken(account);
+        accountDao.persist(account);
+    }
+
+    public void requestAccountRecovery(String email) throws MalformedURLException, MessagingException {
+        final Account account = getAccountByEmail(email);
+        setActionToken(account);
+        accountDao.persist(account);
+
+        mailService.sendPlainTextEmail(account.getEmail(), "Projects account recovery",
+                "You requested account recovery.\n" +
+                        "To recover your account and password go to " + applicationProperties.buildFrontendUrl("/recover-account.html").toString() + "\n" +
+                        "Your recovery code is: " + account.getActionToken() + "\n" +
+                        "If you did not request account recovery, go please to " + applicationProperties.buildFrontendUrl("/recover-account.html").toString() +
+                        " and use recovery code provided above to discard this recovery request.");
+    }
+
+    public void discardAccountRecovery(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        eraseActionToken(account);
+        accountDao.persist(account);
+    }
+
+    public void recoverAccount(String actionToken, @NotNull RecoverPasswordRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActionTokenValidUntil().before(new Date()) ) {
+            throw new IllegalStateException("Token is not valid.");
+        }
+        if ( !dto.getNewPassword().equals(dto.getRepeatNewPassword()) ) {
+            throw new IllegalArgumentException("Password and repeat password must be same.");
+        }
+        account.setActive(true);
+        account.setDeletedAt(null);
+        account.setPasswordHash(passwordEncoder.encode(dto.getNewPassword()));
+        eraseActionToken(account);
+        accountDao.persist(account);
     }
 }
