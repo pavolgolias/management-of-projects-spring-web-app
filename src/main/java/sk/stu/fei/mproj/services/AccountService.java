@@ -182,6 +182,6 @@ public class AccountService {
 
     @RoleSecured
     public List<Account> suggestAccounts(String searchKey, Long limit) {
-        return accountDao.findAllBySearchKey(searchKey, limit);
+        return accountDao.findAllBySearchKeyLimitBy(searchKey, limit);
     }
 }
