@@ -1,42 +1,24 @@
 package sk.stu.fei.mproj.configuration;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 import javax.validation.constraints.NotNull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 @ConfigurationProperties(prefix = "application")
+@Configuration
+@Getter
+@Setter
 public class ApplicationProperties {
     private URL backendUrl;
     private URL frontendUrl;
-    private URL adminUrl;
-
-    public URL getBackendUrl() {
-        return backendUrl;
-    }
-
-    public void setBackendUrl(URL backendUrl) {
-        this.backendUrl = backendUrl;
-    }
-
-    public URL getFrontendUrl() {
-        return frontendUrl;
-    }
-
-    public void setFrontendUrl(URL frontendUrl) {
-        this.frontendUrl = frontendUrl;
-    }
-
-    public URL getAdminUrl() {
-        return adminUrl;
-    }
-
-    public void setAdminUrl(URL adminUrl) {
-        this.adminUrl = adminUrl;
-    }
+    private Boolean enableMailSending;
 
     @NotNull
     public URL buildBackendUrl(String relativePath) throws MalformedURLException {
@@ -46,11 +28,6 @@ public class ApplicationProperties {
     @NotNull
     public URL buildFrontendUrl(String relativePath) throws MalformedURLException {
         return concat(frontendUrl, relativePath);
-    }
-
-    @NotNull
-    public URL buildAdminUrl(String relativePath) throws MalformedURLException {
-        return concat(adminUrl, relativePath);
     }
 
     private URL concat(URL rootUrl, String relative) throws MalformedURLException {
