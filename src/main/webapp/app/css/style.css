@@ -11056,6 +11056,13 @@ body {
   margin-bottom: 0;
 }
 
+.base .card section article textarea {
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
+  border: none;
+}
+
 .base .card section ul {
   position: relative;
 }
@@ -11140,6 +11147,18 @@ body {
   font-size: 20px;
 }
 
+.base .card-row .img-label {
+  line-height: 48px;
+}
+
+.base .card-row input[type="text"] {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  text-align: right;
+}
+
 .base .card-row--user {
   overflow: hidden;
 }
@@ -11151,9 +11170,8 @@ body {
 }
 
 .base .card-row--user article {
-  position: absolute;
-  left: 130px;
-  top: 40px;
+  position: relative;
+  margin-top: 30px;
 }
 
 .base .card-row--user article h4 {

@@ -42,10 +42,15 @@
 					text-decoration: underline;
 				}
 			}
-			
 			p {
 //				font-weight: 100;
                 margin-bottom: 0;
+			}
+			textarea {
+				width: 100%;
+				height: 200px;
+				background-color: transparent;
+				border: none;
 			}
 		}
 		ul {
@@ -145,6 +150,16 @@
 		font-size: 20px;
 //		font-weight: 100;
 	}
+	.img-label {
+		line-height: 48px;
+	}
+	input[type="text"] {
+		background-color: transparent;
+		border: none;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+	}
 	
 	&--user {
 		overflow: hidden;
@@ -156,9 +171,8 @@
 		}
 		article {
 //			@include centerVertically();
-			position: absolute;
-			left: 130px;
-			top: 40px;
+			position: relative;
+			margin-top: 30px;
 			
 			h4 {
 				color: white;
