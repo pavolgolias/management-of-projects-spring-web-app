@@ -10,8 +10,10 @@ import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
+import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.entities.Project;
+import sk.stu.fei.mproj.domain.entities.Task;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -53,6 +55,10 @@ public class Mapper {
                 .byDefault()
                 .register();
         mapperFactory.classMap(Account.class, ProjectDto.Participant.class)
+				.byDefault()
+				.register();
+
+        mapperFactory.classMap(Task.class, TaskDto.class)
                 .byDefault()
                 .register();
     }
@@ -97,7 +103,11 @@ public class Mapper {
 
     public List<AccountDto> toAccountDtoList(@NotNull List<Account> accounts) {
         Objects.requireNonNull(accounts);
-
         return mapperFactory.getMapperFacade().mapAsList(accounts, AccountDto.class);
+	}
+	
+   public TaskDto toTaskDto(@NotNull Task task){
+        Objects.requireNonNull(task);
+        return mapperFactory.getMapperFacade().map(task, TaskDto.class);
     }
 }
