@@ -1,5 +1,5 @@
 package sk.stu.fei.mproj.domain.enums;
 
-public enum ModifyProjectUsersAction {
+public enum ModifyProjectUserAction {
     Add, Remove
 }

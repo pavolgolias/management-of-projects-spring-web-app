@@ -11,7 +11,7 @@ import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
 import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
-import sk.stu.fei.mproj.domain.enums.ModifyProjectUsersAction;
+import sk.stu.fei.mproj.domain.enums.ModifyProjectUserAction;
 import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.ProjectService;
 
@@ -41,7 +41,7 @@ public class ProjectUsersController {
     })
     @RequestMapping(value = "/{projectId}/administrators", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<ProjectDto> modifyAdministrators(@PathVariable Long projectId, @RequestParam ModifyProjectUsersAction action, @RequestBody @Valid List<Long> administratorAccountIds) {
+    public DataResponse<ProjectDto> modifyAdministrators(@PathVariable Long projectId, @RequestParam ModifyProjectUserAction action, @RequestBody @Valid List<Long> administratorAccountIds) {
         switch ( action ) {
             case Add:
                 return new DataResponse<>(mapper.toProjectDto(projectService.addAdministrators(projectId, administratorAccountIds)));
@@ -60,7 +60,8 @@ public class ProjectUsersController {
     })
     @RequestMapping(value = "/{projectId}/administrators/suggest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<List<AccountDto>> suggestAdministrators(@PathVariable Long projectId, @RequestParam String searchKey, @RequestParam Long limit) {
+    public DataResponse<List<AccountDto>> suggestAdministrators(@PathVariable Long projectId, @RequestParam String searchKey,
+                                                                @RequestParam(defaultValue = "10", required = false) Long limit) {
         return new DataResponse<>(mapper.toAccountDtoList(projectService.suggestAdministratorsToAdd(projectId, searchKey, limit)));
     }
 
@@ -73,7 +74,7 @@ public class ProjectUsersController {
     })
     @RequestMapping(value = "/{projectId}/participants", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<ProjectDto> modifyParticipants(@PathVariable Long projectId, @RequestParam ModifyProjectUsersAction action, @RequestBody List<Long> participantsAccountIds) {
+    public DataResponse<ProjectDto> modifyParticipants(@PathVariable Long projectId, @RequestParam ModifyProjectUserAction action, @RequestBody List<Long> participantsAccountIds) {
         switch ( action ) {
             case Add:
                 return new DataResponse<>(mapper.toProjectDto(projectService.addParticipants(projectId, participantsAccountIds)));
@@ -92,7 +93,8 @@ public class ProjectUsersController {
     })
     @RequestMapping(value = "/{projectId}/participants/suggest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<List<AccountDto>> suggestParticipants(@PathVariable Long projectId, @RequestParam String searchKey, @RequestParam Long limit) {
+    public DataResponse<List<AccountDto>> suggestParticipants(@PathVariable Long projectId, @RequestParam String searchKey,
+                                                              @RequestParam(defaultValue = "10", required = false) Long limit) {
         return new DataResponse<>(mapper.toAccountDtoList(projectService.suggestParticipantsToAdd(projectId, searchKey, limit)));
     }
 }

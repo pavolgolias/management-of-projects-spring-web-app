@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dao.AccountDao;
 import sk.stu.fei.mproj.domain.dao.DaoBase;
+import sk.stu.fei.mproj.domain.dao.DataPage;
 import sk.stu.fei.mproj.domain.dao.ProjectDao;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.entities.Project;
+import sk.stu.fei.mproj.domain.enums.GetProjectsType;
 import sk.stu.fei.mproj.security.AuthorizationManager;
 import sk.stu.fei.mproj.security.RoleSecured;
 
@@ -191,4 +193,9 @@ public class ProjectService {
         }
     }
 
+    @RoleSecured
+    public DataPage<List<Project>> getProjectsPage(GetProjectsType type, Long pageSize, Long startId) {
+        Account account = authorizationManager.getCurrentAccount();
+        return projectDao.findProjectsPageFilteredByType(account, type, pageSize, startId);
+    }
 }

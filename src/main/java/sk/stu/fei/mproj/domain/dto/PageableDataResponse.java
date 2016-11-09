@@ -9,9 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PageableDataResponse<T> extends DataResponse<T> {
-    @ApiModelProperty(value = "Size of the page")
+    @ApiModelProperty(value = "Size of the page", required = true)
     private Long pageSize;
-    @ApiModelProperty(value = "Next id where to start the search")
+    @ApiModelProperty(value = "Next id where to start the search", required = true)
     private Long nextId;
 
     public PageableDataResponse(T data, Long pageSize, Long nextId) {

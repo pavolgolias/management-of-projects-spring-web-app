@@ -9,15 +9,19 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
+import sk.stu.fei.mproj.domain.dao.DataPage;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
+import sk.stu.fei.mproj.domain.dto.PageableDataResponse;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.entities.Project;
+import sk.stu.fei.mproj.domain.enums.GetProjectsType;
 import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.ProjectService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Transactional
@@ -85,5 +89,20 @@ public class ProjectController {
     public DataResponse<Void> deleteProject(@PathVariable Long projectId) {
         projectService.deleteProject(projectId);
         return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Get specified page of projects")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized")
+    })
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public PageableDataResponse<List<ProjectDto>> getProjects(
+            @RequestParam(defaultValue = "All", required = false) GetProjectsType type,
+            @RequestParam(defaultValue = "-1", required = false) Long nextId,
+            @RequestParam(defaultValue = "20", required = false) Long pageSize) {
+        DataPage<List<Project>> projectsPage = projectService.getProjectsPage(type, pageSize, nextId);
+        return new PageableDataResponse<>(mapper.toProjectDtoList(projectsPage.getPage()), projectsPage.getPageSize(), projectsPage.getNextId());
     }
 }
