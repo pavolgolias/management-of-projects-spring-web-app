@@ -12,12 +12,7 @@ import java.util.List;
 @ApiModel
 @Getter
 @Setter
-public class ProjectDto {
-    @ApiModelProperty(value = "Project ID", required = true)
-    private Long projectId;
-
-    @ApiModelProperty(value = "Name", required = true)
-    private String name;
+public class ProjectDto extends ProjectBaseDto{
 
     @ApiModelProperty(value = "Description", required = true)
     private String description;
