@@ -3,7 +3,6 @@ package sk.stu.fei.mproj.configuration;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,26 +18,31 @@ public class ApplicationProperties {
     private URL backendUrl;
     private URL frontendUrl;
     private Boolean enableMailSending;
+    private Boolean enableFileUpload;
+    private String fileUploadRootFolder;
 
-    @NotNull
-    public URL buildBackendUrl(String relativePath) throws MalformedURLException {
-        return concat(backendUrl, relativePath);
+    public URL buildBackendUrl(@NotNull String relativePath) throws MalformedURLException {
+        return new URL(concatWithSlashes(backendUrl.toString(), relativePath));
     }
 
-    @NotNull
-    public URL buildFrontendUrl(String relativePath) throws MalformedURLException {
-        return concat(frontendUrl, relativePath);
+    public URL buildFrontendUrl(@NotNull String relativePath) throws MalformedURLException {
+        return new URL(concatWithSlashes(frontendUrl.toString(), relativePath));
     }
 
-    private URL concat(URL rootUrl, String relative) throws MalformedURLException {
-        final String root = rootUrl.toString();
-        final String relativeSanitized = StringUtils.trimToEmpty(relative);
+    public String buildFilePath(@NotNull String relativePath) {
+        return concatWithSlashes(fileUploadRootFolder, relativePath);
+    }
 
-        if ( !(StringUtils.endsWith(root, "/")) && !(StringUtils.startsWith(relativeSanitized, "/")) ) {
-            return new URL(root + "/" + relativeSanitized);
+    private String concatWithSlashes(String root, String relative) {
+        final String rootSanitized = root.trim();
+        final String relativeSanitized = relative.trim();
+
+        if ( !rootSanitized.endsWith("/") && !relativeSanitized.startsWith("/") ) {
+            return rootSanitized + "/" + relativeSanitized;
         }
-        else {
-            return new URL(root + relativeSanitized);
+        else if ( rootSanitized.endsWith("/") && relativeSanitized.startsWith("/") ) {
+            return rootSanitized + relativeSanitized.substring(1);
         }
+        return rootSanitized + relativeSanitized;
     }
 }

@@ -66,6 +66,9 @@ public class Account {
     @Column
     private Date deletedAt;
 
+    @Column
+    private String avatarFilename;
+
     /**
      * Projects where this account is administrator account.
      * This is not owning side of the JPA relation!

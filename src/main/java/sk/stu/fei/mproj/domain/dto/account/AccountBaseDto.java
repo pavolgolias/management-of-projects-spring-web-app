@@ -17,4 +17,7 @@ public class AccountBaseDto {
 
     @ApiModelProperty(value = "Last name", required = true)
     private String lastName;
+
+    @ApiModelProperty(value = "Account's avatar filename")
+    private String avatarFilename;
 }

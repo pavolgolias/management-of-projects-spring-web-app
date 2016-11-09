@@ -3,6 +3,7 @@ package sk.stu.fei.mproj.services;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import sk.stu.fei.mproj.configuration.ApplicationProperties;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dao.AccountDao;
@@ -45,11 +47,12 @@ public class AccountService {
     private final AuthorizationManager authorizationManager;
     private final ApplicationProperties applicationProperties;
     private final MailService mailService;
+    private final StorageService storageService;
 
     @Autowired
     public AccountService(TokenUtils tokenUtils, Mapper mapper, AccountDao accountDao, AuthenticatedUserDetailsService userDetailsService,
                           PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, AuthorizationManager authorizationManager,
-                          ApplicationProperties applicationProperties, MailService mailService) {
+                          ApplicationProperties applicationProperties, MailService mailService, StorageService storageService) {
         this.tokenUtils = tokenUtils;
         this.mapper = mapper;
         this.accountDao = accountDao;
@@ -59,6 +62,7 @@ public class AccountService {
         this.authorizationManager = authorizationManager;
         this.applicationProperties = applicationProperties;
         this.mailService = mailService;
+        this.storageService = storageService;
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
@@ -264,6 +268,48 @@ public class AccountService {
         account.setDeletedAt(null);
         account.setPasswordHash(passwordEncoder.encode(dto.getNewPassword()));
         eraseActionToken(account);
+        accountDao.persist(account);
+    }
+
+    @RoleSecured
+    public void saveAccountAvatar(Long accountId, MultipartFile file) {
+        final Account account = getAccount(accountId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                account,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update account id=%d photo", accountId)
+        );
+        String newFileName = account.getAccountId() + "_"
+                + account.getEmail().substring(0, account.getEmail().indexOf('@'))
+                + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+        if ( account.getAvatarFilename() != null ) {
+            storageService.delete(account.getAvatarFilename());
+        }
+        storageService.store(file, newFileName);
+        account.setAvatarFilename(newFileName);
+        accountDao.persist(account);
+    }
+
+    public Resource loadAccountAvatar(Long accountId) {
+        final Account account = getAccount(accountId);
+        if ( account.getAvatarFilename() == null ) {
+            throw new StorageService.FileNotFoundException(String.format("Avatar for account id=%d not found.", accountId));
+        }
+        return storageService.loadAsResource(account.getAvatarFilename());
+    }
+
+    @RoleSecured
+    public void deleteAccountAvatar(Long accountId) {
+        final Account account = getAccount(accountId);
+        checkUpdateEligibilityOrElseThrowSecurityEx(
+                account,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update account id=%d photo", accountId)
+        );
+        if ( account.getAvatarFilename() != null ) {
+            storageService.delete(account.getAvatarFilename());
+        }
+        account.setAvatarFilename(null);
         accountDao.persist(account);
     }
 }

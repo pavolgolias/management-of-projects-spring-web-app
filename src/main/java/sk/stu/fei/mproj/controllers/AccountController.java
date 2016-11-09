@@ -4,10 +4,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
 import sk.stu.fei.mproj.domain.dto.account.*;
@@ -168,6 +172,47 @@ public class AccountController {
     @RequestMapping(value = "/recover", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public DataResponse<Void> recoverAccount(@RequestParam String token, @RequestBody @Valid RecoverPasswordRequestDto dto) {
         accountService.recoverAccount(token, dto);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Upload account avatar image")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/{accountId}/avatar", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<Void> uploadAccountAvatar(@PathVariable Long accountId, @RequestParam MultipartFile file) {
+        accountService.saveAccountAvatar(accountId, file);
+        return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Download account avatar image")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/{accountId}/avatar", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
+    public ResponseEntity<Resource> serveAccountAvatar(@PathVariable Long accountId) {
+        Resource file = accountService.loadAccountAvatar(accountId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"avatar" + file.getFilename().substring(file.getFilename().indexOf('.')) + "\"")
+                .body(file);
+    }
+
+    @ApiOperation(value = "Delete account avatar image")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/{accountId}/avatar", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<Void> deleteAccountAvatar(@PathVariable Long accountId) {
+        accountService.deleteAccountAvatar(accountId);
         return new DataResponse<>();
     }
 }
