@@ -69,6 +69,9 @@ public class ProjectTaskService {
                     dto.getAssigneeId(),
                     accountDao,
                     String.format("User with id=%s was not found", dto.getAssigneeId()));
+            if ( !project.getAdministrators().contains(assignee) && !project.getParticipants().contains(assignee) ) {
+                throw new SecurityException(String.format("User id=%d is not administrator nor participant in project=%d", dto.getAssigneeId(), projectId));
+            }
             task.setAssignee(assignee);
         }
 
@@ -96,6 +99,10 @@ public class ProjectTaskService {
                     dto.getAssigneeId(),
                     accountDao,
                     String.format("User with id=%s was not found", dto.getAssigneeId()));
+            if ( !task.getProject().getAdministrators().contains(assignee) && !task.getProject().getParticipants().contains(assignee) ) {
+                throw new SecurityException(String.format("User id=%d is not administrator nor participant in project id=%d",
+                        dto.getAssigneeId(), task.getProject().getProjectId()));
+            }
             task.setAssignee(assignee);
         }
         else {
