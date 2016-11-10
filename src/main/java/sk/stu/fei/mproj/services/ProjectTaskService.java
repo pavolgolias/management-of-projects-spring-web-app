@@ -94,6 +94,9 @@ public class ProjectTaskService {
         if ( dto.getStatus() == TaskStatus.Done ) {
             task.setCompletionDate(new Date());
         }
+        else {
+            task.setCompletionDate(null);
+        }
         if ( dto.getAssigneeId() != null ) {
             final Account assignee = getOrElseThrowEntityNotFoundEx(
                     dto.getAssigneeId(),
@@ -108,7 +111,6 @@ public class ProjectTaskService {
         else {
             task.setAssignee(null);
         }
-
 
         taskDao.persist(task);
         return task;
@@ -142,7 +144,7 @@ public class ProjectTaskService {
     }
 
     private void checkUpdateTaskEligibilityOrElseThrowSecurityEx(Task updateTarget, Account who, String exceptionMessage) {
-        if ( !updateTarget.getProject().getAdministrators().contains(who) && !updateTarget.getAssignee().equals(who) ) {
+        if ( !updateTarget.getProject().getAdministrators().contains(who) && (updateTarget.getAssignee() == null || !updateTarget.getAssignee().equals(who)) ) {
             throw new SecurityException(exceptionMessage);
         }
     }

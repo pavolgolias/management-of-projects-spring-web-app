@@ -53,8 +53,8 @@ public class ProjectTaskController {
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @RoleSecured
-    public DataResponse<TaskDto> createTask(@PathVariable Long projectId, @RequestBody @Valid CreateTaskRequestDto createTaskRequestDto) {
-        Task task = projectTaskService.createTask(projectId, createTaskRequestDto);
+    public DataResponse<TaskDto> createTask(@PathVariable Long projectId, @RequestBody @Valid CreateTaskRequestDto dto) {
+        Task task = projectTaskService.createTask(projectId, dto);
         return new DataResponse<>(mapper.toTaskDto(task));
     }
 
