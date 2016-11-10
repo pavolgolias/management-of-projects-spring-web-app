@@ -14,7 +14,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body class="base page--home background" onload="checkIsSignedUp()">
+<body class="base page--home background" onload="checkIsSignedIn()">
     
     <div class="login-section">
     	<div class="container-xs">
@@ -22,8 +22,8 @@
 			<input class="top email" type="email" id="exampleInputEmail1" placeholder="E-mail">
 			<input class="psw" type="password" id="exampleInputPassword1" placeholder="Password">
 			<div class="login-section__btn-group">
-				<a href="#" onclick="signUp()" class="left">Sign up</a>
-				<a href="registration.html" class="right">Sign in</a>
+				<a href="registration.html" class="left">Sign up</a>
+				<a href="#" onclick="signIn()" class="right">Sign in</a>
 			</div>
 		</div>
     </div>
@@ -34,7 +34,7 @@
 
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/auth/signUp.js"></script>
+    <script type="text/javascript" src="js/auth/signIn.js"></script>
 
 </body>
 </html>
