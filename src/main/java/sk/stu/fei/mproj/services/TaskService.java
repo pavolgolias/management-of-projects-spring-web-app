@@ -13,20 +13,18 @@ import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
 import sk.stu.fei.mproj.domain.entities.Project;
 import sk.stu.fei.mproj.domain.entities.Task;
+import sk.stu.fei.mproj.domain.enums.TaskPriority;
+import sk.stu.fei.mproj.domain.enums.TaskStatus;
 import sk.stu.fei.mproj.security.AuthorizationManager;
 import sk.stu.fei.mproj.security.RoleSecured;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-/**
- * Created by Patrik on 7.11.2016.
- */
 @Service
 @Transactional
 public class TaskService {
-
     private TaskDao taskDao;
     private Mapper mapper;
     private AuthorizationManager authorizationManager;
@@ -34,9 +32,8 @@ public class TaskService {
     private ProjectDao projectDao;
 
     @Autowired
-    public TaskService(TaskDao taskDao,Mapper mapper,AuthorizationManager authorizationManager,AccountDao accountDao,ProjectDao projectDao)
-    {
-        this.taskDao=taskDao;
+    public TaskService(TaskDao taskDao, Mapper mapper, AuthorizationManager authorizationManager, AccountDao accountDao, ProjectDao projectDao) {
+        this.taskDao = taskDao;
         this.mapper = mapper;
         this.authorizationManager = authorizationManager;
         this.accountDao = accountDao;
@@ -44,55 +41,78 @@ public class TaskService {
     }
 
     @RoleSecured
-    public Task getTask(Long taskId){
+    public Task getTask(Long projectId, Long taskId) {
         return getOrElseThrowEntityNotFoundEx(taskId, taskDao, String.format("Task id=%d not found", taskId));
     }
 
     @RoleSecured
-    public Task createTask(CreateTaskRequestDto createTaskRequestDto){
-        Task task = mapper.toTask(createTaskRequestDto);
-        task.setCreatedAt(new Date());
-        task.setCreator(authorizationManager.getCurrentAccount());
-        if(createTaskRequestDto.getAssignee() != null){
-            Account assignee= accountDao.findById(createTaskRequestDto.getAssignee());
-            if(assignee == null){
-                throw new IllegalArgumentException(String.format("User with id=%s was not found",createTaskRequestDto.getAssignee()
-                ));
-            }else{
-                task.setAssignee(assignee);
-            }
+    public Task createTask(Long projectId, @NotNull CreateTaskRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        final Project project = getOrElseThrowEntityNotFoundEx(projectId, projectDao, String.format("Project id=%d not found", projectId));
+        checkAddTaskEligibilityOrElseThrowSecurityEx(
+                project,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to add task to project id=%d", projectId)
+        );
+
+        final Task task = mapper.toTask(dto);
+        task.setStatus(TaskStatus.Todo);
+        if ( task.getPriority() == null ) {
+            task.setPriority(TaskPriority.Normal);
         }
-        task.setProject(projectDao.findById(createTaskRequestDto.getProject()));
-        if(task.getProject()==null)
-            throw new IllegalArgumentException("The task is not assigned to project.");
+        task.setProject(project);
+        task.setAuthor(authorizationManager.getCurrentAccount());
+        if ( dto.getAssigneeId() != null ) {
+            final Account assignee = getOrElseThrowEntityNotFoundEx(
+                    dto.getAssigneeId(),
+                    accountDao,
+                    String.format("User with id=%s was not found", dto.getAssigneeId()));
+            task.setAssignee(assignee);
+        }
 
         taskDao.persist(task);
         return task;
     }
 
-    public Task updateTask(Long id,UpdateTaskRequestDto updateTaskRequestDto){
-        Objects.requireNonNull(updateTaskRequestDto);
-        Task task = taskDao.findById(id);
+    @RoleSecured
+    public Task updateTask(Long projectId, Long taskId, @NotNull UpdateTaskRequestDto dto) {
+        Objects.requireNonNull(dto);
 
-        mapper.fillTask(updateTaskRequestDto,task);
-        task.setUpdatedAt(new Date());
-        if(updateTaskRequestDto.getAssignee() != null){
-            Account assignee= accountDao.findById(updateTaskRequestDto.getAssignee());
-            if(assignee == null){
-                throw new IllegalArgumentException(String.format("User with id=%s was not found",updateTaskRequestDto.getAssignee()
-                ));
-            }else{
-                task.setAssignee(assignee);
-            }
-        }else{
+        final Task task = getTask(projectId, taskId);
+        checkUpdateTaskEligibilityOrElseThrowSecurityEx(
+                task,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update or delete task id=%d", taskId)
+        );
+
+        mapper.fillTask(dto, task);
+        if ( dto.getAssigneeId() != null ) {
+            final Account assignee = getOrElseThrowEntityNotFoundEx(
+                    dto.getAssigneeId(),
+                    accountDao,
+                    String.format("User with id=%s was not found", dto.getAssigneeId()));
+            task.setAssignee(assignee);
+        }
+        else {
             task.setAssignee(null);
         }
-        task.setProject(projectDao.findById(updateTaskRequestDto.getProject()));
-        if(task.getProject()==null)
-            throw new IllegalArgumentException("The task is not assigned to project.");
 
         taskDao.persist(task);
         return task;
+    }
+
+    @RoleSecured
+    public void deleteTask(Long projectId, Long taskId) {
+        final Task task = getTask(projectId, taskId);
+
+        checkUpdateTaskEligibilityOrElseThrowSecurityEx(
+                task,
+                authorizationManager.getCurrentAccount(),
+                String.format("You are not eligible to update or delete task id=%d", taskId)
+        );
+
+        taskDao.delete(task);
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
@@ -103,20 +123,15 @@ public class TaskService {
         return item;
     }
 
-    public void deleteTask(Long id){
-        Task task = taskDao.findById(id);
-        if(task == null)
-            throw new IllegalArgumentException(String.format("Task with id=%s was not found",id.toString()));
-
-        checkUpdateEligibilityOrElseThrowSecurityEx(task,authorizationManager.getCurrentAccount(),"Permission denied. Only the owner of the task or project administrator can delete the task.");
-
-        taskDao.delete(task);
-    }
-
-    private void checkUpdateEligibilityOrElseThrowSecurityEx(Task updateTarget, Account who, String exceptionMessage) {
-        if ( !updateTarget.getCreator().equals(who) && !updateTarget.getAssignee().equals(who) && !updateTarget.getProject().getAdministrators().contains(who)) {
+    private void checkAddTaskEligibilityOrElseThrowSecurityEx(Project projectToAddTaskTo, Account who, String exceptionMessage) {
+        if ( !projectToAddTaskTo.getAdministrators().contains(who) ) {
             throw new SecurityException(exceptionMessage);
         }
     }
 
+    private void checkUpdateTaskEligibilityOrElseThrowSecurityEx(Task updateTarget, Account who, String exceptionMessage) {
+        if ( !updateTarget.getProject().getAdministrators().contains(who) ) {
+            throw new SecurityException(exceptionMessage);
+        }
+    }
 }

@@ -6,13 +6,10 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.method.P;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
-import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
-import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
@@ -22,24 +19,20 @@ import sk.stu.fei.mproj.services.TaskService;
 
 import javax.validation.Valid;
 
-/**
- * Created by Patrik on 7.11.2016.
- */
 @RestController
 @Transactional
-@RequestMapping("/api/task")
-public class TaskController {
-
-    private Mapper mapper;
-    private TaskService taskService;
+@RequestMapping("/api/projects/{projectId}/tasks")
+public class ProjectTasksController {
+    private final Mapper mapper;
+    private final TaskService taskService;
 
     @Autowired
-    public TaskController(Mapper mapper, TaskService taskService){
-        this.mapper=mapper;
-        this.taskService=taskService;
+    public ProjectTasksController(Mapper mapper, TaskService taskService) {
+        this.mapper = mapper;
+        this.taskService = taskService;
     }
 
-    @ApiOperation(value = "Get the task information of the current id")
+    @ApiOperation(value = "Get information about specified task")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
@@ -47,8 +40,8 @@ public class TaskController {
     })
     @RequestMapping(value = "/{taskId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<TaskDto> getProject(@PathVariable Long taskId) {
-        return new DataResponse<>(mapper.toTaskDto(taskService.getTask(taskId)));
+    public DataResponse<TaskDto> getTask(@PathVariable Long projectId, @PathVariable Long taskId) {
+        return new DataResponse<>(mapper.toTaskDto(taskService.getTask(projectId, taskId)));
     }
 
     @ApiOperation(value = "Create a task")
@@ -60,8 +53,8 @@ public class TaskController {
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @RoleSecured
-    public DataResponse<TaskDto> createTask(@RequestBody @Valid CreateTaskRequestDto createTaskRequestDto){
-        Task task = taskService.createTask(createTaskRequestDto);
+    public DataResponse<TaskDto> createTask(@PathVariable Long projectId, @RequestBody @Valid CreateTaskRequestDto createTaskRequestDto) {
+        Task task = taskService.createTask(projectId, createTaskRequestDto);
         return new DataResponse<>(mapper.toTaskDto(task));
     }
 
@@ -75,8 +68,8 @@ public class TaskController {
     })
     @RequestMapping(value = "/{taskId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<TaskDto> updateProject(@PathVariable Long taskId, @RequestBody @Valid UpdateTaskRequestDto dto) {
-        return new DataResponse<>(mapper.toTaskDto(taskService.updateTask(taskId, dto)));
+    public DataResponse<TaskDto> updateTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody @Valid UpdateTaskRequestDto dto) {
+        return new DataResponse<>(mapper.toTaskDto(taskService.updateTask(projectId, taskId, dto)));
     }
 
     @ApiOperation(value = "Delete specified task")
@@ -89,8 +82,8 @@ public class TaskController {
     @RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RoleSecured
-    public DataResponse<Void> deleteTask(@PathVariable Long taskId){
-        taskService.deleteTask(taskId);
+    public DataResponse<Void> deleteTask(@PathVariable Long projectId, @PathVariable Long taskId) {
+        taskService.deleteTask(projectId, taskId);
         return new DataResponse<>();
     }
 }

@@ -6,12 +6,9 @@ import sk.stu.fei.mproj.domain.entities.Task;
 
 import java.util.Date;
 
-/**
- * Created by Patrik on 7.11.2016.
- */
 @Repository
 @Transactional
-public class TaskDao  extends DaoBase<Task, Long> {
+public class TaskDao extends DaoBase<Task, Long> {
 
     @Override
     public void persist(Task entity) {

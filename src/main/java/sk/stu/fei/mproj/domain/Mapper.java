@@ -8,7 +8,6 @@ import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
-import sk.stu.fei.mproj.domain.dto.project.ProjectBaseDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
@@ -45,9 +44,6 @@ public class Mapper {
         mapperFactory.classMap(UpdateAccountRequestDto.class, Account.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(Project.class, ProjectBaseDto.class)
-                .byDefault()
-                .register();
         mapperFactory.classMap(Project.class, ProjectDto.class)
                 .byDefault()
                 .register();
@@ -61,15 +57,15 @@ public class Mapper {
                 .byDefault()
                 .register();
         mapperFactory.classMap(Account.class, ProjectDto.Participant.class)
-				.byDefault()
-				.register();
+                .byDefault()
+                .register();
         mapperFactory.classMap(Task.class, TaskDto.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(CreateTaskRequestDto.class,Task.class)
+        mapperFactory.classMap(CreateTaskRequestDto.class, Task.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(UpdateTaskRequestDto.class,Task.class)
+        mapperFactory.classMap(UpdateTaskRequestDto.class, Task.class)
                 .byDefault()
                 .register();
     }
@@ -114,22 +110,20 @@ public class Mapper {
 
     public List<AccountDto> toAccountDtoList(@NotNull List<Account> accounts) {
         Objects.requireNonNull(accounts);
+
         return mapperFactory.getMapperFacade().mapAsList(accounts, AccountDto.class);
-	}
-	
-   public TaskDto toTaskDto(@NotNull Task task){
+    }
+
+    public TaskDto toTaskDto(@NotNull Task task) {
         Objects.requireNonNull(task);
+
         return mapperFactory.getMapperFacade().map(task, TaskDto.class);
     }
 
-    public Task toTask(@NotNull CreateTaskRequestDto createTaskRequestDto){
-        Objects.requireNonNull(createTaskRequestDto);
-        return mapperFactory.getMapperFacade().map(createTaskRequestDto,Task.class);
-    }
+    public Task toTask(@NotNull CreateTaskRequestDto dto) {
+        Objects.requireNonNull(dto);
 
-    public Task toTask(@NotNull UpdateTaskRequestDto updateTaskRequestDto){
-        Objects.requireNonNull(updateTaskRequestDto);
-        return mapperFactory.getMapperFacade().map(updateTaskRequestDto,Task.class);
+        return mapperFactory.getMapperFacade().map(dto, Task.class);
     }
 
     public void fillTask(@NotNull UpdateTaskRequestDto dto, @NotNull Task task) {

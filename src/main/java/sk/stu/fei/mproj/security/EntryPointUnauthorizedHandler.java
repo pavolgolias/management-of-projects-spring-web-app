@@ -17,5 +17,4 @@ public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");
     }
 
-
 }
