@@ -188,3 +188,4 @@ Temporary Items
 /src/main/generated/
 *.iml
 .idea/
+src/main/webapp/app/prepros.cfg

@@ -1,0 +1,42 @@
+// Opacities
+$op_default:				0.5;
+$op_less:					0.2;
+$op_middle:					0.7;
+$op_more:					0.8;
+
+// Colors
+$primary:               	#234c55;
+$primary-dark:        		#183238;
+$gray-blue:             	#547076;
+$background-color:      	#789EA7;
+$href:						#c7c0c0;
+$task:						#afaf4f;
+$info:						#5656c7;
+$bug:						#a04646;
+$review:					#5da044;
+$feature:					#873f90;
+
+// Colors with opacities
+$primary--op_default: 		rgba(35, 76, 85, $op_default);
+$primary--op_less: 			rgba(35, 76, 85, $op_less);
+$primary--op_middle: 		rgba(35, 76, 85, $op_middle);
+$primary--op_more: 			rgba(35, 76, 85, $op_more);
+
+$primary-dark--op_default:	rgba(24, 50, 56, $op_default);
+$primary-dark--op_less:		rgba(24, 50, 56, $op_less);
+$primary-dark--op_middle:	rgba(24, 50, 56, $op_middle);
+$primary-dark--op_more:		rgba(24, 50, 56, $op_more);
+
+$gray-blue--op_default:		rgba(84, 112, 118, $op_default);
+$gray-blue--op_less:		rgba(84, 112, 118, $op_less);
+$gray-blue--op_middle:		rgba(84, 112, 118, $op_middle);
+$gray-blue--op_more:		rgba(84, 112, 118, $op_more);
+
+// Fonts
+
+// Dimensions (paddings & margins)
+$p_default:					5px;	// Padding
+$p_more:					10px;
+$m_default: 				5px;	// Margin
+$m_more:					10px;
+$r_default:					5px;	// Radius
