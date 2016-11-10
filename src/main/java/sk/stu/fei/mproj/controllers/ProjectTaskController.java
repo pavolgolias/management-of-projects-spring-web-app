@@ -15,21 +15,21 @@ import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Task;
 import sk.stu.fei.mproj.security.RoleSecured;
-import sk.stu.fei.mproj.services.TaskService;
+import sk.stu.fei.mproj.services.ProjectTaskService;
 
 import javax.validation.Valid;
 
 @RestController
 @Transactional
 @RequestMapping("/api/projects/{projectId}/tasks")
-public class ProjectTasksController {
+public class ProjectTaskController {
     private final Mapper mapper;
-    private final TaskService taskService;
+    private final ProjectTaskService projectTaskService;
 
     @Autowired
-    public ProjectTasksController(Mapper mapper, TaskService taskService) {
+    public ProjectTaskController(Mapper mapper, ProjectTaskService projectTaskService) {
         this.mapper = mapper;
-        this.taskService = taskService;
+        this.projectTaskService = projectTaskService;
     }
 
     @ApiOperation(value = "Get information about specified task")
@@ -41,7 +41,7 @@ public class ProjectTasksController {
     @RequestMapping(value = "/{taskId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
     public DataResponse<TaskDto> getTask(@PathVariable Long projectId, @PathVariable Long taskId) {
-        return new DataResponse<>(mapper.toTaskDto(taskService.getTask(projectId, taskId)));
+        return new DataResponse<>(mapper.toTaskDto(projectTaskService.getTask(projectId, taskId)));
     }
 
     @ApiOperation(value = "Create a task")
@@ -54,7 +54,7 @@ public class ProjectTasksController {
     @ResponseStatus(HttpStatus.CREATED)
     @RoleSecured
     public DataResponse<TaskDto> createTask(@PathVariable Long projectId, @RequestBody @Valid CreateTaskRequestDto createTaskRequestDto) {
-        Task task = taskService.createTask(projectId, createTaskRequestDto);
+        Task task = projectTaskService.createTask(projectId, createTaskRequestDto);
         return new DataResponse<>(mapper.toTaskDto(task));
     }
 
@@ -69,7 +69,7 @@ public class ProjectTasksController {
     @RequestMapping(value = "/{taskId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
     public DataResponse<TaskDto> updateTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody @Valid UpdateTaskRequestDto dto) {
-        return new DataResponse<>(mapper.toTaskDto(taskService.updateTask(projectId, taskId, dto)));
+        return new DataResponse<>(mapper.toTaskDto(projectTaskService.updateTask(projectId, taskId, dto)));
     }
 
     @ApiOperation(value = "Delete specified task")
@@ -83,7 +83,7 @@ public class ProjectTasksController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RoleSecured
     public DataResponse<Void> deleteTask(@PathVariable Long projectId, @PathVariable Long taskId) {
-        taskService.deleteTask(projectId, taskId);
+        projectTaskService.deleteTask(projectId, taskId);
         return new DataResponse<>();
     }
 }

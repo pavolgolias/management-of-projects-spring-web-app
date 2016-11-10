@@ -20,11 +20,12 @@ import sk.stu.fei.mproj.security.RoleSecured;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Objects;
 
 @Service
 @Transactional
-public class TaskService {
+public class ProjectTaskService {
     private TaskDao taskDao;
     private Mapper mapper;
     private AuthorizationManager authorizationManager;
@@ -32,7 +33,7 @@ public class TaskService {
     private ProjectDao projectDao;
 
     @Autowired
-    public TaskService(TaskDao taskDao, Mapper mapper, AuthorizationManager authorizationManager, AccountDao accountDao, ProjectDao projectDao) {
+    public ProjectTaskService(TaskDao taskDao, Mapper mapper, AuthorizationManager authorizationManager, AccountDao accountDao, ProjectDao projectDao) {
         this.taskDao = taskDao;
         this.mapper = mapper;
         this.authorizationManager = authorizationManager;
@@ -87,6 +88,9 @@ public class TaskService {
         );
 
         mapper.fillTask(dto, task);
+        if ( dto.getStatus() == TaskStatus.Done ) {
+            task.setCompletionDate(new Date());
+        }
         if ( dto.getAssigneeId() != null ) {
             final Account assignee = getOrElseThrowEntityNotFoundEx(
                     dto.getAssigneeId(),
@@ -97,6 +101,7 @@ public class TaskService {
         else {
             task.setAssignee(null);
         }
+
 
         taskDao.persist(task);
         return task;
@@ -130,7 +135,7 @@ public class TaskService {
     }
 
     private void checkUpdateTaskEligibilityOrElseThrowSecurityEx(Task updateTarget, Account who, String exceptionMessage) {
-        if ( !updateTarget.getProject().getAdministrators().contains(who) ) {
+        if ( !updateTarget.getProject().getAdministrators().contains(who) && !updateTarget.getAssignee().equals(who) ) {
             throw new SecurityException(exceptionMessage);
         }
     }
