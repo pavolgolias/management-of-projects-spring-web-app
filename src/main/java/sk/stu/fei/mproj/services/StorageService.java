@@ -4,23 +4,72 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import sk.stu.fei.mproj.configuration.ApplicationProperties;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Service
+@Transactional
 public class StorageService {
     private final ApplicationProperties applicationProperties;
 
     @Autowired
     public StorageService(ApplicationProperties properties) {
         this.applicationProperties = properties;
+    }
+
+    @PostConstruct
+    public void initStorageService() {
+        if ( applicationProperties.getEnableFileUpload() ) {
+            if ( applicationProperties.getFileUploadRootFolder() != null ) {
+                switch ( applicationProperties.getFileUploadRootFolderInitStrategy() ) {
+                    case "create":
+                        if ( !Files.exists(Paths.get(applicationProperties.getFileUploadRootFolder())) ) {
+                            init();
+                        }
+                        break;
+                    case "recreate":
+                        deleteAll();
+                        init();
+                        break;
+                    case "create-delete":
+                        init();
+                        break;
+                    default:
+                        throw new StorageException("Wrong parameter in application.file-upload-root-folder-init-strategy.\n " +
+                                "Allowed are create, recreate or create-delete");
+                }
+            }
+            else {
+                throw new StorageException("Set correct application.file-upload-root-folder in application-default.properties.");
+            }
+        }
+    }
+
+    @PreDestroy
+    public void destroyStorageService() {
+        if ( applicationProperties.getEnableFileUpload() ) {
+            if ( applicationProperties.getFileUploadRootFolder() != null ) {
+                switch ( applicationProperties.getFileUploadRootFolderInitStrategy() ) {
+                    case "create-delete":
+                        deleteAll();
+                        break;
+                }
+            }
+            else {
+                throw new StorageException("Set correct application.file-upload-root-folder in application-default.properties.");
+            }
+        }
     }
 
     public void store(MultipartFile file, String newFileName) {
@@ -74,30 +123,19 @@ public class StorageService {
         }
     }
 
-    public void deleteAll() {
-        if ( applicationProperties.getEnableFileUpload() ) {
-            if ( applicationProperties.getFileUploadRootFolder() != null ) {
-                FileSystemUtils.deleteRecursively(new File(applicationProperties.getFileUploadRootFolder()));
-            }
-            else {
-                throw new StorageException("Set correct application.file-upload-root-folder in application-default.properties.");
-            }
-        }
+    private void deleteAll() {
+        FileSystemUtils.deleteRecursively(new File(applicationProperties.getFileUploadRootFolder()));
     }
 
-    public void init() {
-        if ( applicationProperties.getEnableFileUpload() ) {
-            if ( applicationProperties.getFileUploadRootFolder() != null ) {
-                try {
-                    Files.createDirectory(Paths.get(applicationProperties.getFileUploadRootFolder()));
-                }
-                catch ( IOException e ) {
-                    throw new StorageException("Could not initialize storage", e);
-                }
-            }
-            else {
-                throw new StorageException("Set correct application.file-upload-root-folder in application-default.properties.");
-            }
+    private void init() {
+        try {
+            Files.createDirectory(Paths.get(applicationProperties.getFileUploadRootFolder()));
+        }
+        catch ( FileAlreadyExistsException e ) {
+            throw new StorageException("Folder already exists", e);
+        }
+        catch ( IOException e ) {
+            throw new StorageException("Could not initialize storage", e);
         }
     }
 
