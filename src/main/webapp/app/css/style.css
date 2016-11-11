@@ -11313,7 +11313,6 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%);
   -ms-transform: translate(-50%);
   -webkit-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
@@ -11411,6 +11410,28 @@ body {
     transform: perspective(140px) rotateY(180deg);
     opacity: 0;
   }
+}
+
+.base .dialog {
+  position: fixed;
+  display: block;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  background-color: rgba(84, 112, 118, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  padding: 30px;
+}
+
+.base .dialog p {
+  text-align: center;
+  margin: 0;
+  color: white;
+  font-size: 30px;
 }
 
 .base .login-section {
