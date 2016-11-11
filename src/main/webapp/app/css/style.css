@@ -10840,6 +10840,26 @@ body {
   padding-right: 0;
 }
 
+.bg--task {
+  background-color: #afaf4f;
+}
+
+.bg--info {
+  background-color: #5656c7;
+}
+
+.bg--bug {
+  background-color: #a04646;
+}
+
+.bg--review {
+  background-color: #5da044;
+}
+
+.bg--feature {
+  background-color: #873f90;
+}
+
 .base .page {
   height: 100%;
   width: 100%;
@@ -10894,16 +10914,19 @@ body {
   height: 50px;
   clear: both;
   overflow: hidden;
-  margin-left: 40px;
+  padding-left: 40px;
   outline: 0;
 }
 
 .base .side-navbar a:hover {
   color: white;
+  background-color: #183238;
 }
 
 .base .side-navbar a:hover img {
-  display: none;
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .base .side-navbar a:last-child {
@@ -10921,12 +10944,16 @@ body {
 }
 
 .base .side-navbar .closebtn {
-  border-bottom: none;
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  border-bottom: none;
+}
+
+.base .side-navbar .closebtn:hover {
+  background-color: #547076;
 }
 
 .base .navbar-section img {
@@ -11160,11 +11187,33 @@ body {
   text-align: right;
 }
 
+.base .card-row select {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  text-align: right;
+  width: 130px;
+}
+
+.base .card-row select option {
+  background-color: #547076;
+}
+
+.base .card-row .datepicker {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  font-size: 20px;
+  color: white;
+  text-align: right;
+}
+
 .base .card-row--user {
   overflow: hidden;
 }
 
-.base .card-row--user img {
+.base .card-row--user > img {
   width: 100px;
   max-height: 100px;
   margin-right: 10px;
@@ -11186,6 +11235,20 @@ body {
   font-size: 15px;
 }
 
+.base .card-row--user > a {
+  position: absolute;
+  right: 30px;
+  line-height: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #789EA7;
+  cursor: pointer;
+}
+
+.base .card-row--user > a:hover {
+  color: white;
+}
+
 .base a.card-button {
   display: inline-block;
   width: 100%;
@@ -11197,6 +11260,12 @@ body {
 
 .base a.card-button:hover {
   background-color: rgba(24, 50, 56, 0.7);
+}
+
+@media screen and (max-width: 355px) {
+  .base .card-row--user article {
+    margin-top: 0 !important;
+  }
 }
 
 @keyframes spinner {

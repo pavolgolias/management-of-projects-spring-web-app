@@ -52,3 +52,22 @@ body {
 		padding-right: 0;
 	}
 }
+
+.bg {
+	
+	&--task {
+		background-color: $task;
+	}
+	&--info {
+		background-color: $info;
+	}
+	&--bug {
+		background-color: $bug;
+	}
+	&--review {
+		background-color: $review;
+	}
+	&--feature {
+		background-color: $feature;
+	}
+}

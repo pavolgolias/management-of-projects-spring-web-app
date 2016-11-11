@@ -160,17 +160,36 @@
 		color: white;
 		text-align: right;
 	}
-	
+	select {
+		background-color: transparent;
+		border: none;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+		width: 130px;
+		
+		option {
+			background-color: $gray-blue;
+		}
+	}
+	.datepicker {
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+	}
+
 	&--user {
 		overflow: hidden;
 		
-		img {
+		> img {
 			width: 100px;
 			max-height: 100px;
 			margin-right: 10px;
 		}
 		article {
-//			@include centerVertically();
 			position: relative;
 			margin-top: 30px;
 			
@@ -182,6 +201,19 @@
 			}
 			p {
 				font-size: 15px;
+			}
+		}
+		> a {
+			position: absolute;
+			right: 30px;
+			line-height: 30px;
+			font-size: 30px;
+			font-weight: 700;
+			color: $background-color;
+			cursor: pointer;
+			
+			&:hover {
+				color: white;
 			}
 		}
 	}
@@ -197,5 +229,18 @@ a.card-button {
 	
 	&:hover {
 		background-color: $primary-dark--op_middle;
+	}
+}
+
+@media screen and (max-width: 355px) {
+	
+	.card-row {
+		
+		&--user {
+			
+			article {
+				margin-top: 0 !important;
+			}
+		}
 	}
 }
