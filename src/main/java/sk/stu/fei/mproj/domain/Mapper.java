@@ -11,6 +11,7 @@ import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
+import sk.stu.fei.mproj.domain.dto.task.TaskBaseDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
@@ -53,10 +54,7 @@ public class Mapper {
         mapperFactory.classMap(UpdateProjectRequestDto.class, Project.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(Account.class, ProjectDto.Administrator.class)
-                .byDefault()
-                .register();
-        mapperFactory.classMap(Account.class, ProjectDto.Participant.class)
+        mapperFactory.classMap(Task.class, TaskBaseDto.class)
                 .byDefault()
                 .register();
         mapperFactory.classMap(Task.class, TaskDto.class)

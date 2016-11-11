@@ -23,20 +23,8 @@ public class ProjectDto {
     private String description;
 
     @ApiModelProperty(value = "Project administrators", required = true)
-    private List<Administrator> administrators = new ArrayList<>();
+    private List<AccountBaseDto> administrators = new ArrayList<>();
 
     @ApiModelProperty(value = "Project participants")
-    private List<Participant> participants = new ArrayList<>();
-
-    @ApiModel
-    @Getter
-    @Setter
-    public static class Administrator extends AccountBaseDto {
-    }
-
-    @ApiModel
-    @Getter
-    @Setter
-    public static class Participant extends AccountBaseDto {
-    }
+    private List<AccountBaseDto> participants = new ArrayList<>();
 }

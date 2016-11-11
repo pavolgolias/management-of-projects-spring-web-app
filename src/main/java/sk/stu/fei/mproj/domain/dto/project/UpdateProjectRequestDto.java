@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.NotBlank;
 @Getter
 @Setter
 public class UpdateProjectRequestDto {
-
     @ApiModelProperty(value = "Name", required = true)
     @NotBlank
     private String name;
@@ -18,5 +17,4 @@ public class UpdateProjectRequestDto {
     @ApiModelProperty(value = "Description", required = true)
     @NotBlank
     private String description;
-
 }

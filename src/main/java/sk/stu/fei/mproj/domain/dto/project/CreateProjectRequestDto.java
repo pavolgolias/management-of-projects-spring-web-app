@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 public class CreateProjectRequestDto {
-
     @ApiModelProperty(value = "Project name", required = true)
     @NotBlank
     private String name;
