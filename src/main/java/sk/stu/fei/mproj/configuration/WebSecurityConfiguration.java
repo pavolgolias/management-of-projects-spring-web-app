@@ -76,6 +76,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http
             .exceptionHandling()
                 .authenticationEntryPoint(this.unauthorizedHandler)
@@ -86,7 +87,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/accounts").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/accounts/activate").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/accounts/request-recovery").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/accounts/discard-recovery").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/accounts/recover").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/attempt").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/accounts/{[0-9]+}/avatar").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
@@ -101,5 +107,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf()
                 .disable()
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        // @formatter:on
     }
 }

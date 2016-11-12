@@ -7,6 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -41,14 +42,14 @@ public class Project {
 
     @ManyToMany
     @JoinTable
-    private Set<Account> administrators;
+    private Set<Account> administrators = new HashSet<>();
 
     @ManyToMany
     @JoinTable
-    private Set<Account> participants;
+    private Set<Account> participants = new HashSet<>();
 
     @OneToMany(mappedBy = "project")
-    private Set<Task> tasks;
+    private Set<Task> tasks = new HashSet<>();
 
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)

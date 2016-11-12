@@ -77,7 +77,7 @@ public class Task {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
     @NotNull
-    private Account creator;
+    private Account author;
 
     @ManyToOne
     @JoinColumn

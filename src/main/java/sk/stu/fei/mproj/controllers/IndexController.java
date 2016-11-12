@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import sk.stu.fei.mproj.services.StorageService;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +63,7 @@ public class IndexController {
         handleException(ex, HttpStatus.FORBIDDEN, response);
     }
 
-    @ExceptionHandler({EntityNotFoundException.class})
+    @ExceptionHandler({EntityNotFoundException.class, StorageService.FileNotFoundException.class})
     public void notFound(Exception ex, HttpServletResponse response) throws IOException {
         handleException(ex, HttpStatus.NOT_FOUND, response);
     }

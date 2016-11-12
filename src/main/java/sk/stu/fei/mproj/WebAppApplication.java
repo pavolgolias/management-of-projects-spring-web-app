@@ -2,9 +2,11 @@ package sk.stu.fei.mproj;
 
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import sk.stu.fei.mproj.services.StorageService;
 
 //import org.springframework.boot.builder.SpringApplicationBuilder;
 //import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -25,5 +27,16 @@ public class WebAppApplication
     @Bean
     public MapperFactory mapperFactory() {
         return new DefaultMapperFactory.Builder().build();
+    }
+
+    @Bean
+    public CommandLineRunner init(final StorageService storageService) {
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... strings) throws Exception {
+                storageService.deleteAll();
+                storageService.init();
+            }
+        };
     }
 }
