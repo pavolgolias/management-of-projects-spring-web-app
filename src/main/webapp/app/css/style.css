@@ -10824,6 +10824,28 @@ body {
   display: block;
 }
 
+.center--absolute {
+  position: absolute;
+}
+
+.center--relative {
+  position: relative;
+}
+
+.center--vertacal {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.center--horizontal {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 .nomargin--left {
   margin-left: 0;
 }
@@ -10956,15 +10978,44 @@ body {
   background-color: #547076;
 }
 
-.base .navbar-section img {
+.base .navbar-section > img {
   cursor: pointer;
 }
 
-.base .navbar-section p {
+.base .navbar-section > p {
   color: white;
   font-size: 55px;
   font-weight: 100;
   margin-top: 10px;
+  white-space: nowrap;
+}
+
+.base .navbar-section input {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 55px;
+  font-weight: 100;
+  margin-top: 10px;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+}
+
+.base .navbar-section .user-info {
+  margin-top: 20px;
+}
+
+.base .navbar-section .user-info img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.base .navbar-section .user-info p {
+  color: white;
+  font-size: 45px;
+  font-weight: 100;
   white-space: nowrap;
 }
 
@@ -10980,10 +11031,30 @@ body {
     font-size: 35px;
     margin-top: 0;
   }
+  .base .navbar-section .user-info {
+    margin-top: 0;
+  }
+  .base .navbar-section .user-info img {
+    width: 48px;
+    height: 48px;
+  }
+  .base .navbar-section .user-info p {
+    font-size: 35px;
+  }
 }
 
 @media all and (max-height: 720px) {
   .base .nav-footer {
+    display: none;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .base .navbar-section .user-info img {
+    width: 48px;
+    height: 48px;
+  }
+  .base .navbar-section .user-info p {
     display: none;
   }
 }
@@ -11176,6 +11247,12 @@ body {
   font-size: 20px;
 }
 
+.base .card-row > span {
+  margin-left: 10px;
+  color: #789EA7;
+  font-size: 20px;
+}
+
 .base .card-row .img-label {
   line-height: 48px;
 }
@@ -11208,6 +11285,11 @@ body {
   font-size: 20px;
   color: white;
   text-align: right;
+}
+
+.base .card-row .avatar {
+  width: 28px;
+  height: 28px;
 }
 
 .base .card-row--user {
@@ -11248,6 +11330,13 @@ body {
 
 .base .card-row--user > a:hover {
   color: white;
+}
+
+.base .card-row--heading {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 0;
 }
 
 .base a.card-button {

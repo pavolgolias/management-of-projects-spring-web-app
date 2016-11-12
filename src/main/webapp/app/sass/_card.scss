@@ -150,6 +150,11 @@
 		font-size: 20px;
 //		font-weight: 100;
 	}
+	> span {
+		margin-left: 10px;
+		color: $background-color;
+		font-size: 20px;
+	}
 	.img-label {
 		line-height: 48px;
 	}
@@ -180,7 +185,11 @@
 		color: white;
 		text-align: right;
 	}
-
+	.avatar {
+		width: 28px;
+		height: 28px;
+	}
+	
 	&--user {
 		overflow: hidden;
 		
@@ -216,6 +225,12 @@
 				color: white;
 			}
 		}
+	}
+	&--heading {
+		background-color: transparent;
+		border-radius: 0;
+		padding: $p_more $p_more 0 $p_more;
+		margin-bottom: 0;
 	}
 }
 

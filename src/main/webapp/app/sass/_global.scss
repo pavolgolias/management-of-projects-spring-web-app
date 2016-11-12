@@ -27,10 +27,25 @@ body {
 }
 
 
-.center{
+.center {
     margin-left: auto;
     margin-right: auto;
     display: block;
+	
+	&--absolute {
+		position: absolute;
+	}
+	&--relative {
+		position: relative;
+	}
+	&--vertacal {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	&--horizontal {
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
 .nomargin {

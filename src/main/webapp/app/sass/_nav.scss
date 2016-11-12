@@ -89,15 +89,41 @@
 
 .navbar-section {
 	
-	img {
+	> img {
 		cursor: pointer;
 	}
-	p {
+	> p {
 		color: white;
 		font-size: 55px;
 		font-weight: 100;
 		margin-top: 10px;
 		white-space: nowrap;
+	}
+	input {
+		border: none;
+		background-color: transparent;
+		color: white;
+		font-size: 55px;
+		font-weight: 100;
+		margin-top: 10px;
+		white-space: nowrap;
+		text-align: center;
+		width: 100%;
+	}
+	.user-info {
+		margin-top: 20px;
+		
+		img {
+			width: 60px;
+			height: 60px;
+			margin-right: 10px;
+		}
+		p {
+			color: white;
+			font-size: 45px;
+			font-weight: 100;
+			white-space: nowrap;
+		}
 	}
 }
 
@@ -117,7 +143,18 @@
 			font-size: 35px;
 			margin-top: 0;
 		}
-	}	
+		.user-info {
+			margin-top: 0;
+
+			img {
+				width: 48px;
+				height: 48px;
+			}
+			p {
+				font-size: 35px;
+			}
+		}
+	}
 }
 
 @media all and (max-height: 720px) {
@@ -127,5 +164,20 @@
     }
 }
 
+@media all and (max-width: 600px) {
+	
+    .navbar-section {
+		
+		.user-info {
 
+			img {
+				width: 48px;
+				height: 48px;
+			}
+			p {
+				display: none;
+			}
+		}
+	}
+}
 
