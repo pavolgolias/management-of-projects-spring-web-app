@@ -189,3 +189,4 @@ Temporary Items
 *.iml
 .idea/
 /.openshift/
+src/main/webapp/app/prepros.cfg
