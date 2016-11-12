@@ -7,6 +7,7 @@ import lombok.Setter;
 import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ApiModel
@@ -27,4 +28,7 @@ public class ProjectDto {
 
     @ApiModelProperty(value = "Project participants")
     private List<AccountBaseDto> participants = new ArrayList<>();
+
+    @ApiModelProperty(value = "Update time")
+    private Date updatedAt;
 }
