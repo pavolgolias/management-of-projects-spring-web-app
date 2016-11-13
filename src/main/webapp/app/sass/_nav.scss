@@ -92,7 +92,7 @@
 	> img {
 		cursor: pointer;
 	}
-	> p {
+	p {
 		color: white;
 		font-size: 55px;
 		font-weight: 100;
@@ -123,6 +123,8 @@
 			font-size: 45px;
 			font-weight: 100;
 			white-space: nowrap;
+			margin-top: 0;
+			text-align: left;
 		}
 	}
 }
