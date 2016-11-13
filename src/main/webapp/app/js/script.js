@@ -18,7 +18,3 @@ function openNav() {
 function closeNav() {
 	$('.side-navbar').width(0);
 }
-
-$('.datepicker').datepicker({
-    format: 'dd.mm.yyyy'
-});

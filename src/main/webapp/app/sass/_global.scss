@@ -68,6 +68,19 @@ body {
 	}
 }
 
+.margin-bottom {
+	
+	&--default {
+		margin-bottom: $m_default;
+	}
+	&--more {
+		margin-bottom: $m_more;
+	}
+	&--3x-more {
+		margin-bottom: $m_3x-more;
+	}
+}
+
 .bg {
 	
 	&--task {

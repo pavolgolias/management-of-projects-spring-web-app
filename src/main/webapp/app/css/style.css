@@ -10862,6 +10862,18 @@ body {
   padding-right: 0;
 }
 
+.margin-bottom--default {
+  margin-bottom: 5px;
+}
+
+.margin-bottom--more {
+  margin-bottom: 10px;
+}
+
+.margin-bottom--3x-more {
+  margin-bottom: 30px;
+}
+
 .bg--task {
   background-color: #afaf4f;
 }
@@ -11304,7 +11316,7 @@ body {
 
 .base .card-row--user > img {
   width: 100px;
-  max-height: 100px;
+  height: 100px;
   margin-right: 10px;
 }
 
@@ -11336,6 +11348,13 @@ body {
 
 .base .card-row--user > a:hover {
   color: white;
+}
+
+.base .card-row--user > input[type="checkbox"] {
+  width: 30px;
+  height: 100px;
+  margin: 0;
+  cursor: pointer;
 }
 
 .base .card-row--heading {

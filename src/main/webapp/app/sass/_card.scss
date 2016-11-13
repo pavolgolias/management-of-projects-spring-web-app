@@ -195,7 +195,7 @@
 		
 		> img {
 			width: 100px;
-			max-height: 100px;
+			height: 100px;
 			margin-right: 10px;
 		}
 		article {
@@ -224,6 +224,12 @@
 			&:hover {
 				color: white;
 			}
+		}
+		> input[type="checkbox"] {
+			width: 30px;
+			height: 100px;
+			margin: 0;
+			cursor: pointer;
 		}
 	}
 	&--heading {
