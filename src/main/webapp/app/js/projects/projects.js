@@ -11,6 +11,7 @@ function checkAccountInfo(){
     if(localStorage.getItem("account") === null){
         if(localStorage.getItem("token") === null){
             //TODO display error
+            throw new Error("Unauthorized user");
         }else{
             getSelf();
         }
@@ -27,7 +28,10 @@ function getSelf(){
         success: function (data) {
             localStorage.setItem("account", JSON.stringify(data.data));
         },
-        error: function () {
+        error: function (xhr) {
+            if(status == 401){
+                window.location.replace("index.html");
+            }
         }
     });
 }
@@ -51,8 +55,9 @@ function getAllProjects(){
         success: function (data) {
             displayProjects(data);
         },
-        error: function () {
-            return null;
+        error: function (xhr) {
+            if(xhr.status == 401)
+                window.location.replace("index.html");
         }
     });
 }
@@ -101,6 +106,9 @@ function buildProject(index,projectObject){
 
 
 function isLoggedUserAdmin(userId,projectObject){
+    if(userId === null || projectObject === null )
+        return false;
+
     for(var i = 0 ; i < projectObject.administrators.length;i++){
         if(userId == projectObject.administrators[i].accountId)
             return true;
@@ -109,6 +117,8 @@ function isLoggedUserAdmin(userId,projectObject){
 }
 
 function isLoggedUserAssigned(userId,projectObject){
+    if(userId === null || projectObject === null )
+        return false;
     for(var i = 0 ; i < projectObject.participants.length;i++){
         if(userId == projectObject.participants[i].accountId)
             return true;
