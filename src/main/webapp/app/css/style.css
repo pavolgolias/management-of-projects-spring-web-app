@@ -11033,6 +11033,10 @@ body {
     font-size: 35px;
     margin-top: 0;
   }
+  .base .navbar-section input {
+    font-size: 35px;
+    margin-top: 0;
+  }
   .base .navbar-section .user-info {
     margin-top: 0;
   }
