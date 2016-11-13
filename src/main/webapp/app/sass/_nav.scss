@@ -89,7 +89,7 @@
 
 .navbar-section {
 	
-	> img {
+	img {
 		cursor: pointer;
 	}
 	p {
@@ -113,7 +113,7 @@
 	.user-info {
 		margin-top: 20px;
 		
-		img {
+		> img {
 			width: 60px;
 			height: 60px;
 			margin-right: 10px;

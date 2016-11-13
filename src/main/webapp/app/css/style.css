@@ -10978,7 +10978,7 @@ body {
   background-color: #547076;
 }
 
-.base .navbar-section > img {
+.base .navbar-section img {
   cursor: pointer;
 }
 
@@ -11006,7 +11006,7 @@ body {
   margin-top: 20px;
 }
 
-.base .navbar-section .user-info img {
+.base .navbar-section .user-info > img {
   width: 60px;
   height: 60px;
   margin-right: 10px;
