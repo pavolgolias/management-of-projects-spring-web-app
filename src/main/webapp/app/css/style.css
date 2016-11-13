@@ -11524,6 +11524,93 @@ body {
   font-size: 30px;
 }
 
+.base .addui-dropMenu {
+  box-sizing: border-box;
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+
+.base .addui-dropMenu * {
+  box-sizing: border-box;
+}
+
+.base .addui-dropMenu .addui-dropMenu-btn {
+  margin-top: -8px;
+  cursor: pointer;
+}
+
+.base .addui-dropMenu .addui-dropMenu-menu {
+  display: block;
+  position: absolute;
+  background: rgba(35, 76, 85, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.base .addui-dropMenu .addui-dropMenu-menu.addui-dropMenu-open {
+  opacity: 1;
+  border-radius: 5px;
+  background: #789EA7;
+  pointer-events: auto;
+  z-index: 1;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.base .addui-dropMenu .addui-dropMenu-menu a {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgba(24, 50, 56, 0.7);
+}
+
+.base .addui-dropMenu .addui-dropMenu-menu a:hover {
+  color: white;
+  background-color: rgba(35, 76, 85, 0.2);
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-true.addui-dropMenu-pin-top-left .addui-dropMenu-menu {
+  top: 8px;
+  left: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-true.addui-dropMenu-pin-top-right .addui-dropMenu-menu {
+  top: -10px;
+  right: -10px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-true.addui-dropMenu-pin-bottom-right .addui-dropMenu-menu {
+  bottom: 8px;
+  right: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-true.addui-dropMenu-pin-bottom-left .addui-dropMenu-menu {
+  bottom: 8px;
+  left: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-false.addui-dropMenu-pin-top-left .addui-dropMenu-menu {
+  top: calc(100% - 8px);
+  left: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-false.addui-dropMenu-pin-top-right .addui-dropMenu-menu {
+  top: calc(100% - 8px);
+  right: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-false.addui-dropMenu-pin-bottom-right .addui-dropMenu-menu {
+  bottom: calc(100% - 8px);
+  right: 8px;
+}
+
+.base .addui-dropMenu.addui-dropMenu-cover-false.addui-dropMenu-pin-bottom-left .addui-dropMenu-menu {
+  bottom: calc(100% - 8px);
+  left: 8px;
+}
+
 .base .login-section {
   position: absolute;
   height: 400px;

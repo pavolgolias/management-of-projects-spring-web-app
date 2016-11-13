@@ -1,0 +1,79 @@
+.addui-dropMenu {
+  box-sizing: border-box;
+  * {box-sizing: border-box;}
+  
+  display: inline-block;
+  float: right;
+  position: relative;
+  
+  .addui-dropMenu-btn {
+    margin-top: -8px;
+    cursor: pointer;
+  }
+  
+  .addui-dropMenu-menu {
+    display: block;
+    position: absolute;
+    background: $primary--op_middle;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    
+    
+    &.addui-dropMenu-open {
+       opacity: 1;
+       border-radius: $p_default;
+       background: $background-color;
+       pointer-events: auto;
+       z-index: 1;
+       box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    
+    a {
+      display: block;
+      padding: 8px 16px;
+      border-radius: $p_default;
+      text-decoration: none;
+      color: $primary-dark--op_middle;
+    }
+      a:hover
+      {
+      color: white;
+      background-color: $primary--op_less;
+      }
+  }
+  
+  &.addui-dropMenu-cover-true.addui-dropMenu-pin-top-left .addui-dropMenu-menu {
+    top: 8px;
+    left: 8px;
+  }
+  &.addui-dropMenu-cover-true.addui-dropMenu-pin-top-right .addui-dropMenu-menu {
+    top: -10px;
+    right: -10px;
+  }
+  &.addui-dropMenu-cover-true.addui-dropMenu-pin-bottom-right .addui-dropMenu-menu {
+    bottom: 8px;
+    right: 8px;
+  }
+  &.addui-dropMenu-cover-true.addui-dropMenu-pin-bottom-left .addui-dropMenu-menu {
+    bottom: 8px;
+    left: 8px;
+  }
+  
+  &.addui-dropMenu-cover-false.addui-dropMenu-pin-top-left .addui-dropMenu-menu {
+    top: calc(100% - 8px);
+    left: 8px;
+  }
+  &.addui-dropMenu-cover-false.addui-dropMenu-pin-top-right .addui-dropMenu-menu {
+    top: calc(100% - 8px);
+    right: 8px;
+  }
+  &.addui-dropMenu-cover-false.addui-dropMenu-pin-bottom-right .addui-dropMenu-menu {
+    bottom: calc(100% - 8px);
+    right: 8px;
+  }
+  &.addui-dropMenu-cover-false.addui-dropMenu-pin-bottom-left .addui-dropMenu-menu {
+    bottom: calc(100% - 8px);
+    left: 8px;
+  }
+}
