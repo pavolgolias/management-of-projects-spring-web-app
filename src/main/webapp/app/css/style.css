@@ -10982,7 +10982,7 @@ body {
   cursor: pointer;
 }
 
-.base .navbar-section > p {
+.base .navbar-section p {
   color: white;
   font-size: 55px;
   font-weight: 100;
@@ -11017,6 +11017,8 @@ body {
   font-size: 45px;
   font-weight: 100;
   white-space: nowrap;
+  margin-top: 0;
+  text-align: left;
 }
 
 .base .nav-footer {
