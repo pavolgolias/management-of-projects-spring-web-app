@@ -11677,6 +11677,7 @@ body {
   padding: 10px;
   margin-bottom: 5px;
   padding: 30px;
+  z-index: 1000;
 }
 
 .base .dialog p {
@@ -11684,6 +11685,15 @@ body {
   margin: 0;
   color: white;
   font-size: 30px;
+}
+
+.base .dialog--dim {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .base .addui-dropMenu {

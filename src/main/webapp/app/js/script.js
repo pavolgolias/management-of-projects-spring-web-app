@@ -5,6 +5,7 @@
 // Set dialog event
 $(window).click(function() {
 	$('.dialog').addClass('hidden');
+	$('.dialog--dim').addClass('hidden');
 });
 
 $('.dialog').click(function(event){

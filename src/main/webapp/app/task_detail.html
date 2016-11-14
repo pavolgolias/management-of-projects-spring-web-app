@@ -203,7 +203,7 @@
    		</div>
    		<div class="col-md-6">
 			<div class="card-row card-row--user">
-				<img class="float float--left" src="images/icons/User.png" alt="user icon">
+				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
 				<article class="float float--left">
 					<h4>
 						User's Name
@@ -221,7 +221,11 @@
    	</div><!-- ./container-fluid -->
    	
    	<!-- Dialogs -->
-
+	<div class="dialog hidden">
+		<p id="message">Empty message</p>
+	</div>
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+   
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
