@@ -88,6 +88,8 @@
 }
 
 .navbar-section {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	
 	a {
 		
@@ -146,6 +148,12 @@
 	
 	.navbar-section {
 		
+		a {
+			img {
+				width: 48px;
+				height: 48px;
+			}
+		}
 		p {
 			font-size: 35px;
 			margin-top: 0;

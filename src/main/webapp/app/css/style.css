@@ -11086,6 +11086,11 @@ body {
   background-color: #547076;
 }
 
+.base .navbar-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .base .navbar-section a img {
   width: 96px;
   height: 96px;
@@ -11139,6 +11144,10 @@ body {
 }
 
 @media all and (max-width: 768px) {
+  .base .navbar-section a img {
+    width: 48px;
+    height: 48px;
+  }
   .base .navbar-section p {
     font-size: 35px;
     margin-top: 0;
