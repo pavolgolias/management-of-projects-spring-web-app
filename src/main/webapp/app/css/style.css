@@ -10959,11 +10959,13 @@ body {
 }
 
 .base .login-section input.email {
-  background-image: url(../images/icons/mail.png);
+  background-image: url(../images/icons/white/mail.png);
+  background-size: 24px 24px;
 }
 
 .base .login-section input.psw {
-  background-image: url(../images/icons/key.png);
+  background-image: url(../images/icons/white/key.png);
+  background-size: 24px 24px;
 }
 
 .base .login-section__btn-group {
