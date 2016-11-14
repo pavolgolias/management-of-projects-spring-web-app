@@ -248,8 +248,18 @@ a.card-button {
 	padding: $p_more;
 	margin-bottom: $m_default;
 	
+	p {
+		margin: 0;
+		color: $background-color;
+		font-size: 20px;
+	}
+	
 	&:hover {
 		background-color: $primary-dark--op_middle;
+		
+		p {
+			color: white;
+		}
 	}
 }
 

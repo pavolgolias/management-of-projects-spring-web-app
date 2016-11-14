@@ -1,4 +1,4 @@
-.registration-section {
+.psw-section {
 	position: absolute;
     height: 400px;
     width: 300px;
@@ -6,10 +6,6 @@
     top: 0; left: 0; bottom: 0; right: 0;
 	text-align: center;
 	
-	
-	img {
-		margin-bottom: 80px;
-	}
 	input {
 		width: 100%;
 		padding: $p_default;
@@ -18,7 +14,6 @@
 		border: none;
 		background-color: $primary--op_default;
 		border-color: $primary--op_default;
-//		opacity: $op_default;
 		font-size: 20px;
 		font-weight: 100;
 		color: white;
@@ -46,17 +41,18 @@
 			border-top-left-radius: $p_default;
 			border-top-right-radius: $p_default;
 		}	
-
+		&.email {
+			background-image: url(../images/icons/mail.png);
+		}
+		&.psw {
+			background-image: url(../images/icons/key.png);
+		}
 		
 	}
-	&__btn {
-		width:100%;
-       
-        img{
-            width:24px;
-            margin-left: -65px;
-            position: absolute;
-        }
+	&__btn-group {
+		width: 100%;
+		clear: both;
+		
 		a {
 			padding: $p_default;
 			background-color: $primary--op_middle; 
@@ -64,14 +60,20 @@
 			font-size: 20px;
 			font-weight: 100;
 			color: white;
-            border-bottom-left-radius: $p_default;
-            border-bottom-right-radius: $p_default;
-            display: block;
 			
 			&:hover {
 				background-color: $primary--op_more;
 			}
 		}
-//		
+		.left {
+			float: left;
+			width: 50%;
+			border-bottom-left-radius: $p_default;
+		}
+		.right {
+			float: right;
+			width: 49.5%;
+			border-bottom-right-radius: $p_default;
+		}
 	}
 }

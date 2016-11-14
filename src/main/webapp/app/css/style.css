@@ -10899,6 +10899,102 @@ body {
   width: 100%;
 }
 
+.base .login-section {
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+
+.base .login-section img {
+  margin-bottom: 120px;
+}
+
+.base .login-section input {
+  width: 100%;
+  padding: 5px;
+  padding: 5px 50px;
+  margin-bottom: 2px;
+  border: none;
+  background-color: rgba(35, 76, 85, 0.5);
+  border-color: rgba(35, 76, 85, 0.5);
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+}
+
+.base .login-section input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .login-section input :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .login-section input ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  opacity: 0.5;
+}
+
+.base .login-section input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.base .login-section input.top {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.base .login-section input.email {
+  background-image: url(../images/icons/mail.png);
+}
+
+.base .login-section input.psw {
+  background-image: url(../images/icons/key.png);
+}
+
+.base .login-section__btn-group {
+  width: 100%;
+  clear: both;
+}
+
+.base .login-section__btn-group a {
+  padding: 5px;
+  background-color: rgba(35, 76, 85, 0.7);
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+}
+
+.base .login-section__btn-group a:hover {
+  background-color: rgba(35, 76, 85, 0.8);
+}
+
+.base .login-section__btn-group .left {
+  float: left;
+  width: 50%;
+  border-bottom-left-radius: 5px;
+}
+
+.base .login-section__btn-group .right {
+  float: right;
+  width: 49.5%;
+  border-bottom-right-radius: 5px;
+}
+
 .base .side-navbar {
   height: 100%;
   width: 0;
@@ -11373,8 +11469,18 @@ body {
   margin-bottom: 5px;
 }
 
+.base a.card-button p {
+  margin: 0;
+  color: #789EA7;
+  font-size: 20px;
+}
+
 .base a.card-button:hover {
   background-color: rgba(24, 50, 56, 0.7);
+}
+
+.base a.card-button:hover p {
+  color: white;
 }
 
 @media screen and (max-width: 355px) {
@@ -11636,7 +11742,7 @@ body {
   left: 8px;
 }
 
-.base .login-section {
+.base .psw-section {
   position: absolute;
   height: 400px;
   width: 300px;
@@ -11648,11 +11754,7 @@ body {
   text-align: center;
 }
 
-.base .login-section img {
-  margin-bottom: 120px;
-}
-
-.base .login-section input {
+.base .psw-section input {
   width: 100%;
   padding: 5px;
   padding: 5px 50px;
@@ -11667,48 +11769,48 @@ body {
   background-position: 15px center;
 }
 
-.base .login-section input::-webkit-input-placeholder {
+.base .psw-section input::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: white;
   opacity: 0.5;
 }
 
-.base .login-section input :-moz-placeholder {
+.base .psw-section input :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: white;
   opacity: 0.5;
 }
 
-.base .login-section input ::-moz-placeholder {
+.base .psw-section input ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: white;
   opacity: 0.5;
 }
 
-.base .login-section input :-ms-input-placeholder {
+.base .psw-section input :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
 }
 
-.base .login-section input.top {
+.base .psw-section input.top {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.base .login-section input.email {
+.base .psw-section input.email {
   background-image: url(../images/icons/mail.png);
 }
 
-.base .login-section input.psw {
+.base .psw-section input.psw {
   background-image: url(../images/icons/key.png);
 }
 
-.base .login-section__btn-group {
+.base .psw-section__btn-group {
   width: 100%;
   clear: both;
 }
 
-.base .login-section__btn-group a {
+.base .psw-section__btn-group a {
   padding: 5px;
   background-color: rgba(35, 76, 85, 0.7);
   font-size: 20px;
@@ -11716,102 +11818,18 @@ body {
   color: white;
 }
 
-.base .login-section__btn-group a:hover {
+.base .psw-section__btn-group a:hover {
   background-color: rgba(35, 76, 85, 0.8);
 }
 
-.base .login-section__btn-group .left {
+.base .psw-section__btn-group .left {
   float: left;
   width: 50%;
   border-bottom-left-radius: 5px;
 }
 
-.base .login-section__btn-group .right {
+.base .psw-section__btn-group .right {
   float: right;
   width: 49.5%;
   border-bottom-right-radius: 5px;
-}
-
-.base .registration-section {
-  position: absolute;
-  height: 400px;
-  width: 300px;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  text-align: center;
-}
-
-.base .registration-section img {
-  margin-bottom: 80px;
-}
-
-.base .registration-section input {
-  width: 100%;
-  padding: 5px;
-  padding: 5px 50px;
-  margin-bottom: 2px;
-  border: none;
-  background-color: rgba(35, 76, 85, 0.5);
-  border-color: rgba(35, 76, 85, 0.5);
-  font-size: 20px;
-  font-weight: 100;
-  color: white;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-}
-
-.base .registration-section input::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
-  color: white;
-  opacity: 0.5;
-}
-
-.base .registration-section input :-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: white;
-  opacity: 0.5;
-}
-
-.base .registration-section input ::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: white;
-  opacity: 0.5;
-}
-
-.base .registration-section input :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: white;
-}
-
-.base .registration-section input.top {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.base .registration-section__btn {
-  width: 100%;
-}
-
-.base .registration-section__btn img {
-  width: 24px;
-  margin-left: -65px;
-  position: absolute;
-}
-
-.base .registration-section__btn a {
-  padding: 5px;
-  background-color: rgba(35, 76, 85, 0.7);
-  font-size: 20px;
-  font-weight: 100;
-  color: white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  display: block;
-}
-
-.base .registration-section__btn a:hover {
-  background-color: rgba(35, 76, 85, 0.8);
 }

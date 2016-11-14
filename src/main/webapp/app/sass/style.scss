@@ -8,6 +8,7 @@
 .base {
     // Blocks & Elements
     @import 'page';
+	@import 'login';
 	@import 'nav';
 	@import 'tabs';
 	@import 'card';
@@ -19,8 +20,7 @@
     @import 'header';
     
     // Pages Start
-    @import 'homepage';
-    @import 'registration';
+	@import 'pswpage';
     // Pages End
     
     // Footer
