@@ -10,7 +10,8 @@ $( document ).ready(function() {
 function checkAccountInfo(){
     if(localStorage.getItem("account") === null){
         if(localStorage.getItem("token") === null){
-            //TODO display error
+            showMessage("You are not authenticated !")
+            window.location.replace("index.html");
             throw new Error("Unauthorized user");
         }else{
             getSelf();
@@ -30,6 +31,7 @@ function getSelf(){
         },
         error: function (xhr) {
             if(status == 401){
+                showMessage("You are not authenticated !")
                 window.location.replace("index.html");
             }
         }
@@ -42,6 +44,8 @@ function updateAccountUIData(){
         var account = JSON.parse(json);
         $("#loggedUserName").text(account.firstName+" "+account.lastName);
         $("#loggedUserEmail").text(account.email);
+    }else{
+        showMessage("Unable to read the user account!");
     }
 }
 
@@ -56,8 +60,11 @@ function getAllProjects(){
             displayProjects(data);
         },
         error: function (xhr) {
-            if(xhr.status == 401)
+            if(xhr.status == 401){
                 window.location.replace("index.html");
+            }else{
+                showMessage("Error "+xhr.status+"! Unable to load projects!")
+            }
         }
     });
 }
@@ -89,11 +96,9 @@ function buildProject(index,projectObject){
     }
     html =html + "</h4>";
 
-    //TODO : fill missing data - last edit time...
-    html = html + "<h4 class='float--right'>Last edit: "+"MISSING DATA"+"</h4> <div class='float--clear'></div> </header>"
+    html = html + "<h4 class='float--right'>Last edit: "+projectObject.lastEditedTime+"</h4> <div class='float--clear'></div> </header>"
 
-    //TODO Set redirect to concrete project;
-    html = html + "<section><img src='images/icons/Info.png' alt='project icon'><article><a href='#'><h3>";
+    html = html + "<section><img src='images/icons/Info.png' alt='project icon'><article><a href='project_detail.html?id="+projectObject.projectId+"'><h3>";
     html = html + projectObject.name +"</h3></a>";
     html = html + "<p>" + projectObject.description + "</p></article><ul>";
 
