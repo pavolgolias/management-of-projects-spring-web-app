@@ -88,9 +88,16 @@
 }
 
 .navbar-section {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	
-	img {
-		cursor: pointer;
+	a {
+		
+		img {
+			width: 96px;
+			height: 96px;
+			cursor: pointer;
+		}
 	}
 	p {
 		color: white;
@@ -141,6 +148,12 @@
 	
 	.navbar-section {
 		
+		a {
+			img {
+				width: 48px;
+				height: 48px;
+			}
+		}
 		p {
 			font-size: 35px;
 			margin-top: 0;
