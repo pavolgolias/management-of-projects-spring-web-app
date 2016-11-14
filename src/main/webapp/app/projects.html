@@ -72,10 +72,10 @@
     </nav>
 
 	<nav class="navbar-section">
-		<div class="container-fluid float--clear">
+		<div class="container-fluid">
 			<div class="col-xs-2">
 				<a href="#">
-					<img src="images/icons/white/menu2.png" alt="menu icon" onclick="openNav()">
+					<img src="images/icons/white/menu.png" alt="menu icon" onclick="openNav()">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
@@ -86,8 +86,8 @@
 				    <img class="float--right" src="images/icons/white/add.png" alt="plus icon">
                 </a>
             </div>
-		</div>
-	</nav>
+		</div><!-- ./container-fluid -->
+	</nav><!-- ./navbar-section -->
    
 	<div class="container">
 		<div class="tab-section nav-tabs">
@@ -108,7 +108,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
+		</div><!-- ./tab-section -->
 	</div>
 	
 	<div class="tab-content">
@@ -128,9 +128,12 @@
 			</div>
 		</div>
 	</div><!-- ./tab-content -->
+   
+   <!-- Dialogs -->
     <div class="dialog hidden">
         <p id="message">Empty message</p>
     </div>
+    
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -11256,7 +11256,7 @@ body {
 .base .card section > img {
   position: absolute;
   width: 100px;
-  max-height: 100px;
+  height: 96px;
   margin: 10px;
 }
 
@@ -11292,12 +11292,19 @@ body {
 
 .base .card section ul {
   position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .base .card section ul li {
   float: left;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+
+.base .card section ul li img {
+  width: 48px;
+  height: 48px;
 }
 
 .base .card--no-header section {
@@ -11374,6 +11381,11 @@ body {
   font-size: 20px;
 }
 
+.base .card-row .img-wrap img {
+  width: 48px;
+  height: 48px;
+}
+
 .base .card-row > span {
   margin-left: 10px;
   color: #789EA7;
@@ -11424,8 +11436,8 @@ body {
 }
 
 .base .card-row--user > img {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   margin-right: 10px;
 }
 
@@ -11480,6 +11492,11 @@ body {
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
+}
+
+.base a.card-button img {
+  width: 48px;
+  height: 48px;
 }
 
 .base a.card-button p {

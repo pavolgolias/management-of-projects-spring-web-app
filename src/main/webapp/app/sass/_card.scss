@@ -23,7 +23,7 @@
 		> img {
 			position: absolute;
 			width: 100px;
-			max-height: 100px;
+			height: 96px;
 			margin: 10px;
 		}
 		article {
@@ -55,11 +55,18 @@
 		}
 		ul {
 			position: relative;
+			margin-left: $m_more;
+			margin-right: $m_more;
 
 			li {
 				float: left;
 				margin-right: $m_default;
 				margin-bottom: $m_default;
+				
+				img {
+					width: 48px;
+					height: 48px;
+				}
 			}
 		}
 	}
@@ -150,6 +157,13 @@
 		font-size: 20px;
 //		font-weight: 100;
 	}
+	.img-wrap {
+		
+		img {
+			width: 48px;
+			height: 48px;
+		}
+	}
 	> span {
 		margin-left: 10px;
 		color: $background-color;
@@ -194,8 +208,8 @@
 		overflow: hidden;
 		
 		> img {
-			width: 100px;
-			height: 100px;
+			width: 96px;
+			height: 96px;
 			margin-right: 10px;
 		}
 		article {
@@ -248,6 +262,10 @@ a.card-button {
 	padding: $p_more;
 	margin-bottom: $m_default;
 	
+	img {
+		width: 48px;
+		height: 48px;
+	}
 	p {
 		margin: 0;
 		color: $background-color;
