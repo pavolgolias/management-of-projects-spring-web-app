@@ -11086,7 +11086,9 @@ body {
   background-color: #547076;
 }
 
-.base .navbar-section img {
+.base .navbar-section a img {
+  width: 96px;
+  height: 96px;
   cursor: pointer;
 }
 

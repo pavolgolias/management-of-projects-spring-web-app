@@ -89,8 +89,13 @@
 
 .navbar-section {
 	
-	img {
-		cursor: pointer;
+	a {
+		
+		img {
+			width: 96px;
+			height: 96px;
+			cursor: pointer;
+		}
 	}
 	p {
 		color: white;
