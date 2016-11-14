@@ -10,19 +10,16 @@ function signUp(){
     var passwdAgain = $("#exampleInputPassword2").val();
 
     if(email == '' || name == '' || surname == '' || passwd == '' || passwdAgain == ''){
-        //TODO Show error dialog instead of alert
-        alert("Fields cannot be empty");
+        showMessage("Fields cannot be empty");
         return;
     }
 
     if(passwd !== passwdAgain){
-        //TODO Show error dialog instead of alert
-        alert("Passwords are not the same.");
+        showMessage("Passwords are not the same.");
         return;
     }
     if(passwd.length < 6 || ! /\d/.test(passwd)){
-        //TODO Show error dialog instead of alert
-        alert("Password must have at least 6 characters and must contain at least one digit.");
+        showMessage("Password must have at least 6 characters and must contain at least one digit.");
         return;
     }
 
@@ -41,7 +38,7 @@ function signUp(){
             window.location.replace("index.html");
         },
         error: function(xhr){
-            alert("Unable to sign in! "+xhr.status);
+            showMessage("Error "+xhr.status+"! Unable to sign in!");
         }
 
 
@@ -54,24 +51,21 @@ function changePassword(){
     var oldPassword = $("#oldPasswordInput").val();
 
     if(newPassword == '' || newPasswordAgain == '' || oldPassword == ''){
-        //TODO Show error dialog instead of alert
-        alert("Fields cannot be empty");
+        showMessage("Fields cannot be empty");
         return;
     }
 
     if(newPassword !== newPasswordAgain){
-        //TODO Show error dialog instead of alert
-        alert("Passwords are not the same.");
+        showMessage("Passwords are not the same.");
         return;
     }
 
     if((newPassword.length < 6 || ! /\d/.test(newPassword)) || (oldPassword.length < 6 || ! /\d/.test(oldPassword))){
-        //TODO Show error dialog instead of alert
-        alert("Password must have at least 6 characters and must contain at least one digit.");
+        showMessage("Password must have at least 6 characters and must contain at least one digit.");
         return;
     }
     if(localStorage.getItem("account") === null || localStorage.getItem("token") === null){
-        alert("Unable to change the password! Please sing in again");
+        showMessage("Unable to change the password! Please sing in again");
         window.location.replace("index.html");
         return;
     }
@@ -94,10 +88,9 @@ function changePassword(){
         },
         error: function(xhr){
             if(xhr.status == 401){
-                //not authorized user
-                window.location.replace("index.html");
+                showNotAuthorizedMessage();
             }
-            alert("Unable to change the password! "+xhr.status);
+            showMessage("Error "+xhr.status+"! Unable to change the password!");
         }
     })
 

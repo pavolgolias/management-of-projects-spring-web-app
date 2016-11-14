@@ -29,7 +29,7 @@ function signIn(){
   var password = $("#exampleInputPassword1").val();
 
     if(email == '' || password== ''){
-        alert("Email or password cannot be empty");
+        showMessage("Email or password cannot be empty");
         return;
     }else{
         getToken(email,password);
@@ -53,7 +53,7 @@ function getToken(email,pass){
                 window.location.replace("projects.html");
         },
         error: function(xhr){
-            alert("Unable to log in! "+xhr.status);
+            showMessage("Error "+xhr.status+"! Unable to log in!");
         }
 
 
