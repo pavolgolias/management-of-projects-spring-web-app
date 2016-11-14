@@ -29,6 +29,7 @@
 		article {
 			position: relative;
             padding: $p_more;
+			min-height: 120px;
 	
 			a {
 				color: white;
@@ -45,6 +46,7 @@
 			p {
 //				font-weight: 100;
                 margin-bottom: 0;
+				word-break: break-all;
 			}
 			textarea {
 				width: 100%;
@@ -55,8 +57,6 @@
 		}
 		ul {
 			position: relative;
-			margin-left: $m_more;
-			margin-right: $m_more;
 
 			li {
 				float: left;
@@ -109,7 +109,8 @@
 			margin-left: 0;
 		}
 		ul {
-			margin-left: 0;
+			margin-left: $m_more;
+			margin-right: $m_more;
 		}
 	}
 	&--info {

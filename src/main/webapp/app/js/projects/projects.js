@@ -98,12 +98,12 @@ function buildProject(index,projectObject){
 
     html = html + "<h4 class='float--right'>Last edit: "+projectObject.lastEditedTime+"</h4> <div class='float--clear'></div> </header>"
 
-    html = html + "<section><img src='images/icons/Info.png' alt='project icon'><article><a href='project_detail.html?id="+projectObject.projectId+"'><h3>";
+    html = html + "<section><img src='images/icons/white/interface.png' alt='project icon'><article><a href='project_detail.html?id="+projectObject.projectId+"'><h3>";
     html = html + projectObject.name +"</h3></a>";
     html = html + "<p>" + projectObject.description + "</p></article><ul>";
 
     for(var iconIndex=0; iconIndex < projectObject.participants.length ; iconIndex ++){
-        html = html + "<li><img src='images/icons/xs/User_xs.png' alt='icon' title='"+ projectObject.participants[iconIndex].firstName+" "+projectObject.participants[iconIndex].lastName+"'></li>";
+        html = html + "<li><img src='images/icons/white/user.png' alt='user icon' title='"+ projectObject.participants[iconIndex].firstName+" "+projectObject.participants[iconIndex].lastName+"'></li>";
     }
     html = html + "</ul><div class='float--clear'></div></section></div></div></div>";
     return html;

@@ -11263,6 +11263,7 @@ body {
 .base .card section article {
   position: relative;
   padding: 10px;
+  min-height: 120px;
 }
 
 .base .card section article a {
@@ -11281,6 +11282,7 @@ body {
 
 .base .card section article p {
   margin-bottom: 0;
+  word-break: break-all;
 }
 
 .base .card section article textarea {
@@ -11292,8 +11294,6 @@ body {
 
 .base .card section ul {
   position: relative;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .base .card section ul li {
@@ -11341,7 +11341,8 @@ body {
 }
 
 .base .card--task ul {
-  margin-left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .base .card--info header {
