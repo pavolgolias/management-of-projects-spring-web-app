@@ -7,6 +7,7 @@ import lombok.Setter;
 import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ApiModel
@@ -23,20 +24,11 @@ public class ProjectDto {
     private String description;
 
     @ApiModelProperty(value = "Project administrators", required = true)
-    private List<Administrator> administrators = new ArrayList<>();
+    private List<AccountBaseDto> administrators = new ArrayList<>();
 
     @ApiModelProperty(value = "Project participants")
-    private List<Participant> participants = new ArrayList<>();
+    private List<AccountBaseDto> participants = new ArrayList<>();
 
-    @ApiModel
-    @Getter
-    @Setter
-    public static class Administrator extends AccountBaseDto {
-    }
-
-    @ApiModel
-    @Getter
-    @Setter
-    public static class Participant extends AccountBaseDto {
-    }
+    @ApiModelProperty(value = "Last Edited time")
+    private String lastEditedTime;
 }

@@ -20,6 +20,7 @@ public class ApplicationProperties {
     private Boolean enableMailSending;
     private Boolean enableFileUpload;
     private String fileUploadRootFolder;
+    private String fileUploadRootFolderInitStrategy;
 
     public URL buildBackendUrl(@NotNull String relativePath) throws MalformedURLException {
         return new URL(concatWithSlashes(backendUrl.toString(), relativePath));

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DataResponse<T> {
-    @ApiModelProperty(required = true)
+    @ApiModelProperty(value = "Response data")
     private T data;
 
     public DataResponse() {

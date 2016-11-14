@@ -11,6 +11,7 @@ import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
+import sk.stu.fei.mproj.domain.dto.task.TaskBaseDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
@@ -18,6 +19,9 @@ import sk.stu.fei.mproj.domain.entities.Project;
 import sk.stu.fei.mproj.domain.entities.Task;
 
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,10 +57,7 @@ public class Mapper {
         mapperFactory.classMap(UpdateProjectRequestDto.class, Project.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(Account.class, ProjectDto.Administrator.class)
-                .byDefault()
-                .register();
-        mapperFactory.classMap(Account.class, ProjectDto.Participant.class)
+        mapperFactory.classMap(Task.class, TaskBaseDto.class)
                 .byDefault()
                 .register();
         mapperFactory.classMap(Task.class, TaskDto.class)
@@ -98,7 +99,13 @@ public class Mapper {
     public ProjectDto toProjectDto(@NotNull Project project) {
         Objects.requireNonNull(project);
 
-        return mapperFactory.getMapperFacade().map(project, ProjectDto.class);
+        ProjectDto projectDto = mapperFactory.getMapperFacade().map(project, ProjectDto.class);
+        Date date = project.getUpdatedAt();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        String format = formatter.format(date);
+        projectDto.setLastEditedTime(format);
+
+        return projectDto;
     }
 
     public void fillProject(@NotNull UpdateProjectRequestDto dto, @NotNull Project project) {
@@ -136,6 +143,11 @@ public class Mapper {
     public List<ProjectDto> toProjectDtoList(@NotNull List<Project> projects) {
         Objects.requireNonNull(projects);
 
-        return mapperFactory.getMapperFacade().mapAsList(projects, ProjectDto.class);
+        List<ProjectDto> projectDtoList = new ArrayList<>();
+        for(Project project: projects){
+            projectDtoList.add(toProjectDto(project));
+        }
+        
+        return projectDtoList;
     }
 }

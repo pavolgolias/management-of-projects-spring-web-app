@@ -5,10 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @ApiModel
 @Getter
 @Setter
 public class AccountDto extends AccountBaseDto {
-    @ApiModelProperty(value = "Email address", required = true)
-    private String email;
+    @ApiModelProperty(value = "Account creation date")
+    private Date createdAt;
 }
