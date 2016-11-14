@@ -15,11 +15,66 @@
 </head>
 
 <body class="base page page--projects background">
+	
+	<nav id="side-navbar" class="side-navbar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <header>
+            <div >
+            	<img src="images/avatar.png" class="center">
+            </div>
+            <div >
+                <article class="text-center">
+					<p>Jozko Mrkvicka</p>
+					<p>joz.ko@gmail.com</p>
+				</arcticle>
+            </div>
+        </header>
+        
+        <div class="nav-links">
+        <a href="#"><img class="float--left" src="images/icons/gray/interface.png" alt="icon">
+            <span class="float--left">My projects</span>
+            <span class="float--right">❯</span> 
+            <div class="float--clear"></div>
+        </a>
+        
+		<a href="#"><img class="float--left" src="images/icons/gray/user.png"  alt="icon">
+            <span class="float--left">Profile</span>
+            <span class="float--right">❯</span>
+            <div class="float--clear"></div>
+        </a>
+        
+		<a href="#"><img class="float--left" src="images/icons/gray/alarm.png" alt="icon">
+            <span class="float--left">Notifications</span>
+            <span class="float--right">❯</span>
+            <div class="float--clear"></div>
+        </a>
+        
+		<a href="#"><img class="float--left" src="images/icons/gray/settings.png" alt="icon">
+            <span class="float--left">Settings</span>
+            <span class="float--right">❯</span>
+            <div class="float--clear"></div>
+        </a>
+        
+		<a href="#"><img class="float--left" src="images/icons/gray/info.png" alt="icon">
+            <span class="float--left">About</span>
+            <span class="float--right">❯</span>
+            <div class="float--clear"></div>
+        </a>
+        
+		<a href="#"><img class="float--left" src="images/icons/gray/exit.png" alt="icon">
+            <span class="float--left">Logout</span>
+            <span class="float--right">❯</span>
+            <div class="float--clear"></div>
+        </a>
+        </div>
+        
+	   <img class="nav-footer" src="images/logos/logo_black_xs.png">
+    </nav>
 
 	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="#">
+				<a href="javascript:void(0)">
 					<img src="images/icons/white/menu.png" alt="menu icon" onclick="openNav()">
 				</a>
 			</div>
@@ -163,7 +218,7 @@
 				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
 			</a>
    		</div>
-   	</div> <!-- ./container-fluid -->
+   	</div><!-- ./container-fluid -->
    	
    	<!-- Dialogs -->
 
@@ -173,6 +228,7 @@
 
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/sideBarNavigationMenu.js"></script>
 
 </body>
 </html>
