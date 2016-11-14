@@ -20,6 +20,7 @@ import sk.stu.fei.mproj.domain.entities.Task;
 
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -142,6 +143,11 @@ public class Mapper {
     public List<ProjectDto> toProjectDtoList(@NotNull List<Project> projects) {
         Objects.requireNonNull(projects);
 
-        return mapperFactory.getMapperFacade().mapAsList(projects, ProjectDto.class);
+        List<ProjectDto> projectDtoList = new ArrayList<>();
+        for(Project project: projects){
+            projectDtoList.add(toProjectDto(project));
+        }
+        
+        return projectDtoList;
     }
 }
