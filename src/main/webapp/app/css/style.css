@@ -10798,7 +10798,7 @@ body {
 }
 
 .background {
-  background: url(../images/background_2560x1600.png) no-repeat center center fixed;
+  background: url(../images/background_2560x1600_lower.png) no-repeat center center fixed;
   background-size: cover;
 }
 
