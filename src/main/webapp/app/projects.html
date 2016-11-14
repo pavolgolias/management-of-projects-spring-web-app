@@ -24,8 +24,8 @@
             </div>
             <div >
                 <article class="text-center">
-					<p>Jozko Mrkvicka</p>
-					<p>joz.ko@gmail.com</p>
+					<p id="loggedUserName">Unknown User</p>
+					<p id="loggedUserEmail">email@email.com</p>
 				</arcticle>
             </div>
         </header>
@@ -49,8 +49,8 @@
             <div class="float--clear"></div>
         </a>
         
-		<a href="#"><img class="float--left" src="images/icons/New/png-gray/settings.png" alt="icon">
-            <span class="float--left">Settings</span>
+		<a href="change_password.html"><img class="float--left" src="images/icons/New/png-gray/settings.png" alt="icon">
+            <span class="float--left">Credentials</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
         </a>
@@ -70,8 +70,6 @@
         
 	   <img class="nav-footer" src="images/logos/logo_black_xs.png">
     </nav>
-	
-	<!-- --------------------------------------------------------------------------------- -->
 
 	<nav class="navbar-section">
 		<div class="container-fluid float--clear">
@@ -104,7 +102,7 @@
 				</li>
 				<li>
 					<div class="col-xs-4 text-center nopadding--left">
-						<a class="tab tab--right" data-toggle="tab" href="#tab3">Created</a>
+						<a class="tab tab--right" data-toggle="tab" href="#tab3">Administrated</a>
 					</div>
 				</li>
 			</ul>
@@ -113,168 +111,20 @@
 	
 	<div class="tab-content">
 		<div id="tab1" class="tab-pane fade">
-			<div class="container-fluid">
+			<div id="assignedProjectsContainer" class="container-fluid">
 				<!-- Generated content -->
 			</div>
 		</div><!-- ./tab-pane -->
 		<div id="tab2" class="tab-pane fade in active">
-			<div class="container-fluid">
-			<!-- Generated content -->
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">1</div>
-						<header>
-							<h4 class="float--left">
-								John Smith
-							</h4>
-							<h4 class="float--right">
-								Last edit: 12.12.2012
-							</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/Info.png" alt="project icon">
-							<article>
-								<a href="#"><h3>Project Name</h3></a>
-								<p>Integer aliquam feugiat erat eu viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis laoreet nunc congue dolor ornare placerat. Nunc lacinia auctor quam at porttitor.</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">2</div>
-						<header>
-							<h4 class="float--left">
-								John Smith
-							</h4>
-							<h4 class="float--right">
-								Last edit: 12.12.2012
-							</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/Info.png" alt="project icon">
-							<article>
-								<a href="#"><h3>Project Name</h3></a>
-								<p>Integer aliquam feugiat erat eu viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis laoreet nunc congue dolor ornare placerat. Nunc lacinia auctor quam at porttitor.</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">3</div>
-						<header>
-							<h4 class="float--left">
-								John Smith
-							</h4>
-							<h4 class="float--right">
-								Last edit: 12.12.2012
-							</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/Info.png" alt="project icon">
-							<article>
-								<a href="#"><h3>Project Name</h3></a>
-								<p>Integer aliquam feugiat erat eu viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis laoreet nunc congue dolor ornare placerat. Nunc lacinia auctor quam at porttitor.</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">4</div>
-						<header>
-							<h4 class="float--left">
-								Creator's Name
-							</h4>
-							<h4 class="float--right">
-								Last edit: 12.12.2012
-							</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/Info.png" alt="project icon">
-							<article>
-								<a href="#"><h3>Project Name</h3></a>
-								<p>Integer aliquam feugiat erat eu viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis laoreet nunc congue dolor ornare placerat. Nunc lacinia auctor quam at porttitor.</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div><!-- ./tab-pane -->
-		<div id="tab3" class="tab-pane fade">
-			<div class="container-fluid">
+			<div id="allProjectsContainer" class="container-fluid">
 				<!-- Generated content -->
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">4</div>
-						<header>
-							<h4 class="float--left">
-								Creator's Name
-							</h4>
-							<h4 class="float--right">
-								Last edit: 12.12.2012
-							</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/Info.png" alt="project icon">
-							<article>
-								<a href="#"><h3>Project Name</h3></a>
-								<p>Integer aliquam feugiat erat eu viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis laoreet nunc congue dolor ornare placerat. Nunc lacinia auctor quam at porttitor.</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-								<li><img src="images/icons/xs/User_xs.png" alt="icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
 			</div>
 		</div><!-- ./tab-pane -->
+		<div id="tab3" class="tab-pane fade in active">
+			<div id="adminProjectsContainer" class="container-fluid">
+				<!-- Generated content -->
+			</div>
+		</div>
 	</div><!-- ./tab-content -->
 
     <!-- Bootstrap core JavaScript -->
@@ -283,6 +133,7 @@
 
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/projects/projects.js"></script>
 
 </body>
 </html>

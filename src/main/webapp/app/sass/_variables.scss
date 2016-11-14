@@ -37,6 +37,12 @@ $gray-blue--op_more:		rgba(84, 112, 118, $op_more);
 // Dimensions (paddings & margins)
 $p_default:					5px;	// Padding
 $p_more:					10px;
+
 $m_default: 				5px;	// Margin
 $m_more:					10px;
+$m_3x-more:					3*$m_more;
+
 $r_default:					5px;	// Radius
+
+//Scale
+$s_default:					1.2;

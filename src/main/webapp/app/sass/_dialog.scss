@@ -1,0 +1,21 @@
+.dialog {
+	position: fixed;
+	display: block;
+	top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+ 	-ms-transform: translateX(-50%);
+	background-color: $gray-blue--op_middle;
+	border-radius: $r_default;
+	padding: $p_more;
+	margin-bottom: $m_default;
+	padding: 30px;
+	
+	p {
+		text-align: center;
+		margin: 0;
+		color: white;
+		font-size: 30px;
+	}
+}

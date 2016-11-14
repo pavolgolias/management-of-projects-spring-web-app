@@ -12,6 +12,7 @@
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
 </head>
 
 <body class="base page background">
@@ -23,7 +24,7 @@
 				<img class="hidden visible-xs" src="images/icons/xs/Left_xs.png" alt="menu icon" onclick="openNav()">
 			</div>
 			<div class="col-xs-8 text-center">
-				<p>Task Detail</p>
+				<input type="text" id="task_name" value="Lorem Ipsum">
 			</div>
 			<div class="col-xs-2">
 				<img class="hidden-xs float--right" src="images/icons/Settings.png" alt="tiles icon">
@@ -36,26 +37,81 @@
    		<div class="col-md-6">
    			<div class="card-row">
    				<h3 class="float--left">
-   					Task Name
-   				</h3>
-   				<input class="float--right" type="text" id="task_name" placeholder="Lorem Ipsum">
-   				<div class="float--clear"></div>
-   			</div>
-   			<div class="card-row">
-   				<h3 class="float--left">
    					Type
    				</h3>
-   				<p class="float--right">
-   					BUG
-   				</p>
+  				<select class="float--right" id="task_type">
+					<option>Task</option>
+					<option>Info</option>
+					<option selected>Bug</option>
+					<option>Review</option>
+					<option>Feature</option>
+				</select>
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row">
    				<h3 class="float--left">
    					Priority
    				</h3>
+   				<select class="float--right" id="task_priority">
+					<option selected>High</option>
+					<option>Medium</option>
+					<option>Low</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Time Consumed
+   				</h3>
+   				<span class="float--right">h</span>
+   				<input class="float--right" type="text" id="task_name" value="1.38">
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Status
+   				</h3>
+   				<select class="float--right" id="task_status">
+					<option>To Do</option>
+					<option selected>In Progress</option>
+					<option>Complete</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Progress
+   				</h3>
+   				<select class="float--right" id="task_progress">
+					<option selected>0 %</option>
+					<option>10 %</option>
+					<option>20 %</option>
+					<option>30 %</option>
+					<option>40 %</option>
+					<option>50 %</option>
+					<option>60 %</option>
+					<option>70 %</option>
+					<option>80 %</option>
+					<option>90 %</option>
+					<option>100 %</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Created
+   				</h3>
    				<p class="float--right">
-   					High
+   					10.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Last Update
+   				</h3>
+   				<p class="float--right">
+   					10.11.2016
    				</p>
    				<div class="float--clear"></div>
    			</div>
@@ -63,18 +119,7 @@
    				<h3 class="float--left">
    					ETA
    				</h3>
-   				<p class="float--right">
-   					20.11.2016
-   				</p>
-   				<div class="float--clear"></div>
-   			</div>
-   			<div class="card-row">
-   				<h3 class="float--left">
-   					Status
-   				</h3>
-   				<p class="float--right">
-   					In Progress
-   				</p>
+   				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
    				<div class="float--clear"></div>
    			</div>
    		</div>
@@ -88,7 +133,7 @@
                 </header>
                 <section>
                     <article>
-                        <p>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
+                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -96,6 +141,7 @@
    		</div>
    		<div class="col-md-6">
 			<div class="card-row card-row--user">
+				<a class="float--right">&times;</a>
 				<img class="float float--left" src="images/icons/User.png" alt="user icon">
 				<article class="float float--left">
 					<h4>
@@ -107,7 +153,7 @@
 				</article>
 				<div class="float--both"></div>
 			</div>
-			<a class="card-button text-center" href="#">
+			<a class="card-button text-center hidden" href="#">
 				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
 			</a>
    		</div>
@@ -116,8 +162,12 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker Library -->
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 
     <!-- Custom scripts -->
+    <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 
 </body>

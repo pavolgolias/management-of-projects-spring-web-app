@@ -8,28 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Mproj app</title>
+    <title>Dialog</title>
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body class="base page--home background" onload="checkIsSignedIn()">
+<body class="base page--home background">
     
-    <div class="login-section">
-    	<div class="container-xs">
-        	<img src="images/logos/logo_white_small.png" alt="logo">
-			<input class="top email" type="email" id="exampleInputEmail1" placeholder="E-mail">
-			<input class="psw" type="password" id="exampleInputPassword1" placeholder="Password">
-			<div class="login-section__btn-group">
-				<a href="registration.html" class="left">Sign up</a>
-				<a href="#" onclick="signIn()" class="right">Sign in</a>
-			</div>
-		</div><!-- ./container-xs -->
-    </div><!-- ./login-section -->
-    
-    <div class="dialog hidden">
-    	<p><!-- Generated content --></p>
+    <div class="dialog">
+    	<p id="message">Email or password cannot be empty</p>
     </div>
 
     <!-- Bootstrap core JavaScript -->
