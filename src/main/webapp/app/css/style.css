@@ -11687,6 +11687,21 @@ body {
   font-size: 30px;
 }
 
+.base .dialog--picpick {
+  width: 760px;
+}
+
+.base .dialog--picpick img {
+  margin: 10px;
+  float: left;
+  width: 50px;
+}
+
+.base .dialog--picpick img:hover {
+  margin: 5px;
+  width: 60px;
+}
+
 .base .dialog--dim {
   position: fixed;
   top: 0;
@@ -11694,6 +11709,16 @@ body {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .base .dialog {
+    position: absolute;
+  }
+  .base .dialog--picpick {
+    width: 100%;
+    overflow-y: auto;
+  }
 }
 
 .base .addui-dropMenu {
