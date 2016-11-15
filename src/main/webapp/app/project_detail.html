@@ -23,9 +23,9 @@
             	<img src="images/avatar.png" class="center">
             </div>
             <div >
-                <article class="text-center">
-					<p>Jozko Mrkvicka</p>
-					<p>joz.ko@gmail.com</p>
+				<article class="text-center">
+					<p id="loggedUserName">Unknown User</p>
+					<p id="loggedUserEmail">email@email.com</p>
 				</arcticle>
             </div>
         </header>
@@ -61,7 +61,7 @@
             <div class="float--clear"></div>
         </a>
         
-		<a href="#"><img class="float--left" src="images/icons/gray/exit.png" alt="icon">
+		<a href="#" onclick="logOut()"><img class="float--left" src="images/icons/gray/exit.png" alt="icon">
             <span class="float--left">Logout</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
@@ -79,11 +79,16 @@
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<p>Project Name</p>
+				<p id="projectName">Project Name</p>
 			</div>
 			<div class="col-xs-2">
+<<<<<<< HEAD
                 <a href="#">
 				    <img class="float--right" src="images/icons/white/arrows.png" alt="plus icon">
+=======
+                <a href="#" id="editTaskLink">
+				    <img class="float--right" src="images/icons/white/pen.png" alt="plus icon">
+>>>>>>> 7c91dbc4749162d489b6264418242b9de617bd04
                 </a>
             </div>
 		</div><!-- ./container-fluid -->
@@ -95,7 +100,7 @@
    				<h3 class="float--left">
    					Project ID
    				</h3>
-				<p class="float--right">
+				<p id="projectId" class="float--right">
   					775
 				</p>
    				<div class="float--clear"></div>
@@ -109,6 +114,15 @@
    				</div>
    				<div class="float--clear"></div>
    			</div>
+			<div class="card-row">
+				<h3 class="float--left">
+					Last Update
+				</h3>
+				<p id="updateDate" class="float--right">
+					x.x.x.x
+				</p>
+				<div class="float--clear"></div>
+			</div>
    			<div class="card card--default">
                 <header>
 					<h4 class="float--left">
@@ -118,7 +132,7 @@
                 </header>
                 <section>
                     <article>
-                        <p>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
+                        <p id="projectDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -168,6 +182,6 @@
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/sideBarNavigationMenu.js"></script>
-
+	<script type="text/javascript" src="js/projects/project_detail.js"></script>
 </body>
 </html>
