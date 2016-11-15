@@ -10894,6 +10894,15 @@ body {
   background-color: #873f90;
 }
 
+.card-scrollable {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.size30 {
+  width: 30px;
+}
+
 .base .page {
   height: 100%;
   width: 100%;
