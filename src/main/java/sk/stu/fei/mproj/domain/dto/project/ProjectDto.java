@@ -29,6 +29,6 @@ public class ProjectDto {
     @ApiModelProperty(value = "Project participants")
     private List<AccountBaseDto> participants = new ArrayList<>();
 
-    @ApiModelProperty(value = "Last Edited time")
-    private String lastEditedTime;
+    @ApiModelProperty(value = "Last update timestamp")
+    private Date updatedAt;
 }

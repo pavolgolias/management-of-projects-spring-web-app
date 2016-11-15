@@ -28,7 +28,7 @@ public class SwaggerConfiguration {
         return new ApiInfoBuilder()
                 .title("Mproj")
                 .description("Project management system backend")
-                .contact(new Contact("Andrej Kosar", "http://www.stuba.sk/", "xkosara1@stuba.sk"))
+                .contact(new Contact("Andrej Kosar", "http://mprojpresentationweb-andrejkosar.rhcloud.com/", "xkosara1@stuba.sk"))
                 .version("1.0.0-beta")
                 .build();
     }

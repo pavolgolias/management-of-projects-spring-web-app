@@ -19,9 +19,6 @@ import sk.stu.fei.mproj.domain.entities.Project;
 import sk.stu.fei.mproj.domain.entities.Task;
 
 import javax.validation.constraints.NotNull;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -99,13 +96,7 @@ public class Mapper {
     public ProjectDto toProjectDto(@NotNull Project project) {
         Objects.requireNonNull(project);
 
-        ProjectDto projectDto = mapperFactory.getMapperFacade().map(project, ProjectDto.class);
-        Date date = project.getUpdatedAt();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        String format = formatter.format(date);
-        projectDto.setLastEditedTime(format);
-
-        return projectDto;
+        return mapperFactory.getMapperFacade().map(project, ProjectDto.class);
     }
 
     public void fillProject(@NotNull UpdateProjectRequestDto dto, @NotNull Project project) {
@@ -143,11 +134,6 @@ public class Mapper {
     public List<ProjectDto> toProjectDtoList(@NotNull List<Project> projects) {
         Objects.requireNonNull(projects);
 
-        List<ProjectDto> projectDtoList = new ArrayList<>();
-        for(Project project: projects){
-            projectDtoList.add(toProjectDto(project));
-        }
-        
-        return projectDtoList;
+        return mapperFactory.getMapperFacade().mapAsList(projects, ProjectDto.class);
     }
 }
