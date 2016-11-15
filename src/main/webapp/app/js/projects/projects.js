@@ -3,7 +3,6 @@
  */
 $( document ).ready(function() {
     checkAccountInfo();
-    updateAccountUIData();
     getAllProjects();
 });
 
@@ -36,17 +35,6 @@ function getSelf(){
             }
         }
     });
-}
-
-function updateAccountUIData(){
-    var json = localStorage.getItem("account");
-    if(json !== null){
-        var account = JSON.parse(json);
-        $("#loggedUserName").text(account.firstName+" "+account.lastName);
-        $("#loggedUserEmail").text(account.email);
-    }else{
-        showMessage("Unable to read the user account!");
-    }
 }
 
 function getAllProjects(){
