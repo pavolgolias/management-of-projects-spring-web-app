@@ -96,7 +96,7 @@ function buildProject(index,projectObject){
     }
     html =html + "</h4>";
 
-    html = html + "<h4 class='float--right'>Last edit: "+projectObject.lastEditedTime+"</h4> <div class='float--clear'></div> </header>"
+    html = html + "<h4 class='float--right'>Last edit: "+(new Date(projectObject.updatedAt)).toLocaleString()+"</h4> <div class='float--clear'></div> </header>"
 
     html = html + "<section><img src='images/icons/white/interface.png' alt='project icon'><article><a href='project_detail.html?id="+projectObject.projectId+"'><h3>";
     html = html + projectObject.name +"</h3></a>";
