@@ -24,6 +24,9 @@ public class TaskDto extends TaskBaseDto {
     @ApiModelProperty(value = "Aimed time for the task in millis", required = true)
     private Long timeEstimatedForTaskInMillis;
 
+    @ApiModelProperty(value = "Task progress in %", required = true)
+    private Integer progress;
+
     @ApiModelProperty(value = "Author of the task", required = true)
     private AccountDto author;
 }

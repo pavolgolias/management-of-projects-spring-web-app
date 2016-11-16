@@ -62,6 +62,7 @@ public class ProjectTaskService {
         if ( task.getPriority() == null ) {
             task.setPriority(TaskPriority.Normal);
         }
+        task.setProgress(0);
         task.setProject(project);
         task.setAuthor(authorizationManager.getCurrentAccount());
         if ( dto.getAssigneeId() != null ) {

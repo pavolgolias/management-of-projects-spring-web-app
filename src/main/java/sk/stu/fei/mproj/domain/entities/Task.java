@@ -69,6 +69,10 @@ public class Task {
     @Column
     private Long timeEstimatedForTaskInMillis;
 
+    @Column(nullable = false)
+    @NotNull
+    private Integer progress;
+
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
     @NotNull
