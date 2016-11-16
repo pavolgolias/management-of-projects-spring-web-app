@@ -36,19 +36,19 @@ public class UpdateTaskRequestDto {
     @NotNull
     private TaskPriority priority;
 
-    @ApiModelProperty(value = "Aimed completion date")
+    @ApiModelProperty(value = "Aimed completion date", notes = "Setting to NULL (or not providing) will unset value")
     private Date aimedCompletionDate;
 
-    @ApiModelProperty(value = "Time spent on task")
+    @ApiModelProperty(value = "Time spent on task", notes = "Setting to NULL (or not providing) will unset value")
     private Long timeSpentOnTaskInMillis;
 
-    @ApiModelProperty(value = "Aimed time for the task in millis")
+    @ApiModelProperty(value = "Aimed time for the task in millis", notes = "Setting to NULL (or not providing) will unset value")
     private Long timeEstimatedForTaskInMillis;
 
     @ApiModelProperty(value = "Task progress in %", required = true)
     @NotNull
     private Integer progress;
 
-    @ApiModelProperty(value = "Id of the assigned user")
+    @ApiModelProperty(value = "Id of the assigned user", notes = "Setting to NULL (or not providing) will unset value")
     private Long assigneeId;
 }
