@@ -45,6 +45,10 @@ public class UpdateTaskRequestDto {
     @ApiModelProperty(value = "Aimed time for the task in millis")
     private Long timeEstimatedForTaskInMillis;
 
+    @ApiModelProperty(value = "Task progress in %", required = true)
+    @NotNull
+    private Integer progress;
+
     @ApiModelProperty(value = "Id of the assigned user")
     private Long assigneeId;
 }
