@@ -1,5 +1,6 @@
 package sk.stu.fei.mproj.services;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import javax.validation.constraints.NotNull;
 import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -140,9 +142,9 @@ public class AccountService {
         }
         Account account = mapper.toAccount(dto);
         //TODO set account to inactive later on and create action token for it
-//        account.setActive(false);
-//        setActionToken(account);
-        account.setActive(true);
+        account.setActive(false);
+        setActionToken(account);
+//        account.setActive(true);
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
@@ -150,10 +152,15 @@ public class AccountService {
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         accountDao.persist(account);
 
-        mailService.sendPlainTextEmail(account.getEmail(), "Projects account activation",
-                "Your account was created and needs to be activated. \n" +
-                        "For activation go to " + applicationProperties.buildFrontendUrl("/activate-account.html").toString() + "\n" +
-                        "Your activation code is: " + account.getActionToken());
+//        mailService.sendPlainTextEmail(account.getEmail(), "Projects account activation",
+//                "Your account was created and needs to be activated. \n" +
+//                        "For activation go to " + applicationProperties.buildFrontendUrl("/activate-account.html").toString() + "\n" +
+//                        "Your activation code is: " + account.getActionToken());
+
+        Map<String, String> model = new HashedMap<>();
+        model.put("activationUrl", applicationProperties.buildFrontendUrl("/activate-account.html?code=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account.html?code=" + account.getActionToken()).toString());
+        mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
 
         return account;
     }
@@ -233,6 +240,17 @@ public class AccountService {
         account.setActive(true);
         eraseActionToken(account);
         accountDao.persist(account);
+    }
+
+    public void discardUnactivatedAccount(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActive() ) {
+            throw new IllegalStateException("Account was already activated. You can discard only unactivated account");
+        }
+        if ( account.getDeletedAt() != null ) {
+            throw new IllegalStateException("Account was already activated. You can discard only unactivated account");
+        }
+        accountDao.purge(account);
     }
 
     public void requestAccountRecovery(String email) throws MalformedURLException, MessagingException {

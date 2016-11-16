@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+    <h1>Account activation</h1>
+    <p>
+    Your account was created and needs to be activated. <br/>
+    To activate your account go to <a th:href="${activationUrl}" th:text="${activationUrl}"></a>. <br/>
+    If you did not request to create account, please go to <a th:href="${discardUrl}" th:text="${discardUrl}"></a> and discard this request.
+    </p>
+    <h2>Sincerely yours, Projects team</h2>
+</body>
+</html>
