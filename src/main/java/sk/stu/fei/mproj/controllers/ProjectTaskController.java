@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
+import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
@@ -18,6 +19,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.ProjectTaskService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Transactional
@@ -85,5 +87,17 @@ public class ProjectTaskController {
     public DataResponse<Void> deleteTask(@PathVariable Long projectId, @PathVariable Long taskId) {
         projectTaskService.deleteTask(projectId, taskId);
         return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Get all tasks for project")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 422, message = "Unprocessable")
+    })
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<List<TaskDto>> getAllTasks(@PathVariable Long projectId) {
+        return new DataResponse<>(mapper.toTaskDtoList(projectTaskService.getAllTasks(projectId)));
     }
 }

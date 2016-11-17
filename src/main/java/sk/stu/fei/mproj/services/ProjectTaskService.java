@@ -1,6 +1,7 @@
 package sk.stu.fei.mproj.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.Mapper;
@@ -21,6 +22,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -128,6 +130,12 @@ public class ProjectTaskService {
         );
 
         taskDao.delete(task);
+    }
+
+    @RoleSecured
+    public List<Task> getAllTasks(Long projectId){
+        Project project = getOrElseThrowEntityNotFoundEx(projectId,projectDao,String.format("Project with id=%s was not found", projectId.toString()));
+        return taskDao.getAllTask(project);
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
