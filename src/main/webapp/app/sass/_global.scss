@@ -105,7 +105,26 @@ body {
     overflow-y: auto;
 }
 
+.visible{
+    	display: block;
+}
+
+.invisible{
+    	display:none;
+}
 
 .size30{
         width:30px;
+}
+
+@media screen and (max-width: 991px) {
+    .visible{
+    	display: none;
+}
+
+.invisible{
+    	display:block;
+        visibility: visible;
+}
+ 
 }
