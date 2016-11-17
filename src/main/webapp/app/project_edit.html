@@ -19,12 +19,12 @@
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a  id="editTaskLink" href="#">
+				<a onclick="backToProject()" href="#">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<input type="text" id="project_name" value="Lorem Ipsum">
+				<input type="text" id="projectName" value="Lorem Ipsum">
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
@@ -35,7 +35,7 @@
    				<h3 class="float--left">
    					Project ID
    				</h3>
-   				<input readonly="true" class="float--right" type="text" id="task_id" value="775">
+   				<input readonly="true" class="float--right" type="text" id="projectId" value="775">
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row hidden">
@@ -230,98 +230,98 @@
    				<div class="float--clear"></div>
    			</div>
             </div>
-            <div class="col-md-3 card-scrollable">
-			<div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 8 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-            <div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 8 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-            <div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 8 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 13 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-            </div>
-            <div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 13 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-            </div>
-            <div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 13 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-            </div>
-            <div class="card-row card-row--user">
-				<a class="float--right">&minus;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 13 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-            </div>
+            <div id="assignedUsers" class="col-md-3 card-scrollable">
+				<!--<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 8 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 8 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 8 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 13 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 13 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 13 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div>
+				<div class="card-row card-row--user">
+					<a class="float--right">&minus;</a>
+					<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+					<article class="float--left">
+						<h4>
+							User's Name
+						</h4>
+						<p>
+							Total 13 opened tasks
+						</p>
+					</article>
+					<div class="float--both"></div>
+				</div> -->
             </div>
   
   
@@ -340,7 +340,9 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/projects/projectEdit.js"></script>
 
 </body>
 </html>

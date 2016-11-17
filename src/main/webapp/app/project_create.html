@@ -58,16 +58,16 @@
                 </header>
                 <section>
                     <article>
-                        <textarea placeholder="Enter project description"></textarea>
+                        <textarea id="project_decscription" placeholder="Enter project description"></textarea>
                     </article>
                 </section>
             </div>
-            <a class="card-button text-center" href="#">
+            <a class="card-button text-center" id="saveProject" href="#">
 				<img src="images/icons/white/save.png" alt="user icon">
 			</a>
    		</div>
-   		<div class="col-md-6">
-   			<!-- Assigned Users -->
+   		<div id="userList" class="col-md-6">
+   			<!-- Assigned Users
 			<div class="card-row card-row--user">
 				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
 				<article class="float--left">
@@ -83,7 +83,7 @@
 			</div>
 			<a class="card-button text-center" href="#">
 				<img src="images/icons/white/user-add.png" alt="user icon">
-			</a>
+			</a>-->
    		</div>
    	</div> <!-- ./container-fluid -->	
 
@@ -98,7 +98,9 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/projects/projectCreate.js"></script>
 
 </body>
 </html>
