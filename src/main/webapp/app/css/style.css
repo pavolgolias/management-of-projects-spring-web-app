@@ -11459,6 +11459,11 @@ body {
   height: 28px;
 }
 
+.base .card-row progress {
+  margin-top: 5px;
+  background-color: white;
+}
+
 .base .card-row--user {
   overflow: hidden;
 }
