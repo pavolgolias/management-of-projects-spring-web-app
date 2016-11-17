@@ -18,6 +18,22 @@ function showMessage(message){
     }
 }
 
+function showMessageWithoutAutoHide(message){
+    if($(".dialog.hidden").length){
+        if($("#message").length){
+            $("#message").text(message);
+            $(".dialog.hidden").attr('style', 'display: block !important');
+        }
+        else alert(message);
+    }else{
+        alert(message);
+    }
+}
+
+function hideMessage(){
+    $(".dialog.hidden").attr('style', 'display: none !important');
+}
+
 function showNotAuthorizedMessage(){
     showMessage("You are not authorized!");
     window.location.replace("index.html");

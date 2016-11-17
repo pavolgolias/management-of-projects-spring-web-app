@@ -2,10 +2,9 @@
  * Created by juraj on 17.11.2016.
  */
 var projectId;
-
+var adminId;
 $( document ).ready(function() {
     projectId = getParameterByName("id",window.location.href);
-    console.log(projectId);
     if(projectId != null){
         getProjectDetail(projectId);
     }
@@ -22,6 +21,7 @@ function getProjectDetail(projectId){
         },
         success: function (data) {
             displayProject(data.data);
+            displayAssignedUsersForProject(data.data);
         },
         error: function (xhr) {
             if(xhr.status == 401){
@@ -34,14 +34,13 @@ function getProjectDetail(projectId){
 }
 
 function displayProject(jsonResult){
-    console.log(jsonResult);
+
     $("#projectName").val(jsonResult.name);
     $("#projectId").val("#"+jsonResult.projectId);
     $("#task_id").val("#"+jsonResult.projectId);
     updateEditLink(jsonResult.projectId);
     $("#projectDescription").text(jsonResult.description);
     $("#updateDate").text((new Date(jsonResult.updatedAt)).toLocaleString());
-    $("#assignedUsers").append(buildUserList(jsonResult.administrators, jsonResult.participants));
 
 }
 
@@ -72,8 +71,7 @@ function buildUserList(admins, users){
 }
 
 function buildUser(user, isAdmin) {
-    console.log(user);
-    console.log(isAdmin);
+
     var html="<div class='card-row card-row--user'>";
     html += "<a class='float--right'>&minus;</a>"
     //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
@@ -101,10 +99,10 @@ $("#saveProject").click(function () {
     var project_decscription = $('#projectDescription').val();
     var admin_id = JSON.parse(localStorage.getItem("account")).accountId;
 
-    console.log(JSON.stringify({
-        description: project_decscription,
-        name: project_name
-    }));
+    if(project_name == '') {
+        showMessage("Project name cannot be empty!");
+        return;
+    }
 
     $.ajax({
         url: "/api/projects/"+projectId,

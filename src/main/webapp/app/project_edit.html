@@ -56,7 +56,7 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="projectDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
                 </section>
             </div>
@@ -69,14 +69,14 @@
             <div class="col-md-6">
 			<div class="card-row">
    				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
-   				<input class="float--right" type="text" id="task_id" value="Jozko">
+   				<input class="float--right" type="text" id="searchUserInput" onkeyup="searchForUser()" placeholder="Search for users...">
    				<div class="float--clear"></div>
    			</div>
             </div>
         <div class="col-md-3">
             <div class="card-row card-row--heading">
    				<h3 class="float--left">
-   					Avaliable
+   					Avalaible
    				</h3>
    				<div class="float--clear"></div>
    			</div>
@@ -88,116 +88,12 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
-        
-             <div class="col-md-3 card-scrollable">
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-                <img class="float float--left" src="images/icons/avatars/avatar1.png" alt="user icon">
-                <!--<img class="float float--left" src="images/icons/white/user.png" alt="user icon">-->
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar10.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar20.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar12.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar9.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar18.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar26.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar22.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-   		</div>
-        
+		</div>
+
+             <div id="suggestedUsers" class="col-md-3 card-scrollable">
+
+	   		</div>
+
         <div class="col-md-3 invisible">
             <div class="card-row card-row--heading">
    				<h3 class="float--left">
@@ -206,103 +102,13 @@
    				<div class="float--clear"></div>
    			</div>
             </div>
-        
+
             <div id="assignedUsers" class="col-md-3 card-scrollable">
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar35.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar37.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar30.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar16.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar7.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar49.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div> -->
+
             </div>
-  
-  
-        
+
+
+
         
    	</div> <!-- ./container-fluid -->
    	
@@ -316,8 +122,10 @@
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+
     <!-- Custom scripts -->
 	<script type="text/javascript" src="js/dialogs.js"></script>
+	<script type="text/javascript" src="js/userPicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/projects/projectEdit.js"></script>
 
