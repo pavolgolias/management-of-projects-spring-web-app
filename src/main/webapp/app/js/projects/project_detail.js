@@ -31,18 +31,18 @@ function getProjectDetail(projectId){
 }
 
 function displayProject(jsonResult){
-    console.log(jsonResult);
     $("#projectName").text(jsonResult.name);
     $("#projectId").text("#"+jsonResult.projectId);
-    updateEditLink(jsonResult.projectId);
     $("#projectDescription").text(jsonResult.description);
     $("#updateDate").text((new Date(jsonResult.updatedAt)).toLocaleString());
 
+    updateLinks(jsonResult.projectId);
 
 }
 
-function updateEditLink(projectId){
+function updateLinks(projectId){
     $("#editTaskLink").attr("href","project_edit.html?id="+projectId);
+    $("#taskBoardLink").attr("href","scrum_board.html?id="+projectId);
 }
 function getParameterByName(name, url) {
     if (!url) {
