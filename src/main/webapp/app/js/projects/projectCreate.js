@@ -2,10 +2,12 @@
  * Created by juraj on 15.11.2016.
  */
 
-var participants = new Array();
+var participants = [];
+var lastAdded;
 
 $(document).ready(function () {
     checkAccountInfo();
+    $("#userList").append(getAdmin());
 })
 
 function checkAccountInfo(){
@@ -18,6 +20,37 @@ function checkAccountInfo(){
             getSelf();
         }
     }
+}
+
+function getAdmin(){
+    var html;
+    html += buildUser(JSON.parse(localStorage.getItem("account")),true);
+    html += "<a class='card-button text-center' onclick='pickUser()' href='#'>";
+    html += "<img src='images/icons/white/user-add.png'  alt='user icon'>";
+    html += "</a>";
+    return html;
+}
+
+function buildUser(user, isAdmin) {
+    console.log(user);
+    console.log(isAdmin);
+    var html="<div id='userID"+user.accountId+"' class='card-row card-row--user'>";
+    //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
+    html += "<img class='float float--left' src='images/icons/white/user.png' alt='user icon'>";
+    html += "<article class='float--left'>";
+    html += "<h4>"+user.firstName+" "+user.lastName+"</h4>";
+    if(isAdmin)
+        html += "<h5>Administrator</h5>";
+    html += "email: "+ user.email;
+    html += "</article>";
+    if(!isAdmin)
+        html += "<input class='float--right' type='checkbox'>";
+    html += "<div class='float--both'></div>";
+    html += "</div>";
+
+    lastAdded = user.accountId;
+
+    return html;
 }
 
 function getSelf(){
@@ -38,6 +71,18 @@ function getSelf(){
         }
     });
 }
+
+function pickUser() {
+   // var html = "<div>";
+   //
+   //  html = "</div>";
+
+
+};
+
+
+
+
 
 $("#saveProject").click(function () {
     var project_name = $('#project_name').val();
