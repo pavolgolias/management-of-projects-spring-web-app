@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div style="
+        background-color: white;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        ">
+    <table>
+        <tr>
+            <td style="
+                padding-bottom: 15px;
+            ">
+                <img th:src="${projectsLogoUrl}"/>
+            </td>
+            <td style="
+                text-align: right;
+                font-size: 27px;
+                padding-bottom: 15px;
+            ">
+                Account activation
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="
+                border-top: black 3px solid;
+                border-bottom: black 3px solid;
+                padding: 30px 14px 30px 14px;
+                text-align: center;
+            ">
+                Your account was created and needs to be activated. <br/> <br/>
+                To activate your account click <a
+                    th:href="${activationUrl}">here</a>.
+                <br/> <br/>
+                If you did not request to create account, please visit <a
+                    th:href="${discardUrl}">this site</a>
+                and discard this
+                request.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="
+                padding-top: 15px;
+                font-size: 22px;
+                text-align: left;
+            ">
+                Sincerely yours Projects team
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

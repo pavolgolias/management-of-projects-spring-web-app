@@ -21,6 +21,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -128,6 +129,12 @@ public class ProjectTaskService {
         );
 
         taskDao.delete(task);
+    }
+
+    @RoleSecured
+    public List<Task> getAllTasks(Long projectId) {
+        final Project project = getOrElseThrowEntityNotFoundEx(projectId, projectDao, String.format("Project with id=%d was not found", projectId));
+        return taskDao.findAllTasksByProject(project);
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {

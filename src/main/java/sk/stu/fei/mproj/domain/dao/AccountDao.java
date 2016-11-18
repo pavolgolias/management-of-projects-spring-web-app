@@ -88,4 +88,8 @@ public class AccountDao extends DaoBase<Account, Long> {
         entity.setActive(false);
         super.persist(entity);
     }
+
+    public void purge(Account entity) {
+        super.delete(entity);
+    }
 }

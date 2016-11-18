@@ -136,4 +136,9 @@ public class Mapper {
 
         return mapperFactory.getMapperFacade().mapAsList(projects, ProjectDto.class);
     }
+
+    public List<TaskDto> toTaskDtoList(@NotNull List<Task> tasks) {
+        Objects.requireNonNull(tasks);
+        return mapperFactory.getMapperFacade().mapAsList(tasks, TaskDto.class);
+    }
 }

@@ -141,6 +141,18 @@ public class AccountController {
         return new DataResponse<>();
     }
 
+    @ApiOperation(value = "Discard unactivated account specified by action token")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/discard-account", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DataResponse<Void> discardUnactivatedAccount(@RequestParam String token) {
+        accountService.discardUnactivatedAccount(token);
+        return new DataResponse<>();
+    }
+
     @ApiOperation(value = "Request account recovery email")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),

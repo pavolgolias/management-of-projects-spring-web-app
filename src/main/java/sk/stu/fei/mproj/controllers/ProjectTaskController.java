@@ -18,6 +18,7 @@ import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.ProjectTaskService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Transactional
@@ -85,5 +86,17 @@ public class ProjectTaskController {
     public DataResponse<Void> deleteTask(@PathVariable Long projectId, @PathVariable Long taskId) {
         projectTaskService.deleteTask(projectId, taskId);
         return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Get all tasks for project")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public DataResponse<List<TaskDto>> getAllTasks(@PathVariable Long projectId) {
+        return new DataResponse<>(mapper.toTaskDtoList(projectTaskService.getAllTasks(projectId)));
     }
 }

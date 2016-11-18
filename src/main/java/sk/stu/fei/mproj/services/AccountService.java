@@ -31,9 +31,7 @@ import javax.mail.MessagingException;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.net.MalformedURLException;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @Transactional
@@ -150,10 +148,11 @@ public class AccountService {
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         accountDao.persist(account);
 
-        mailService.sendPlainTextEmail(account.getEmail(), "Projects account activation",
-                "Your account was created and needs to be activated. \n" +
-                        "For activation go to " + applicationProperties.buildFrontendUrl("/activate-account.html").toString() + "\n" +
-                        "Your activation code is: " + account.getActionToken());
+        Map<String, String> model = new HashMap<>();
+        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_xs.png").toString());
+        model.put("activationUrl", applicationProperties.buildFrontendUrl("/activate-account.html?code=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account.html?code=" + account.getActionToken()).toString());
+        mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
 
         return account;
     }
@@ -235,17 +234,27 @@ public class AccountService {
         accountDao.persist(account);
     }
 
+    public void discardUnactivatedAccount(String actionToken) {
+        final Account account = getAccountByActionToken(actionToken);
+        if ( account.getActive() ) {
+            throw new IllegalStateException("Account was already activated. You can discard only unactivated account");
+        }
+        if ( account.getDeletedAt() != null ) {
+            throw new IllegalStateException("Account was already activated. You can discard only unactivated account");
+        }
+        accountDao.purge(account);
+    }
+
     public void requestAccountRecovery(String email) throws MalformedURLException, MessagingException {
         final Account account = getAccountByEmail(email);
         setActionToken(account);
         accountDao.persist(account);
 
-        mailService.sendPlainTextEmail(account.getEmail(), "Projects account recovery",
-                "You requested account recovery.\n" +
-                        "To recover your account and password go to " + applicationProperties.buildFrontendUrl("/recover-account.html").toString() + "\n" +
-                        "Your recovery code is: " + account.getActionToken() + "\n" +
-                        "If you did not request account recovery, go please to " + applicationProperties.buildFrontendUrl("/recover-account.html").toString() +
-                        " and use recovery code provided above to discard this recovery request.");
+        Map<String, String> model = new HashMap<>();
+        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_xs.png").toString());
+        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/recover-account.html?code=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account-recovery.html?code=" + account.getActionToken()).toString());
+        mailService.sendHtmlEmail(account.getEmail(), "Projects: Account recovery", "account-recovery", model);
     }
 
     public void discardAccountRecovery(String actionToken) {
