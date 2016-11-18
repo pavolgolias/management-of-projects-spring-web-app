@@ -1,7 +1,16 @@
 /**
  * Created by Patrik on 17/11/2016.
  */
-var allSuggestedUsers;
+/**
+ *
+ * Vo svojich JS file-och implementujte dve metódy addToAssigned(iduser) a removeFromAssigned(iduser)
+ * kde zmenite ikonu + / -  a implementujete logiku
+ *
+ * EXAMPLE JE v projectEdit.js
+ *
+ * */
+
+
 var previousQuery = '';
 var projectId ;
 
@@ -42,9 +51,9 @@ function buildUserElement(userJsonObject,toAssign){
     var defaultImg = "<img class='float--left' src='images/avatar.png' alt='avatar'>";
     var html = '';
     if(toAssign)
-        html = "<div class='card-row card-row--user suggested'><a class='float--right'>&minus;</a>";
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user suggested'><a class='float--right' onclick='removeFromAssigned("+userJsonObject.accountId+")'>&minus;</a>";
     else
-        html = "<div class='card-row card-row--user assigned'><a class='float--right'>&plus;</a>";
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addToAssigned("+userJsonObject.accountId+")'>&plus;</a>";
     //TODO add users avatar
     html = html + defaultImg;
     html = html + "<article class='float--left'><h4>"
@@ -60,7 +69,6 @@ function displayAssignedUsersForProject(jsonProjectObject){
         $("#assignedUsers").append(buildUserElement(jsonProjectObject.participants[index],true));
     }
 }
-
 function displaySuggestedUsersForProject(data) {
     console.log(data);
     for(var index = 0 ; index< data.length ; index ++){

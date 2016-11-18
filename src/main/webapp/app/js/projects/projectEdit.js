@@ -2,7 +2,8 @@
  * Created by juraj on 17.11.2016.
  */
 var projectId;
-var adminId;
+var assignedUsers = [];
+
 $( document ).ready(function() {
     projectId = getParameterByName("id",window.location.href);
     if(projectId != null){
@@ -22,6 +23,7 @@ function getProjectDetail(projectId){
         success: function (data) {
             displayProject(data.data);
             displayAssignedUsersForProject(data.data);
+            readAssignedUsersIds(data.data);
         },
         error: function (xhr) {
             if(xhr.status == 401){
@@ -123,3 +125,43 @@ $("#saveProject").click(function () {
         }
     });
 });
+
+function removeFromAssigned(id){
+    var card = $("#account"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&plus;").click(function () {
+        addToAssigned(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#suggestedUsers");
+        card.slideDown('normal');
+    });
+
+    for(var index = 0 ; index < assignedUsers.length; index++){
+        if(id === assignedUsers[index]){
+            assignedUsers.splice(index,1);
+            return;
+        }
+    }
+}
+
+function addToAssigned(id){
+    var card = $("#account"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&minus;").click(function () {
+        removeFromAssigned(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#assignedUsers");
+        card.slideDown('normal');
+    });
+
+
+    assignedUsers.push(id);
+}
+
+function readAssignedUsersIds(jsonProjectObject){
+    for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
+        assignedUsers.push(jsonProjectObject.participants[index].accountId);
+    }
+}
