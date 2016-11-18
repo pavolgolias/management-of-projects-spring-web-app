@@ -3,7 +3,6 @@ package sk.stu.fei.mproj.domain.dao;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.entities.Project;
-import sk.stu.fei.mproj.domain.entities.QProject;
 import sk.stu.fei.mproj.domain.entities.Task;
 
 import javax.validation.constraints.NotNull;
@@ -34,8 +33,11 @@ public class TaskDao extends DaoBase<Task, Long> {
         entity.setDeletedAt(new Date());
     }
 
-    public List<Task> getAllTask(@NotNull Project project){
-        return queryFactory.selectFrom(task).where(task.project.projectId.eq(project.getProjectId())).fetch();
+    public List<Task> findAllTasksByProject(@NotNull Project project) {
+        return queryFactory.selectFrom(task)
+                .where(task.project.eq(project)
+                        .and(task.deletedAt.isNotNull()))
+                .fetch();
     }
 
 }

@@ -45,7 +45,7 @@ public class ProjectDao extends DaoBase<Project, Long> {
 
     /**
      * Method to construct query and get projects page. <br/>
-     * It uses startId of the netxt project to load to prevent duplicates <br/>
+     * It uses startId of the next project to load to prevent duplicates <br/>
      * when pages are loaded on client caused by project insertion <br/>
      * between two subsequent page requests.
      *
@@ -53,7 +53,7 @@ public class ProjectDao extends DaoBase<Project, Long> {
      * @param type     Type of requested projects
      * @param pageSize Max number of items returned by request
      * @param startId  Project id from where to start listing items <br />
-     *                 or negative number to request first page
+     *                 or number less or equal to zero to request first page
      * @return DataPage instance with results
      */
     public DataPage<List<Project>> findProjectsPageFilteredByType(
@@ -63,7 +63,7 @@ public class ProjectDao extends DaoBase<Project, Long> {
             @NotNull Long startId) {
 
         Project startProject;
-        if ( startId < 0 ) {
+        if ( startId <= 0 ) {
             startProject = queryFactory.selectFrom(project)
                     .where(project.deletedAt.isNull())
                     .orderBy(project.createdAt.desc())
