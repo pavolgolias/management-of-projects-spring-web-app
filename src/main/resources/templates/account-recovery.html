@@ -20,7 +20,7 @@
                 font-size: 27px;
                 padding-bottom: 15px;
             ">
-                Account activation
+                Account recovery
             </td>
         </tr>
         <tr>
@@ -30,14 +30,10 @@
                 padding: 30px 14px 30px 14px;
                 text-align: center;
             ">
-                Your account was created and needs to be activated. <br/> <br/>
-                To activate your account click <a
-                    th:href="${activationUrl}">here</a>.
-                <br/> <br/>
-                If you did not request to create account, please visit <a
-                    th:href="${discardUrl}">this site</a>
-                and discard this
-                request.
+                We received request that you want to recover your account and password. <br /> <br />
+                To recover your account and password go <a th:href="${recoverUrl}">here</a>. <br/> <br/>
+                If you did not request account recovery, please go to <a th:href="${discardUrl}">this site</a>
+                to discard account recovery request.
             </td>
         </tr>
         <tr>
