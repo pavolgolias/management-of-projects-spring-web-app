@@ -19,12 +19,12 @@
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="#">
+				<a onclick="backToProject()" href="#">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<input type="text" id="project_name" value="Lorem Ipsum">
+				<input type="text" id="projectName" value="Lorem Ipsum">
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
@@ -35,7 +35,7 @@
    				<h3 class="float--left">
    					Project ID
    				</h3>
-   				<input class="float--right" type="text" id="task_id" value="775">
+   				<input readonly="true" class="float--right" type="text" id="projectId" value="775">
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row hidden">
@@ -56,45 +56,60 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="projectDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
                 </section>
             </div>
-            <a class="card-button text-center" href="#">
+            <a id="saveProject" class="card-button text-center" href="#">
 				<img src="images/icons/white/save.png" alt="user icon">
 			</a>
    		</div>
-   		<div class="col-md-6">
-			<div class="card-row card-row--user">
-				<a class="float--right">&times;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 8 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<div class="card-row card-row--user">
-				<a class="float--right">&times;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 13 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<a class="card-button text-center" href="#">
-				<img src="images/icons/white/user-edit.png" alt="user icon">
-			</a>
-   		</div>
+
+        
+            <div class="col-md-6">
+			<div class="card-row">
+   				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
+   				<input class="float--right" type="text" id="searchUserInput" onkeyup="searchForUser()" placeholder="Search for users...">
+   				<div class="float--clear"></div>
+   			</div>
+            </div>
+        <div class="col-md-3">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Avalaible
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+            </div>
+        <div class="col-md-3 visible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div>
+
+             <div id="suggestedUsers" class="col-md-3 card-scrollable">
+
+	   		</div>
+
+        <div class="col-md-3 invisible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+            </div>
+
+            <div id="assignedUsers" class="col-md-3 card-scrollable">
+
+            </div>
+
+
+
+        
    	</div> <!-- ./container-fluid -->
    	
    	<!-- Dialogs -->
@@ -107,8 +122,12 @@
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+
     <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
+	<script type="text/javascript" src="js/userPicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/projects/projectEdit.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,6 @@
  */
 $( document ).ready(function() {
     checkAccountInfo();
-    updateAccountUIData();
     getAllProjects();
 });
 
@@ -36,17 +35,6 @@ function getSelf(){
             }
         }
     });
-}
-
-function updateAccountUIData(){
-    var json = localStorage.getItem("account");
-    if(json !== null){
-        var account = JSON.parse(json);
-        $("#loggedUserName").text(account.firstName+" "+account.lastName);
-        $("#loggedUserEmail").text(account.email);
-    }else{
-        showMessage("Unable to read the user account!");
-    }
 }
 
 function getAllProjects(){
@@ -96,7 +84,7 @@ function buildProject(index,projectObject){
     }
     html =html + "</h4>";
 
-    html = html + "<h4 class='float--right'>Last edit: "+projectObject.lastEditedTime+"</h4> <div class='float--clear'></div> </header>"
+    html = html + "<h4 class='float--right'>Last edit: "+(new Date(projectObject.updatedAt)).toLocaleString()+"</h4> <div class='float--clear'></div> </header>"
 
     html = html + "<section><img src='images/icons/white/interface.png' alt='project icon'><article><a href='project_detail.html?id="+projectObject.projectId+"'><h3>";
     html = html + projectObject.name +"</h3></a>";

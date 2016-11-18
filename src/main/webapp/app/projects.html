@@ -31,37 +31,39 @@
         </header>
         
         <div class="nav-links">
-        <a href="#"><img class="float--left" src="images/icons/New/png-gray/interface.png" alt="icon">
+        <a href="#"><img class="float--left" src="images/icons/gray/interface.png" alt="icon">
             <span class="float--left">My projects</span>
             <span class="float--right">❯</span> 
             <div class="float--clear"></div>
         </a>
         
-		<a href="#"><img class="float--left" src="images/icons/New/png-gray/avatar.png"  alt="icon">
+		<a href="#"><img class="float--left" src="images/icons/gray/user.png"  alt="icon">
             <span class="float--left">Profile</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
         </a>
         
-		<a href="#"><img class="float--left" src="images/icons/New/png-gray/bell.png" alt="icon">
+<!--
+		<a href="#"><img class="float--left" src="images/icons/gray/alarm.png" alt="icon">
             <span class="float--left">Notifications</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
         </a>
         
-		<a href="change_password.html"><img class="float--left" src="images/icons/New/png-gray/settings.png" alt="icon">
-            <span class="float--left">Credentials</span>
+		<a href="#"><img class="float--left" src="images/icons/gray/settings.png" alt="icon">
+            <span class="float--left">Settings</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
         </a>
+-->
         
-		<a href="#"><img class="float--left" src="images/icons/New/png-gray/help.png" alt="icon">
+		<a href="#"><img class="float--left" src="images/icons/gray/info.png" alt="icon">
             <span class="float--left">About</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
         </a>
         
-		<a href="#" onclick="logOut()"><img class="float--left" src="images/icons/New/png-gray/arrows.png" alt="icon">
+		<a href="#" onclick="logOut()"><img class="float--left" src="images/icons/gray/exit.png" alt="icon">
             <span class="float--left">Logout</span>
             <span class="float--right">❯</span>
             <div class="float--clear"></div>
@@ -120,30 +122,6 @@
 		<div id="tab2" class="tab-pane fade in active">
 			<div id="allProjectsContainer" class="container-fluid">
 				<!-- Generated content -->
-				<div class="col-sm-6 col-md-4">
-					<div class="card card--project">
-						<div class="index hidden">None</div>
-						<header>
-							<h4 class="float--left">Creator's Name</h4>
-							<h4 class="float--right">Last edit: 14.11.2016</h4>
-							<div class="float--clear"></div>
-						</header>
-						<section>
-							<img src="images/icons/white/interface.png" alt="project icon">
-							<article>
-								<a href="project_detail.html"><h3>Example Project Name</h3></a>
-								<p>This is example project's description</p>
-							</article>
-							<ul>
-								<li><img src="images/icons/white/user.png" alt="user icon"></li>
-								<li><img src="images/icons/white/user.png" alt="user icon"></li>
-								<li><img src="images/icons/white/user.png" alt="user icon"></li>
-								<li><img src="images/icons/white/user.png" alt="user icon"></li>
-							</ul>
-							<div class="float--clear"></div>
-						</section>
-					</div>
-				</div>
 			</div>
 		</div><!-- ./tab-pane -->
 		<div id="tab3" class="tab-pane fade">
@@ -157,17 +135,19 @@
     <div class="dialog hidden">
 		<p id="message">Empty message</p>
 	</div>
-	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW:-->
     
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+
+
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/dialogs.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-<!--	<script type="text/javascript" src="js/projects/projects.js"></script>-->
 	<script type="text/javascript" src="js/sideBarNavigationMenu.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/projects/projects.js"></script>
 
 </body>
 </html>

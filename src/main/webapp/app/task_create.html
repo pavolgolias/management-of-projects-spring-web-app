@@ -8,66 +8,90 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Mproj Project Create</title>
+    <title>Mproj Task Edit</title>
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
 </head>
 
-<body class="base page page--projects background">
+<body class="base page background">
   	
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="projects.html">
+				<a href="#">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<p>Create your own project</p>
+				<input type="text" id="task_name" placeholder="Enter task name">
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
    	
    	<div class="container-fluid">
-   		<div class="col-md-6 margin-bottom--3x-more">
+   		<div class="col-md-6">
    			<div class="card-row">
-   				<h3 class="img-label float--left">
-   					Project Name
+   				<h3 class="float--left">
+   					Type
+   				</h3>
+  				<select class="float--right" id="task_type">
+					<option>Task</option>
+					<option>Info</option>
+					<option selected>Bug</option>
+					<option>Review</option>
+					<option>Feature</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Priority
+   				</h3>
+   				<select class="float--right" id="task_priority">
+					<option selected>High</option>
+					<option>Medium</option>
+					<option>Low</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Created
    				</h3>
    				<p class="float--right">
-   					<input type="text" id="project_name" placeholder="Project name">
+   					10.11.2016
    				</p>
    				<div class="float--clear"></div>
-   			</div>
+   			</div>  
    			<div class="card-row">
-   				<h3 class="img-label float--left">
-   					Project Image
+   				<h3 class="float--left">
+   					ETA
    				</h3>
-   				<div class="img-wrap float--right">
-   					<img src="images/icons/white/interface.png" alt="poject illlustration">
-   				</div>
+   				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
    				<div class="float--clear"></div>
    			</div>
-   			<div class="card card--default">
+   		    <div class="card card--default card--bug">
                 <header>
 					<h4 class="float--left">
-						Project Description
+						Task Description
 					</h4>
                 	<div class="float--clear"></div>
                 </header>
                 <section>
                     <article>
-                        <textarea id="project_decscription" placeholder="Enter project description"></textarea>
+                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
+                    <div class="float--clear"></div>
                 </section>
             </div>
-            <a class="card-button text-center" id="saveProject" href="#">
+            <a id="saveTask" class="card-button text-center" href="#">
 				<img src="images/icons/white/save.png" alt="user icon">
 			</a>
    		</div>
-   		<div id="userList">
-   			<div class="col-md-6">
+   		
+        <div class="col-md-6">
 			<div class="card-row">
    				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
    				<input class="float--right" type="text" id="task_id" value="Jozko">
@@ -145,58 +169,6 @@
 				</article>
 				<div class="float--both"></div>
 			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar9.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar18.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar26.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar22.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
    		</div>
         
         <div class="col-md-3 invisible">
@@ -222,90 +194,14 @@
 					</article>
 					<div class="float--both"></div>
 				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar35.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar37.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar30.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar16.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar7.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar49.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div> -->
+				
             </div>
-            
-            <!-- Assigned Users
+<!--
+   		<div class="col-md-6">
 			<div class="card-row card-row--user">
+				<a class="float--right">&times;</a>
 				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
+				<article class="float float--left">
 					<h4>
 						User's Name
 					</h4>
@@ -313,31 +209,31 @@
 						Total 8 opened tasks
 					</p>
 				</article>
-				<input class="float--right" type="checkbox">
 				<div class="float--both"></div>
 			</div>
-			<a class="card-button text-center" href="#">
-				<img src="images/icons/white/user-add.png" alt="user icon">
-			</a>-->
+			<a class="card-button text-center hidden" href="#">
+				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
+			</a>
    		</div>
-   	</div> <!-- ./container-fluid -->	
-
-   <!-- Dialogs -->
-   <div class="dialog hidden">
+-->
+   	</div> <!-- ./container-fluid -->
+   	
+   	<!-- Dialogs -->
+   	<div class="dialog hidden">
 		<p id="message">Empty message</p>
 	</div>
 	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
-   
+
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker Library -->
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 
     <!-- Custom scripts -->
-
-	<script type="text/javascript" src="js/dialogs.js"></script>
+    <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/projects/projectCreate.js"></script>
-
 
 </body>
 </html>

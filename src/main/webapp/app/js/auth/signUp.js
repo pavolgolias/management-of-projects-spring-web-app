@@ -22,7 +22,13 @@ function signUp(){
         showMessage("Password must have at least 6 characters and must contain at least one digit.");
         return;
     }
-
+    console.log(JSON.stringify({
+        email: email,
+        firstName: name,
+        lastName : surname,
+        password : passwd,
+        repeatPassword : passwdAgain
+    }));
     $.ajax({
         url:"/api/accounts",
         type:"POST",
