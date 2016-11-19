@@ -37,6 +37,7 @@ function displayProject(jsonResult){
     $("#updateDate").text((new Date(jsonResult.updatedAt)).toLocaleString());
 
     updateLinks(jsonResult.projectId);
+    $("#userList").empty();
     $("#userList").append(buildUserList(jsonResult.administrators, jsonResult.participants));
 
 }
@@ -58,22 +59,23 @@ function getParameterByName(name, url) {
 }
 
 function buildUserList(admins, users){
-    var html;
+    var html ='';
     for(var i = 0;i < admins.length;i++){
         html += buildUser(admins[i], true);
     }
-    for(var i = 0;i < users.length;i++){
-        html += buildUser(users[i], false);
+    for(var j = 0;j < users.length;j++){
+        html += buildUser(users[j], false);
     }
     return html;
 }
 
 function buildUser(user, isAdmin) {
+    if(user === null )
+        return;
     console.log(user);
-    console.log(isAdmin);
     var html="<div class='card-row card-row--user'>";
     //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
-    html += "<img class='float float--left' src='images/icons/white/user.png' alt='user icon'>";
+    html += "<img class='float float--left' src='images/avatar.png' alt='user icon'>";
     html += "<article class='float--left'>";
     html += "<h4>"+user.firstName+" "+user.lastName+"</h4>";
     if(isAdmin)
