@@ -10,7 +10,8 @@
  *
  * */
 
-
+var participants = [];
+var admins = [];
 var previousQuery = '';
 var projectId ;
 
@@ -23,29 +24,52 @@ function searchForUser(){
         projectId = getParameterByName("id",window.location.href);
     }
 
+    if(projectId != null){
+        $.ajax({
+            url:  "/api/projects/"+projectId+"/participants/suggest",
+            type: "GET",
+            data: "searchKey="+query,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+            },
+            success: function (data) {
+                displaySuggestedUsersForProject(data.data,"#suggestedUsers",false);
+                displaySuggestedUsersForProject(data.data,"#suggestedAdmins",true);
 
-    $.ajax({
-        url:  "/api/projects/"+projectId+"/participants/suggest",
-        type: "GET",
-        data: "searchKey="+query,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
-        },
-        success: function (data) {
-            displaySuggestedUsersForProject(data.data,"#suggestedUsers",false);
-            displaySuggestedUsersForProject(data.data,"#suggestedAdmins",true);
-
-        },
-        error: function (xhr) {
-            if(xhr.status == 401){
-                window.location.replace("index.html");
-            }else{
-                showMessage("Error "+xhr.status+"! Unable to suggested users!")
+            },
+            error: function (xhr) {
+                if(xhr.status == 401){
+                    window.location.replace("index.html");
+                }else{
+                    showMessage("Error "+xhr.status+"! Unable to suggested users!")
+                }
             }
-        }
     });
+    }else{
+
+        $.ajax({
+            url:  "/api/accounts/search",
+            type: "GET",
+            data: "searchKey="+query+"&limit=10",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+            },
+            success: function (data) {
+                displaySuggestedUsersForProject(data.data,"#suggestedUsers",false);
+                displaySuggestedUsersForProject(data.data,"#suggestedAdmins",true);
+
+            },
+            error: function (xhr) {
+                if(xhr.status == 401){
+                    window.location.replace("index.html");
+                }else{
+                    showMessage("Error "+xhr.status+"! Unable to suggested users!")
+                }
+            }
+        });
 
 
+    }
 
 }
 
@@ -80,12 +104,23 @@ function displayAssignedUsersForProject(jsonProjectObject,selector){
         $(selector).append(buildUserElement(jsonProjectObject.participants[index],true,false));
     }
 }
-function displaySuggestedUsersForProject(data,selector,adminTab) {
-    console.log(data);
+function displaySuggestedUsersForProject(data,selector,adminTab){
+
     $(selector).empty();
+
+
     for(var index = 0 ; index< data.length ; index ++){
-        $(selector).append(buildUserElement(data[index],false,adminTab));
+        if(!isAlreadyAdmin(data[index].accountId))
+            $(selector).append(buildUserElement(data[index],false,adminTab));
     }
+}
+
+function isAlreadyAdmin(id){
+    for(var i=0 ;i < getSelectedAdmins().length ; i++){
+        if(getSelectedAdmins()[i] == id)
+            return true;
+    }
+    return false;
 }
 
 function displayAdminsForProject(jsonProjectObject,selector){
@@ -105,4 +140,12 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getSelectedAdmins(){
+    return admins;
+}
+
+function getSelectedParticipants(){
+    return participants
 }

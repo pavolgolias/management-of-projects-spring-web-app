@@ -2,8 +2,7 @@
  * Created by juraj on 17.11.2016.
  */
 var projectId;
-var assignedUsers = [];
-var projectAdmins = [];
+
 
 $( document ).ready(function() {
     projectId = getParameterByName("id",window.location.href);
@@ -109,13 +108,11 @@ $("#saveProject").click(function () {
         return;
     }
 
-    if(projectAdmins.length < 1){
+    if(getSelectedAdmins().length < 1){
         showMessage("The project does not have any administrators!")
         return;
     }
 
-    changeAdminsRequest();
-    changeAssigneeRequest();
 
     $.ajax({
         url: "/api/projects/"+projectId,
@@ -140,46 +137,96 @@ $("#saveProject").click(function () {
 
 });
 
-function changeAdminsRequest(){
 
-    $.ajax({
-        url: "/api/projects/"+projectId+"/administrators?action=Add",
-        type: "POST",
-        async:false,
-        data:JSON.stringify(projectAdmins),
-        contentType:"application/json; charset=utf-8",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
-        },
-        success: function(data){
-        },
-        error: function(xhr){
-            showMessage("Error "+xhr.status+"! Unable to change the administrators!");
-            throw exception("Error "+xhr.status+"! Unable to change the administrators!");
-        }
-    });
-}
 
-function changeAssigneeRequest(){
+function ajaxAddParticipant(id){
     $.ajax({
         url: "/api/projects/"+projectId+"/participants?action=Add",
         type: "POST",
         async:false,
-        data:JSON.stringify(assignedUsers),
+        data:JSON.stringify([id]),
         contentType:"application/json; charset=utf-8",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function(data){
+            showMessage("User added to participants");
         },
         error: function(xhr){
             showMessage("Error "+xhr.status+"! Unable to change the assignees!");
-            throw exception("Error "+xhr.status+"! Unable to change the assignees!");
+            throw exception("Error "+xhr.status);
+
         }
     });
 }
 
+function ajaxRemoveParticipants(id){
+    $.ajax({
+        url: "/api/projects/"+projectId+"/participants?action=Remove",
+        type: "POST",
+        async:false,
+        data:JSON.stringify([id]),
+        contentType:"application/json; charset=utf-8",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function(data){
+            showMessage("User removed from participants");
+        },
+        error: function(xhr){
+            showMessage("Error "+xhr.status+"! Unable to change the assignees!");
+            throw exception("Error "+xhr.status);
+
+        }
+    });
+}
+
+function ajaxAddToAdmins(id){
+    $.ajax({
+        url: "/api/projects/"+projectId+"/administrators?action=Add",
+        type: "POST",
+        async:false,
+        data:JSON.stringify([id]),
+        contentType:"application/json; charset=utf-8",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function(data){
+            showMessage("User added to administrators");
+        },
+        error: function(xhr){
+            showMessage("Error "+xhr.status+"! Unable to change the administrators!");
+            throw exception("Error "+xhr.status);
+
+        }
+    });
+}
+
+function ajaxRemoveFromAdmins(id){
+    $.ajax({
+        url: "/api/projects/"+projectId+"/administrators?action=Remove",
+        type: "POST",
+        async:false,
+        data:JSON.stringify([id]),
+        contentType:"application/json; charset=utf-8",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function(data){
+            showMessage("User removed from admins")
+        },
+        error: function(xhr){
+            showMessage("Error "+xhr.status+"! Unable to change the administrators!");
+            throw exception("Error "+xhr.status);
+        }
+    });
+}
+
+
+
 function removeFromAssigned(id){
+    ajaxRemoveParticipants(id);
+
     var card = $("#account"+id);
     card.find("a")[0].onclick= null;
     card.find("a").empty().append("&plus;").click(function () {
@@ -190,15 +237,16 @@ function removeFromAssigned(id){
         card.slideDown('normal');
     });
 
-    for(var index = 0 ; index < assignedUsers.length; index++){
-        if(id === assignedUsers[index]){
-            assignedUsers.splice(index,1);
+    for(var index = 0 ; index < getSelectedParticipants().length; index++){
+        if(id === getSelectedParticipants()[index]){
+            getSelectedParticipants().splice(index,1);
             return;
         }
     }
 }
 
 function addToAssigned(id){
+    ajaxAddParticipant(id);
     var card = $("#account"+id);
     card.find("a")[0].onclick= null;
     card.find("a").empty().append("&minus;").click(function () {
@@ -210,16 +258,17 @@ function addToAssigned(id){
     });
 
 
-    assignedUsers.push(id);
+    getSelectedParticipants().push(id);
 }
 
 function readAssignedUsersIds(jsonProjectObject){
     for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
-        assignedUsers.push(jsonProjectObject.participants[index].accountId);
+        getSelectedParticipants().push(jsonProjectObject.participants[index].accountId);
     }
 }
 
 function removeFromAdmins(id){
+    ajaxRemoveFromAdmins(id);
     var card = $("#accountAdmin"+id);
     card.find("a")[0].onclick= null;
     card.find("a").empty().append("&plus;").click(function () {
@@ -230,15 +279,16 @@ function removeFromAdmins(id){
         card.slideDown('normal');
     });
 
-    for(var index = 0 ; index < projectAdmins.length; index++){
-        if(id === projectAdmins[index]){
-            projectAdmins.splice(index,1);
+    for(var index = 0 ; index <  getSelectedAdmins().length; index++){
+        if(id ===  getSelectedAdmins()[index]){
+            getSelectedAdmins().splice(index,1);
             return;
         }
     }
 }
 
 function addToAdmins(id){
+    ajaxAddToAdmins(id);
     var card = $("#accountAdmin"+id);
     card.find("a")[0].onclick= null;
     card.find("a").empty().append("&minus;").click(function () {
@@ -250,11 +300,11 @@ function addToAdmins(id){
     });
 
 
-    projectAdmins.push(id);
+    getSelectedAdmins().push(id);
 }
 
 function readAdminIds(jsonProjectObject){
     for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
-        projectAdmins.push(jsonProjectObject.administrators[index].accountId);
+        getSelectedAdmins().push(jsonProjectObject.administrators[index].accountId);
     }
 }
