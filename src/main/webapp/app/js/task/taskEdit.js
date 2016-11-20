@@ -166,21 +166,28 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function addAssignee(iduser){
     if(assignee == null){
-        $("#account"+iduser).remove();
         assignee = findUser(iduser);
+        $("#account"+iduser).remove();
+
+        console.log(assignee);
         $("#assignedUser").append(buildUserElement(assignee,true));
-        availableUsers.pop(iduser);
+
+        availableUsers.slice(findUser(iduser));
+        console.log(availableUsers);
     }
 }
 
 function removeAssignee(iduser){
+
     var html = buildUserElement(assignee,false);
 
     $("#account"+iduser).remove();
     $("#suggestedUsers").append(html);
 
     availableUsers.push(assignee);
+    console.log(availableUsers);
     assignee = null;
+    console.log(assignee);
 }
 
 function displayAssignedUserForTask(jsonTaskObject,selector){
