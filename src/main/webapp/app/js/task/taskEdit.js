@@ -5,6 +5,8 @@
 var projectId;
 var taskId;
 var taskDetail;
+var assignee;
+var availableUsers = [];
 
 $(document).ready(function () {
     projectId = getUrlParameter("projectId");
@@ -85,14 +87,15 @@ $("#saveTask").click(function () {
     var time_to_add = $('#timeToAdd').val();
     var task_timeEstimatedForTaskInMillis = taskDetail.timeEstimatedForTaskInMillis + toMilis(time_to_add);
     var task_timeSpentOnTaskInMillis = taskDetail.timeSpentOnTaskInMillis;
-    //var admin_id = JSON.parse(localStorage.getItem("account")).accountId;
+
+
 
     if(task_name == '') {
         showMessage("Project name cannot be empty!");
         return;
     }
 
-    if(getAssignee().length < 1){
+    if(assignee == null){
         showMessage("The task does not have any assignee!")
         return;
     }
@@ -102,7 +105,7 @@ $("#saveTask").click(function () {
         type: "PUT",
         data: JSON.stringify({
             aimedCompletionDate: taskDetail.aimedCompletionDate,
-            assigneeId: getAssignee(),
+            assigneeId: assignee.accountId,
             description: task_decscription,
             name: task_name,
             priority: task_priority,
@@ -160,3 +163,69 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+function addAssignee(iduser){
+    if(assignee == null){
+        $("#account"+iduser).remove();
+        assignee = findUser(iduser);
+        $("#assignedUser").append(buildUserElement(assignee,true));
+        availableUsers.pop(iduser);
+    }
+}
+
+function removeAssignee(iduser){
+    var html = buildUserElement(assignee,false);
+
+    $("#account"+iduser).remove();
+    $("#suggestedUsers").append(html);
+
+    availableUsers.push(assignee);
+    assignee = null;
+}
+
+function displayAssignedUserForTask(jsonTaskObject,selector){
+    $(selector).append(buildUserElement(jsonTaskObject.assignee,true));
+    assignee = jsonTaskObject.assignee;
+}
+
+function displayAvailableUsersForTask(jsonProjectObject, selector){
+    for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
+        if(assignee.accountId != jsonProjectObject.participants[index].accountId) {
+            $(selector).append(buildUserElement(jsonProjectObject.participants[index], false));
+            availableUsers.push(jsonProjectObject.participants[index]);
+        }
+    }
+    for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
+        if(assignee.accountId != jsonProjectObject.administrators[index].accountId) {
+            $(selector).append(buildUserElement(jsonProjectObject.administrators[index], false));
+            availableUsers.push(jsonProjectObject.administrators[index]);
+        }
+    }
+}
+
+function findUser(iduser) {
+    for(var index = 0 ; index < availableUsers.length ; index++){
+        if(availableUsers[index].accountId == iduser)
+            return availableUsers[index];
+    }
+}
+
+
+function buildUserElement(userJsonObject,toAssign){
+    var defaultImg = "<img class='float--left' src='images/avatar.png' alt='avatar'>";
+    var html = '';
+
+    if(toAssign === true)
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user suggested'><a class='float--right' onclick='removeAssignee("+userJsonObject.accountId+")'>&minus;</a>";
+    else
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addAssignee("+userJsonObject.accountId+")'>&plus;</a>";
+
+    //TODO add users avatar
+    html = html + defaultImg;
+    html = html + "<article class='float--left'><h4>"
+    html = html + userJsonObject.firstName + " " + userJsonObject.lastName;
+    html = html + "</h4><p>";
+    html = html + userJsonObject.email;
+    html = html + "</p></article> <div class='float--both'></div> </div>";
+    return html;
+}
