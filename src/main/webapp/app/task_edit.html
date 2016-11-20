@@ -46,11 +46,10 @@
    					Type
    				</h3>
   				<select class="float--right" id="taskType">
+					<option>ChangeRequest</option>
 					<option>Task</option>
-					<option>Info</option>
 					<option selected>Bug</option>
-					<option>Review</option>
-					<option>Feature</option>
+					<option>Test</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -59,8 +58,9 @@
    					Priority
    				</h3>
    				<select class="float--right" id="taskPriority">
-					<option selected>High</option>
-					<option>Medium</option>
+					<option selected>Critical</option>
+					<option >High</option>
+					<option>Normal</option>
 					<option>Low</option>
 				</select>
    				<div class="float--clear"></div>
@@ -70,7 +70,7 @@
    					Add Spent Time
    				</h3>
    				<span class="float--right">h</span>
-   				<input class="float--right" type="text" id="task_name" value="1.38">
+   				<input class="float--right" type="text" id="timeToAdd" value="1.38">
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row">
@@ -88,18 +88,19 @@
    				<h3 class="float--left">
    					Progress
    				</h3>
-   				<select class="float--right" id="task_progress">
-					<option>0 %</option>
-					<option>10 %</option>
-					<option>20 %</option>
-					<option>30 %</option>
-					<option>40 %</option>
-					<option>50 %</option>
-					<option>60 %</option>
-					<option>70 %</option>
-					<option>80 %</option>
-					<option>90 %</option>
-					<option>100 %</option>
+				<span class="float--right">%</span>
+   				<select class="float--right" id="taskProgress">
+					<option>0</option>
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+					<option>40</option>
+					<option>50</option>
+					<option>60</option>
+					<option>70</option>
+					<option>80</option>
+					<option>90</option>
+					<option>100</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -125,7 +126,8 @@
    				<h3 class="float--left">
    					ETA
    				</h3>
-   				<input class="float--right datepicker" id="taskETA" value="20.11.2016">
+   				<!--<input class="float--right datepicker" id="taskETA" value="20.11.2016">-->
+				<p id="taskETA" class="float--right"></p>
    				<div class="float--clear"></div>
    			</div>
             <a id="saveTask" class="card-button text-center" href="#">
@@ -173,59 +175,7 @@
             </div>
         
              <div id="suggestedUsers" class="col-md-3 card-scrollable">
-			<!--<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-                <img class="float float--left" src="images/icons/avatars/avatar1.png" alt="user icon">
-                <!--<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar10.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar20.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar12.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>-->
+
    		</div>
         
         <div class="col-md-3 invisible">

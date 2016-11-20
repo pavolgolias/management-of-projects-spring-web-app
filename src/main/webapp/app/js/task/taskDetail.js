@@ -12,7 +12,6 @@ $(document).ready(function () {
 })
 
 function getTaskDetail(taskId, projectId) {
-    console.log("/api/projects/"+projectId+"/tasks/"+taskId);
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "GET",
@@ -33,7 +32,6 @@ function getTaskDetail(taskId, projectId) {
 }
 
 function displayTask(task) {
-    console.log(task);
     updateLinks(getUrlParameter("projectId"),getUrlParameter("taskId"));
     $("#taskName").text(task.name);
     $("#projectId").text(getUrlParameter("projectId"));
@@ -58,7 +56,7 @@ function updateLinks(projectId, taskId){
 function buildUser(user) {
     if(user === null )
         return;
-    console.log(user);
+
     var html="<div class='card-row card-row--user'>";
     //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
     html += "<img class='float float--left' src='images/avatar.png' alt='user icon'>";

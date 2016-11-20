@@ -1,16 +1,20 @@
 /**
  * Created by juraj on 20.11.2016.
  */
+
+var projectId;
+var taskId;
+var taskDetail;
+
 $(document).ready(function () {
-    var projectId = getUrlParameter("projectId");
-    var taskId = getUrlParameter("taskId");
+    projectId = getUrlParameter("projectId");
+    taskId = getUrlParameter("taskId");
     if(taskId != null && projectId != null){
         getTaskDetail(taskId, projectId);
     }
 });
 
 function getTaskDetail(taskId, projectId) {
-    console.log("/api/projects/"+projectId+"/tasks/"+taskId);
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "GET",
@@ -18,6 +22,7 @@ function getTaskDetail(taskId, projectId) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function (data) {
+            taskDetail = data.data;
             displayTask(data.data);
             displayAssignedUserForTask(data.data,"#assignedUser");
             getProjectDetail(projectId, data.data.assignee.accountId);
@@ -33,23 +38,20 @@ function getTaskDetail(taskId, projectId) {
 }
 
 function displayTask(task) {
-    console.log(task);
-    updateLinks(getUrlParameter("projectId"),getUrlParameter("taskId"));
+    updateLinks(projectId,taskId);
     $("#taskName").val(task.name);
-    $("#projectId").text(getUrlParameter("projectId"));
+    $("#projectId").text(projectId);
     $("#taskType").val(task.type);
     $("#taskPriority").val(task.priority);
     $("#taskStatus").val(task.status);
     //future enhancement : counting hours and minutes
-    $("#taskTimeEstimate").val(task.timeEstimatedForTaskInMillis / 3600000);
-    $("#taskTimeConsumed").val(task.timeSpentOnTaskInMillis / 3600000);
-    //$("#taskProgress").val(""+task.progress+" %");//nefunguje zatial
+    $("#taskTimeEstimate").val(toHours(task.timeEstimatedForTaskInMillis));
+    $("#taskTimeConsumed").val(toHours(task.timeSpentOnTaskInMillis));
+    $("#taskProgress").val(task.progress);//nefunguje zatial
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
     $("#taskLastUpdate").text((new Date(task.assignee.createdAt)).toLocaleString()); // needs to be changed after it is addted to DTO
-    $("#taskETA").val((new Date(task.aimedCompletionDate)).toLocaleString());
+    $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").val(task.description);
-
-
 }
 
 function getProjectDetail(projectId, assignedUser) {
@@ -60,7 +62,6 @@ function getProjectDetail(projectId, assignedUser) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function (data) {
-            console.log(data.data);
             displayAvailableUsersForTask(data.data, "#suggestedUsers");
         },
         error: function (xhr) {
@@ -71,6 +72,73 @@ function getProjectDetail(projectId, assignedUser) {
             }
         }
     });
+}
+
+$("#saveTask").click(function () {
+    var task_name = $('#taskName').val();
+    var task_decscription = $('#taskDescription').val();
+    var task_priority = $('#taskPriority').val();
+    var task_progress = $('#taskProgress').val();
+    var task_status = $('#taskStatus').val();
+    var task_type = $('#taskType').val();
+    var time_to_add = $('#timeToAdd').val();
+    var task_timeEstimatedForTaskInMillis = taskDetail.timeEstimatedForTaskInMillis + toMilis(time_to_add);
+    var task_timeSpentOnTaskInMillis = taskDetail.timeSpentOnTaskInMillis;
+    //var admin_id = JSON.parse(localStorage.getItem("account")).accountId;
+
+    if(task_name == '') {
+        showMessage("Project name cannot be empty!");
+        return;
+    }
+
+    if(getAssignee().length < 1){
+        showMessage("The task does not have any assignee!")
+        return;
+    }
+
+    $.ajax({
+        url: "/api/projects/"+projectId+"/tasks/"+taskId,
+        type: "PUT",
+        data: JSON.stringify({
+            aimedCompletionDate: taskDetail.aimedCompletionDate,
+            assigneeId: getAssignee(),
+            description: task_decscription,
+            name: task_name,
+            priority: task_priority,
+            progress: task_progress,
+            status: task_status,
+            timeEstimatedForTaskInMillis: task_timeEstimatedForTaskInMillis,
+            timeSpentOnTaskInMillis: task_timeSpentOnTaskInMillis,
+            type:task_type
+        }),
+        contentType:"application/json; charset=utf-8",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function(data){
+            window.location.replace("task_detail.html?projectId="+projectId+"&taskId="+taskId);
+        },
+        error: function(xhr){
+            if(xhr.status == 403) {
+                showMessage("Error " + xhr.status + "! You are not allowed to update task!");
+                throw exception("Error " + xhr.status + "! Task could not be edited!");
+            }
+            else {
+                showMessage("Error " + xhr.status + "! Task could not be edited!");
+                throw exception("Error " + xhr.status + "! Task could not be edited!");
+            }
+        }
+    });
+
+
+});
+
+function toHours(dataInMilis){
+    return (dataInMilis / 3600000);
+}
+
+function toMilis(dataInHours){
+    return (dataInHours * 3600000);
 }
 
 function updateLinks(projectId, taskId) {

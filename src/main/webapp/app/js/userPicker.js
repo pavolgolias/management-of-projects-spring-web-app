@@ -114,11 +114,11 @@ function displayAssignedUserForTask(jsonTaskObject,selector){
 function displayAvailableUsersForTask(jsonProjectObject, selector){
     for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
         if(assignee != jsonProjectObject.participants[index].accountId)
-            $(selector).append(buildUserElement(jsonProjectObject.participants[index],true,false));
+            $(selector).append(buildUserElement(jsonProjectObject.participants[index],false,false));
     }
     for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
         if(assignee != jsonProjectObject.administrators[index].accountId)
-            $(selector).append(buildUserElement(jsonProjectObject.administrators[index],true,false));
+            $(selector).append(buildUserElement(jsonProjectObject.administrators[index],false,false));
     }
 }
 
@@ -161,6 +161,10 @@ function getParameterByName(name, url) {
 
 function getSelectedAdmins(){
     return admins;
+}
+
+function getAssignee(){
+    return assignee;
 }
 
 function getSelectedParticipants(){
