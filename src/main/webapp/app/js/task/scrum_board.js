@@ -6,6 +6,7 @@ var projectId;
 
 $( document ).ready(function() {
     projectId = getUrlParameter("id");
+    updateLinks(projectId);
     getAllTasks();
 });
 
@@ -18,7 +19,7 @@ function getAllTasks() {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function (data) {
-            displayTasks(data);
+            displayTasks(data.data);
         },
         error: function (xhr) {
             if(xhr.status == 401){
@@ -32,6 +33,18 @@ function getAllTasks() {
 
 function displayTasks(data) {
     console.log(data);
+
+    for(var index = 0; index < data.length; index++){
+        var task = data[index];
+        if(isToDo(task, "Todo")){
+
+
+        }
+    }
+}
+
+function isToDo(task,status) {
+
 }
 
 function getUrlParameter(sParam) {
@@ -47,4 +60,8 @@ function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
+}
+
+function updateLinks(projectId){
+    $("#createTaskLink").attr("href","task_create.html?id="+projectId);
 }
