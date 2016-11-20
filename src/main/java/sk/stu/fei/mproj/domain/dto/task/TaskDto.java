@@ -32,4 +32,7 @@ public class TaskDto extends TaskBaseDto {
 
     @ApiModelProperty(value = "Last update timestamp", required = true)
     private Date updatedAt;
+
+    @ApiModelProperty(value = "Task Id", required = true)
+    private Long taskId;
 }
