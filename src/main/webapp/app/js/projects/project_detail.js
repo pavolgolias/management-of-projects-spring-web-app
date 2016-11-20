@@ -2,7 +2,7 @@
  * Created by Patrik on 15/11/2016.
  */
 $( document ).ready(function() {
-    var projectId = getParameterByName("id",window.location.href);
+    var projectId = getParameterByName("projectId",window.location.href);
     if(projectId != null){
         getProjectDetail(projectId);
     }
@@ -43,8 +43,8 @@ function displayProject(jsonResult){
 }
 
 function updateLinks(projectId){
-    $("#editTaskLink").attr("href","project_edit.html?id="+projectId);
-    $("#taskBoardLink").attr("href","scrum_board.html?id="+projectId);
+    $("#editTaskLink").attr("href","project_edit.html?projectId="+projectId);
+    $("#taskBoardLink").attr("href","scrum_board.html?projectId="+projectId);
 }
 function getParameterByName(name, url) {
     if (!url) {

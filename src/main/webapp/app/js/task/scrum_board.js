@@ -5,7 +5,7 @@
 var projectId;
 
 $( document ).ready(function() {
-    projectId = getUrlParameter("id");
+    projectId = getUrlParameter("projectId");
     updateLinks(projectId);
     getAllTasks();
 });
@@ -36,14 +36,58 @@ function displayTasks(data) {
 
     for(var index = 0; index < data.length; index++){
         var task = data[index];
-        if(isToDo(task, "Todo")){
-
-
+        var html = buildTask(task);
+        if(checkStatus(task, "Todo")){
+            $("#toDoTasks").append(html);
+        }
+        if(checkStatus(task,"InProgress")){
+            $("#inProgressTasks").append(html);
+        }
+        if(checkStatus(task,"Done")){
+            $("#doneTasks").append(html);
         }
     }
 }
 
-function isToDo(task,status) {
+function checkStatus(task,status) {
+    if(task == null || task.status != status)
+        return false;
+    else
+        return true;
+}
+
+function buildTask(task) {
+    var html = "<div class='col-sm-6 col-md-4'>";
+    html += "<div class='card card--task'>";
+    html += "<div class='index hidden'>"+task.taskId+"</div>";
+    html += "<header>";
+    html += "<h4 class='float--left'>Task</h4>";
+    html += "<div data-addui='dropMenu' data-pin='top-right'>";
+    html += "<a href='#'>Move to Complete</a>";
+    html += "<a href='#'>Move to To Do</a>";
+    html += "<a href='#'>Move to In Progress</a>";
+    html += "<a href='task_edit.html?projectId="+projectId+"&taskId="+task.taskId+"'>Edit</a>";
+    html += "<a href='delete("+task.taskId+")'>Delete</a>";
+    html += "</div>";
+    html += "<div class='float--clear'></div>";
+    html += "</header>";
+    html += "<section>";
+    html += "<article>";
+    html += "<a href=''#'><h3>"+task.name+"</h3></a>";
+    html += "<p>"+task.description+"</p>";
+    html += "</article>";
+    html += "<ul>";
+    html += "<li><img src='images/icons/white/user.png' alt='user icon'></li>";
+    html += "</ul>";
+    html += "<div class='float--clear'></div>";
+    html += "</section>";
+    html += "</div>";
+    html += "</div>";
+
+
+
+    return html;
+
 
 }
 
