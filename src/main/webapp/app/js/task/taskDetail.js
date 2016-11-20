@@ -39,8 +39,8 @@ function displayTask(task) {
     $("#taskPriority").text(task.priority);
     $("#taskStatus").text(task.status);
     //future enhancement : counting hours and minutes
-    $("#taskTimeEstimate").text(task.timeEstimatedForTaskInMillis / 3600000);
-    $("#taskTimeConsumed").text(task.timeSpentOnTaskInMillis / 3600000);
+    $("#taskTimeEstimate").text(toHours(task.timeEstimatedForTaskInMillis));
+    $("#taskTimeConsumed").text(toHours(task.timeSpentOnTaskInMillis));
     $("#taskProgress").val(task.progress);
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
     $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
@@ -68,6 +68,14 @@ function buildUser(user) {
     html += "</div>";
 
     return html;
+}
+
+function toHours(dataInMilis){
+    return (dataInMilis / 3600000);
+}
+
+function toMilis(dataInHours){
+    return (dataInHours * 3600000);
 }
 
 function getUrlParameter(sParam) {

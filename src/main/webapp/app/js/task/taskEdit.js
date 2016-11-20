@@ -22,6 +22,7 @@ function getTaskDetail(taskId, projectId) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function (data) {
+            console.log(data.data);
             taskDetail = data.data;
             displayTask(data.data);
             displayAssignedUserForTask(data.data,"#assignedUser");
