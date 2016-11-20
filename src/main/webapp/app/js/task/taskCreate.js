@@ -12,11 +12,16 @@ $(document).ready(function () {
     }
     projectId = getParameterByName("id",window.location.href);
     if(projectId != null){
+        updateLinks(projectId);
         getProjectDetail(projectId);
     }
     //$('#task_created').val(new Date());
 
 })
+
+function updateLinks(projectId){
+    $("#backTaskCreate").attr("href","scrum_board.html?id="+projectId);
+}
 
 function getProjectDetail(projectId) {
     return $.ajax({
