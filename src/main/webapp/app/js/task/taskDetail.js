@@ -21,6 +21,7 @@ function getTaskDetail(taskId, projectId) {
         },
         success: function (data) {
             displayTask(data.data);
+
         },
         error: function (xhr) {
             if(xhr.status == 401){
