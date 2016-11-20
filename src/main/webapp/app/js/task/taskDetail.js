@@ -21,7 +21,6 @@ function getTaskDetail(taskId, projectId) {
         },
         success: function (data) {
             displayTask(data.data);
-
         },
         error: function (xhr) {
             if(xhr.status == 401){
@@ -49,7 +48,7 @@ function displayTask(task) {
     $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").text(task.description);
-    $("#taskAssignee").append(buildUser(task.assignee));
+    $("#assignedUser").append(buildUser(task.assignee));
 }
 
 function updateLinks(projectId, taskId){

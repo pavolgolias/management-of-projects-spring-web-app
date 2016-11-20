@@ -14,6 +14,7 @@ var participants = [];
 var admins = [];
 var previousQuery = '';
 var projectId ;
+var assignee;
 
 function searchForUser(){
     var query = $("#searchUserInput").val();
@@ -104,6 +105,23 @@ function displayAssignedUsersForProject(jsonProjectObject,selector){
         $(selector).append(buildUserElement(jsonProjectObject.participants[index],true,false));
     }
 }
+
+function displayAssignedUserForTask(jsonTaskObject,selector){
+    $(selector).append(buildUserElement(jsonTaskObject.assignee,true,false));
+    assignee = jsonTaskObject.assignee.accountId;
+}
+
+function displayAvailableUsersForTask(jsonProjectObject, selector){
+    for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
+        if(assignee != jsonProjectObject.participants[index].accountId)
+            $(selector).append(buildUserElement(jsonProjectObject.participants[index],true,false));
+    }
+    for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
+        if(assignee != jsonProjectObject.administrators[index].accountId)
+            $(selector).append(buildUserElement(jsonProjectObject.administrators[index],true,false));
+    }
+}
+
 function displaySuggestedUsersForProject(data,selector,adminTab){
 
     $(selector).empty();
@@ -128,7 +146,6 @@ function displayAdminsForProject(jsonProjectObject,selector){
         $(selector).append(buildUserElement(jsonProjectObject.administrators[index],true,true));
     }
 }
-
 
 function getParameterByName(name, url) {
     if (!url) {
