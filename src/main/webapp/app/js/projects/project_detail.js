@@ -10,7 +10,7 @@ $( document ).ready(function() {
 });
 
 function getProjectDetail(projectId){
-
+    console.log("/api/projects/"+projectId);
     return $.ajax({
         url: "/api/projects/"+projectId,
         type: "GET",
