@@ -43,8 +43,8 @@ function displayTask(task) {
     //future enhancement : counting hours and minutes
     $("#taskTimeEstimate").text(task.timeEstimatedForTaskInMillis / 3600000);
     $("#taskTimeConsumed").text(task.timeSpentOnTaskInMillis / 3600000);
-    $("#taskProgress").val((task.timeSpentOnTaskInMillis / task.timeEstimatedForTaskInMillis) * 100);
-    $("#taskCreatedAt").text((new Date(task.assignee.createdAt)).toLocaleString());
+    $("#taskProgress").val(task.progress);
+    $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
     $("#taskLastUpdate").text((new Date(task.assignee.createdAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").text(task.description);

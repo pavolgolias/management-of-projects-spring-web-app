@@ -20,12 +20,12 @@
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="#">
+				<a id="backTaskDetail" href="task_detail.html">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<input type="text" id="task_name" value="Lorem Ipsum">
+				<input type="text" id="taskName" value="Lorem Ipsum">
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
@@ -36,7 +36,7 @@
    				<h3 class="float--left">
    					Task ID
    				</h3>
-				<p class="float--right">
+				<p id="projectId" class="float--right">
   					770
 				</p>
    				<div class="float--clear"></div>
@@ -45,7 +45,7 @@
    				<h3 class="float--left">
    					Type
    				</h3>
-  				<select class="float--right" id="task_type">
+  				<select class="float--right" id="taskType">
 					<option>Task</option>
 					<option>Info</option>
 					<option selected>Bug</option>
@@ -58,7 +58,7 @@
    				<h3 class="float--left">
    					Priority
    				</h3>
-   				<select class="float--right" id="task_priority">
+   				<select class="float--right" id="taskPriority">
 					<option selected>High</option>
 					<option>Medium</option>
 					<option>Low</option>
@@ -77,10 +77,10 @@
    				<h3 class="float--left">
    					Status
    				</h3>
-   				<select class="float--right" id="task_status">
-					<option>To Do</option>
-					<option selected>In Progress</option>
-					<option>Complete</option>
+   				<select class="float--right" id="taskStatus">
+					<option>Todo</option>
+					<option>InProgress</option>
+					<option>Done</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -89,7 +89,7 @@
    					Progress
    				</h3>
    				<select class="float--right" id="task_progress">
-					<option selected>0 %</option>
+					<option>0 %</option>
 					<option>10 %</option>
 					<option>20 %</option>
 					<option>30 %</option>
@@ -107,7 +107,7 @@
    				<h3 class="float--left">
    					Created
    				</h3>
-   				<p class="float--right">
+   				<p id="taskCreatedAt" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -116,7 +116,7 @@
    				<h3 class="float--left">
    					Last Update
    				</h3>
-   				<p class="float--right">
+   				<p id="taskLastUpdate" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -125,7 +125,7 @@
    				<h3 class="float--left">
    					ETA
    				</h3>
-   				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
+   				<input class="float--right datepicker" id="taskETA" value="20.11.2016">
    				<div class="float--clear"></div>
    			</div>
             <a id="saveTask" class="card-button text-center" href="#">
@@ -142,7 +142,7 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="taskDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -292,7 +292,7 @@
 	<script type="text/javascript" src="js/dialogs.js"></script>
 	<script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/task/taskEdit.js.js"></script>
+	<script type="text/javascript" src="js/task/taskEdit.js"></script>
 
 </body>
 </html>
