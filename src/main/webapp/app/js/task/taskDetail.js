@@ -52,7 +52,7 @@ function displayTask(task) {
 }
 
 function updateLinks(projectId, taskId){
-    $("#editTaskLink").attr("href","task_edit.html?projectId="+projectId+"&taskId="+taskId);
+    $("#editTaskId").attr("href","task_edit.html?projectId="+projectId+"&taskId="+taskId);
 }
 
 function buildUser(user) {
