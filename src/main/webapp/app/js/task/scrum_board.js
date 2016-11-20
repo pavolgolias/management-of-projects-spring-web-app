@@ -10,6 +10,7 @@ $( document ).ready(function() {
 });
 
 function getAllTasks() {
+    console.log("/api/projects/"+projectId+"/tasks");
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks",
         type: "GET",
