@@ -45,7 +45,7 @@ function displayTask(task) {
     $("#taskTimeConsumed").text(task.timeSpentOnTaskInMillis / 3600000);
     $("#taskProgress").val(task.progress);
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
-    $("#taskLastUpdate").text((new Date(task.assignee.createdAt)).toLocaleString()); // needs to be changed after it is addted to DTO
+    $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").text(task.description);
     $("#taskAssignee").append(buildUser(task.assignee));
