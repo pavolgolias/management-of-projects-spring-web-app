@@ -29,4 +29,7 @@ public class TaskDto extends TaskBaseDto {
 
     @ApiModelProperty(value = "Author of the task", required = true)
     private AccountDto author;
+
+    @ApiModelProperty(value = "Last update timestamp", required = true)
+    private Date updatedAt;
 }
