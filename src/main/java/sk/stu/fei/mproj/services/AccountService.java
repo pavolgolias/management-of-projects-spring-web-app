@@ -149,7 +149,9 @@ public class AccountService {
         accountDao.persist(account);
 
         Map<String, String> model = new HashMap<>();
-        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_xs.png").toString());
+        model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
+        model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
+        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
         model.put("activationUrl", applicationProperties.buildFrontendUrl("/activate-account.html?code=" + account.getActionToken()).toString());
         model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account.html?code=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
@@ -251,7 +253,9 @@ public class AccountService {
         accountDao.persist(account);
 
         Map<String, String> model = new HashMap<>();
-        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_xs.png").toString());
+        model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
+        model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
+        model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
         model.put("recoverUrl", applicationProperties.buildFrontendUrl("/recover-account.html?code=" + account.getActionToken()).toString());
         model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account-recovery.html?code=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account recovery", "account-recovery", model);

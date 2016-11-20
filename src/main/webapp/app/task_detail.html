@@ -26,7 +26,7 @@
                 <article class="text-center">
 					<p>Jozko Mrkvicka</p>
 					<p>joz.ko@gmail.com</p>
-				</arcticle>
+				</article>
             </div>
         </header>
         
@@ -81,10 +81,10 @@
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<p>Task Name</p>
+				<p id="taskName">Task Name</p>
 			</div>
 			<div class="col-xs-2">
-                <a href="#">
+                <a href="task_edit.html" id="editTaskId">
 				    <img class="float--right" src="images/icons/white/signature.png" alt="plus icon">
                 </a>
             </div>
@@ -97,7 +97,7 @@
    				<h3 class="float--left">
    					Project ID
    				</h3>
-				<p class="float--right">
+				<p id="projectId" class="float--right">
   					770
 				</p>
    				<div class="float--clear"></div>
@@ -106,7 +106,7 @@
    				<h3 class="float--left">
    					Type
    				</h3>
-   				<p class="float--right">
+   				<p id="taskType" class="float--right">
    					BUG
    				</p>
    				<div class="float--clear"></div>
@@ -115,7 +115,7 @@
    				<h3 class="float--left">
    					Priority
    				</h3>
-   				<p class="float--right">
+   				<p id="taskPriority" class="float--right">
    					High
    				</p>
    				<div class="float--clear"></div>
@@ -124,7 +124,7 @@
    				<h3 class="float--left">
    					Status
    				</h3>
-   				<p class="float--right">
+   				<p id="taskStatus" class="float--right">
    					In Progress
    				</p>
    				<div class="float--clear"></div>
@@ -134,7 +134,7 @@
 					Estimated time
 				</h3>
 				<span class="float--right">h</span>
-				<p class="float--right">
+				<p id="taskTimeEstimate" class="float--right">
 					30.00
 				</p>
 				<div class="float--clear"></div>
@@ -144,7 +144,7 @@
    					Time Consumed
    				</h3>
    				<span class="float--right">h</span>
-   				<p class="float--right">
+   				<p id="taskTimeConsumed" class="float--right">
    					1.38
    				</p>
    				<div class="float--clear"></div>
@@ -153,14 +153,14 @@
    				<h3 class="float--left">
    					Progress
    				</h3>
-   				<progress class="float--right" value="50" max="100"></progress>
+   				<progress id="taskProgress" class="float--right" value="50" max="100"></progress>
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row">
    				<h3 class="float--left">
    					Created
    				</h3>
-   				<p class="float--right">
+   				<p id="taskCreatedAt" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -169,7 +169,7 @@
    				<h3 class="float--left">
    					Last Update
    				</h3>
-   				<p class="float--right">
+   				<p id="taskLastUpdate" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -178,7 +178,7 @@
    				<h3 class="float--left">
    					ETA
    				</h3>
-   				<p class="float--right">
+   				<p id="taskETA" class="float--right">
    					20.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -194,14 +194,14 @@
                 </header>
                 <section>
                     <article>
-                        <p>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
+                        <p id="taskDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
                     </article>
                     <div class="float--clear"></div>
                 </section>
             </div>
    		</div>
-   		<div class="col-md-6">
-			<div class="card-row card-row--user">
+   		<div id="taskAssignee" class="col-md-6">
+			<!--<div class="card-row card-row--user">
 				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
 				<article class="float float--left">
 					<h4>
@@ -215,7 +215,7 @@
 			</div>
 			<a class="card-button text-center hidden" href="#">
 				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
-			</a>
+			</a>-->
    		</div>
    	</div><!-- ./container-fluid -->
    	
@@ -232,6 +232,7 @@
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/sideBarNavigationMenu.js"></script>
+	<script type="text/javascript" src="js/task/taskDetail.js"></script>
 
 </body>
 </html>

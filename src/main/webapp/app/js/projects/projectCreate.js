@@ -2,12 +2,17 @@
  * Created by juraj on 15.11.2016.
  */
 
-var participants = [];
 var lastAdded;
 
 $(document).ready(function () {
     checkAccountInfo();
-    $("#userList").append(getAdmin());
+    if(localStorage.getItem("account") == null){
+        window.location.replace("index.html");
+    }
+    var user = JSON.parse(localStorage.getItem("account"));
+    getSelectedAdmins().push(user.accountId);
+    $("#admins").append(buildUserElement(user,true,true));
+    $("#accountAdmin"+user.accountId).find("a").remove();
 })
 
 function checkAccountInfo(){
@@ -72,16 +77,6 @@ function getSelf(){
     });
 }
 
-function pickUser() {
-   // var html = "<div>";
-   //
-   //  html = "</div>";
-
-
-};
-
-
-
 
 
 $("#saveProject").click(function () {
@@ -100,10 +95,10 @@ $("#saveProject").click(function () {
         url: "/api/projects",
         type: "POST",
         data: JSON.stringify({
-            administratorAccountIds: [admin_id],
+            administratorAccountIds: getSelectedAdmins(),
             description: project_decscription,
             name: project_name,
-            participantsAccountIds: [2]
+            participantsAccountIds: getSelectedParticipants()
         }),
         contentType:"application/json; charset=utf-8",
         beforeSend: function (xhr) {
@@ -117,3 +112,72 @@ $("#saveProject").click(function () {
         }
     });
 });
+
+function removeFromAssigned(id){
+    var card = $("#account"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&plus;").click(function () {
+        addToAssigned(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#suggestedUsers");
+        card.slideDown('normal');
+    });
+
+    for(var index = 0 ; index < getSelectedParticipants().length; index++){
+        if(id === getSelectedParticipants()[index]){
+            getSelectedParticipants().splice(index,1);
+            return;
+        }
+    }
+}
+
+function addToAssigned(id){
+    var card = $("#account"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&minus;").click(function () {
+        removeFromAssigned(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#assignedUsers");
+        card.slideDown('normal');
+    });
+
+
+    getSelectedParticipants().push(id);
+}
+
+
+function removeFromAdmins(id){
+    var card = $("#accountAdmin"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&plus;").click(function () {
+        addToAdmins(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#suggestedAdmins");
+        card.slideDown('normal');
+    });
+
+    for(var index = 0 ; index < getSelectedAdmins().length; index++){
+        if(id === getSelectedAdmins()[index]){
+            getSelectedAdmins().splice(index,1);
+            return;
+        }
+    }
+}
+
+function addToAdmins(id){
+    var card = $("#accountAdmin"+id);
+    card.find("a")[0].onclick= null;
+    card.find("a").empty().append("&minus;").click(function () {
+        removeFromAdmins(id);
+    })
+    card.slideUp('normal', function() {
+        card.detach().appendTo("#admins");
+        card.slideDown('normal');
+    });
+
+
+    getSelectedAdmins().push(id);
+}

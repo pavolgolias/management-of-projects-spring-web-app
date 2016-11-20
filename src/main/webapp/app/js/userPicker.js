@@ -1,7 +1,17 @@
 /**
  * Created by Patrik on 17/11/2016.
  */
-var allSuggestedUsers;
+/**
+ *
+ * Vo svojich JS file-och implementujte dve metódy addToAssigned(iduser) a removeFromAssigned(iduser)
+ * kde zmenite ikonu + / -  a implementujete logiku
+ *
+ * EXAMPLE JE v projectEdit.js
+ *
+ * */
+
+var participants = [];
+var admins = [];
 var previousQuery = '';
 var projectId ;
 
@@ -13,38 +23,71 @@ function searchForUser(){
     if(projectId == null){
         projectId = getParameterByName("id",window.location.href);
     }
-    $("#suggestedUsers").empty();
 
-    $.ajax({
-        url:  "/api/projects/"+projectId+"/participants/suggest",
-        type: "GET",
-        data: "searchKey="+query,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
-        },
-        success: function (data) {
-            displaySuggestedUsersForProject(data.data);
-        },
-        error: function (xhr) {
-            if(xhr.status == 401){
-                window.location.replace("index.html");
-            }else{
-                showMessage("Error "+xhr.status+"! Unable to suggested users!")
+    if(projectId != null){
+        $.ajax({
+            url:  "/api/projects/"+projectId+"/participants/suggest",
+            type: "GET",
+            data: "searchKey="+query,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+            },
+            success: function (data) {
+                displaySuggestedUsersForProject(data.data,"#suggestedUsers",false);
+                displaySuggestedUsersForProject(data.data,"#suggestedAdmins",true);
+
+            },
+            error: function (xhr) {
+                if(xhr.status == 401){
+                    window.location.replace("index.html");
+                }else{
+                    showMessage("Error "+xhr.status+"! Unable to suggested users!")
+                }
             }
-        }
     });
+    }else{
+
+        $.ajax({
+            url:  "/api/accounts/search",
+            type: "GET",
+            data: "searchKey="+query+"&limit=10",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+            },
+            success: function (data) {
+                displaySuggestedUsersForProject(data.data,"#suggestedUsers",false);
+                displaySuggestedUsersForProject(data.data,"#suggestedAdmins",true);
+
+            },
+            error: function (xhr) {
+                if(xhr.status == 401){
+                    window.location.replace("index.html");
+                }else{
+                    showMessage("Error "+xhr.status+"! Unable to suggested users!")
+                }
+            }
+        });
 
 
+    }
 
 }
 
-function buildUserElement(userJsonObject,toAssign){
+function buildUserElement(userJsonObject,toAssign,admin){
     var defaultImg = "<img class='float--left' src='images/avatar.png' alt='avatar'>";
     var html = '';
-    if(toAssign)
-        html = "<div class='card-row card-row--user suggested'><a class='float--right'>&minus;</a>";
+    if(admin === true){
+        if(toAssign === true)
+            html = "<div id='accountAdmin"+userJsonObject.accountId+"' class='card-row card-row--user suggested'><a class='float--right' onclick='removeFromAdmins("+userJsonObject.accountId+")'>&minus;</a>";
+        else
+            html = "<div id='accountAdmin"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addToAdmins("+userJsonObject.accountId+")'>&plus;</a>";
+
+    }else{
+    if(toAssign === true)
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user suggested'><a class='float--right' onclick='removeFromAssigned("+userJsonObject.accountId+")'>&minus;</a>";
     else
-        html = "<div class='card-row card-row--user assigned'><a class='float--right'>&plus;</a>";
+        html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addToAssigned("+userJsonObject.accountId+")'>&plus;</a>";
+    }
     //TODO add users avatar
     html = html + defaultImg;
     html = html + "<article class='float--left'><h4>"
@@ -55,16 +98,34 @@ function buildUserElement(userJsonObject,toAssign){
     return html;
 }
 
-function displayAssignedUsersForProject(jsonProjectObject){
+function displayAssignedUsersForProject(jsonProjectObject,selector){
+
     for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
-        $("#assignedUsers").append(buildUserElement(jsonProjectObject.participants[index],true));
+        $(selector).append(buildUserElement(jsonProjectObject.participants[index],true,false));
+    }
+}
+function displaySuggestedUsersForProject(data,selector,adminTab){
+
+    $(selector).empty();
+
+
+    for(var index = 0 ; index< data.length ; index ++){
+        if(!isAlreadyAdmin(data[index].accountId))
+            $(selector).append(buildUserElement(data[index],false,adminTab));
     }
 }
 
-function displaySuggestedUsersForProject(data) {
-    console.log(data);
-    for(var index = 0 ; index< data.length ; index ++){
-        $("#suggestedUsers").append(buildUserElement(data[index],false));
+function isAlreadyAdmin(id){
+    for(var i=0 ;i < getSelectedAdmins().length ; i++){
+        if(getSelectedAdmins()[i] == id)
+            return true;
+    }
+    return false;
+}
+
+function displayAdminsForProject(jsonProjectObject,selector){
+    for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
+        $(selector).append(buildUserElement(jsonProjectObject.administrators[index],true,true));
     }
 }
 
@@ -79,4 +140,12 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getSelectedAdmins(){
+    return admins;
+}
+
+function getSelectedParticipants(){
+    return participants
 }
