@@ -60,8 +60,8 @@
    				<h3 class="float--left">
    					Created
    				</h3>
-   				<p class="float--right">
-   					10.11.2016
+   				<p id="task_created" class="float--right">
+					21.11.2016
    				</p>
    				<div class="float--clear"></div>
    			</div>  
@@ -81,7 +81,7 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="task_decscription"></textarea>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -114,61 +114,10 @@
    				<div class="float--clear"></div>
    			</div>
             </div>
-        
-             <div class="col-md-3 card-scrollable">
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-                <img class="float float--left" src="images/icons/avatars/avatar1.png" alt="user icon">
-                <!--<img class="float float--left" src="images/icons/white/user.png" alt="user icon">-->
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar10.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar20.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar12.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
+
+		<div id="suggestedUsers" class="col-md-3 card-scrollable">
+
+
    		</div>
         
         <div class="col-md-3 invisible">
@@ -180,8 +129,8 @@
    			</div>
             </div>
         
-            <div id="assignedUsers" class="col-md-3 card-scrollable">
-				<div class="card-row card-row--user">
+            <div id="assignedUser" class="col-md-3 card-scrollable">
+				<!--<div class="card-row card-row--user">
 					<a class="float--right">&minus;</a>
 					<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
 					<article class="float--left">
@@ -193,7 +142,7 @@
 						</p>
 					</article>
 					<div class="float--both"></div>
-				</div>
+				</div> -->
 				
             </div>
 <!--
@@ -234,6 +183,8 @@
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/task/taskCreate.js"></script>
+	<script type="text/javascript" src="js/userPicker.js"></script>
 
 </body>
 </html>
