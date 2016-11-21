@@ -51,6 +51,7 @@ function displayTask(task) {
 
 function updateLinks(projectId, taskId){
     $("#editTaskId").attr("href","task_edit.html?projectId="+projectId+"&taskId="+taskId);
+    $("#backToScrumBoard").attr("href","scrum_board.html?projectId="+projectId);
 }
 
 function buildUser(user) {
