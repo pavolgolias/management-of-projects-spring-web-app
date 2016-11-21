@@ -91,7 +91,7 @@ $("#saveTask").click(function () {
 
 
     if(task_name == '') {
-        showMessage("Project name cannot be empty!");
+        showMessage("Task name cannot be empty!");
         return;
     }
 

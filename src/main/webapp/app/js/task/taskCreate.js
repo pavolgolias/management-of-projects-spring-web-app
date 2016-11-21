@@ -97,12 +97,15 @@ $("#saveTask").click(function () {
 
     var admin_id = JSON.parse(localStorage.getItem("account")).accountId;
 
-    console.log(JSON.stringify({
-        name: task_name,
-        type: task_type,
-        description: task_description,
-        assigneeId: assignee.accountId
-    }));
+    if(task_name == '') {
+        showMessage("Task name cannot be empty!");
+        return;
+    }
+
+    if(assignee == null){
+        showMessage("The task does not have any assignee!")
+        return;
+    }
 
     $.ajax({
         url: "/api/projects/"+projectId+"/tasks",
