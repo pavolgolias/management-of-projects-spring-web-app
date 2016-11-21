@@ -11489,14 +11489,14 @@ body {
 }
 
 .base .card-row--user > img {
-  width: 96px;
-  height: 96px;
+  width: 48px;
+  height: 48px;
   margin-right: 10px;
 }
 
 .base .card-row--user article {
   position: relative;
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .base .card-row--user article h4 {
@@ -11513,8 +11513,8 @@ body {
 .base .card-row--user > a {
   position: absolute;
   right: 30px;
-  line-height: 30px;
-  font-size: 30px;
+  line-height: 48px;
+  font-size: 48px;
   font-weight: 700;
   color: #789EA7;
   cursor: pointer;
