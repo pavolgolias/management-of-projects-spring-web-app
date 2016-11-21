@@ -57,8 +57,14 @@ function checkStatus(task,status) {
 }
 
 function buildTask(task) {
+    //console.log(task);
     var html = "<div class='col-sm-6 col-md-4'>";
-    html += "<div class='card card--task'>";
+    if(task.type == "Task")
+        html += "<div class='card card--task'>";
+    if(task.type == "Bug")
+        html += "<div class='card card--task card--bug'>"
+    if(task.type == "ChangeRequest")
+        html += "<div class='card card--task card--info'>"
     html += "<div class='index hidden'>"+task.taskId+"</div>";
     html += "<header>";
     html += "<h4 class='float--left'>"+task.type+"</h4>";
