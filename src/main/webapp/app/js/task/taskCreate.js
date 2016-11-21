@@ -102,10 +102,9 @@ $("#saveTask").click(function () {
         return;
     }
 
-    if(assignee == null){
-        showMessage("The task does not have any assignee!")
-        return;
-    }
+    var assignee_id;
+    if(assignee != null)
+        assignee_id = assignee.accountId;
 
     $.ajax({
         url: "/api/projects/"+projectId+"/tasks",
@@ -116,7 +115,7 @@ $("#saveTask").click(function () {
             type: task_type,
             priority: task_priority,
             aimedCompletionDate: task_eta,
-            assigneeId: assignee.accountId
+            assigneeId: assignee_id
         }),
         contentType:"application/json; charset=utf-8",
         beforeSend: function (xhr) {

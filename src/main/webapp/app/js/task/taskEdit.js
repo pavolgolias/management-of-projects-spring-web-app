@@ -28,7 +28,7 @@ function getTaskDetail(taskId, projectId) {
             taskDetail = data.data;
             displayTask(data.data);
             displayAssignedUserForTask(data.data,"#assignedUser");
-            getProjectDetail(projectId, data.data.assignee.accountId);
+            getProjectDetail(projectId);
         },
         error: function (xhr) {
             if(xhr.status == 401){
@@ -52,12 +52,12 @@ function displayTask(task) {
     $("#taskTimeConsumed").val(toHours(task.timeSpentOnTaskInMillis));
     $("#taskProgress").val(task.progress);//nefunguje zatial
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
-    $("#taskLastUpdate").text((new Date(task.assignee.createdAt)).toLocaleString()); // needs to be changed after it is addted to DTO
+    $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").val(task.description);
 }
 
-function getProjectDetail(projectId, assignedUser) {
+function getProjectDetail(projectId) {
     return $.ajax({
         url: "/api/projects/"+projectId,
         type: "GET",
@@ -95,17 +95,16 @@ $("#saveTask").click(function () {
         return;
     }
 
-    if(assignee == null){
-        showMessage("The task does not have any assignee!")
-        return;
-    }
+    var assignee_id;
+    if(assignee != null)
+        assignee_id = assignee.accountId;
 
     $.ajax({
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "PUT",
         data: JSON.stringify({
             aimedCompletionDate: taskDetail.aimedCompletionDate,
-            assigneeId: assignee.accountId,
+            assigneeId: assignee_id,
             description: task_decscription,
             name: task_name,
             priority: task_priority,
@@ -185,25 +184,35 @@ function removeAssignee(iduser){
     $("#suggestedUsers").append(html);
 
     availableUsers.push(assignee);
-    console.log(availableUsers);
+    // console.log(availableUsers);
     assignee = null;
-    console.log(assignee);
+    // console.log(assignee);
 }
 
 function displayAssignedUserForTask(jsonTaskObject,selector){
-    $(selector).append(buildUserElement(jsonTaskObject.assignee,true));
-    assignee = jsonTaskObject.assignee;
+    if(jsonTaskObject.assignee != null) {
+        $(selector).append(buildUserElement(jsonTaskObject.assignee, true));
+        assignee = jsonTaskObject.assignee;
+    }
 }
 
 function displayAvailableUsersForTask(jsonProjectObject, selector){
     for(var index = 0 ; index< jsonProjectObject.participants.length ; index ++){
-        if(assignee.accountId != jsonProjectObject.participants[index].accountId) {
+        if(assignee == null){
+            $(selector).append(buildUserElement(jsonProjectObject.participants[index], false));
+            availableUsers.push(jsonProjectObject.participants[index]);
+        }
+        else if(assignee.accountId != jsonProjectObject.participants[index].accountId) {
             $(selector).append(buildUserElement(jsonProjectObject.participants[index], false));
             availableUsers.push(jsonProjectObject.participants[index]);
         }
     }
     for(var index = 0 ; index< jsonProjectObject.administrators.length ; index ++){
-        if(assignee.accountId != jsonProjectObject.administrators[index].accountId) {
+        if(assignee == null){
+            $(selector).append(buildUserElement(jsonProjectObject.administrators[index], false));
+            availableUsers.push(jsonProjectObject.administrators[index]);
+        }
+        else if(assignee.accountId != jsonProjectObject.administrators[index].accountId || assignee == null) {
             $(selector).append(buildUserElement(jsonProjectObject.administrators[index], false));
             availableUsers.push(jsonProjectObject.administrators[index]);
         }
