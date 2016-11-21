@@ -62,7 +62,7 @@ function buildTask(task) {
     html += "<div class='index hidden'>"+task.taskId+"</div>";
     html += "<header>";
     html += "<h4 class='float--left'>Task</h4>";
-    html += "<div data-addui='dropMenu' data-pin='top-right'>";
+    html += "<div data-addui=\'dropMenu\' data-pin=\'top-right\'>";
     html += "<a href='#'>Move to Complete</a>";
     html += "<a href='#'>Move to To Do</a>";
     html += "<a href='#'>Move to In Progress</a>";
@@ -73,7 +73,7 @@ function buildTask(task) {
     html += "</header>";
     html += "<section>";
     html += "<article>";
-    html += "<a href=''#'><h3>"+task.name+"</h3></a>";
+    html += "<a href='task_detail.html?projectId="+projectId+"&taskId="+task.taskId+"'><h3>"+task.name+"</h3></a>";
     html += "<p>"+task.description+"</p>";
     html += "</article>";
     html += "<ul>";
@@ -84,11 +84,7 @@ function buildTask(task) {
     html += "</div>";
     html += "</div>";
 
-
-
     return html;
-
-
 }
 
 function getUrlParameter(sParam) {
