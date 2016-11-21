@@ -83,7 +83,7 @@ function buildTask(task) {
         html += "<a href='#'>Move to In Progress</a>";
     }
     html += "<a href='task_edit.html?projectId="+projectId+"&taskId="+task.taskId+"'>Edit</a>";
-    html += "<a href='deleteTask("+task.taskId+")'>Delete</a>";
+    html += "<a onclick='deleteTask("+task.taskId+")'>Delete</a>";
     html += "</div>";
     html += "<div class='float--clear'></div>";
     html += "</header>";
@@ -123,6 +123,7 @@ function updateLinks(projectId){
 }
 
 function deleteTask(taskId) {
+    console.log("/api/projects/"+projectId+"/tasks/"+taskId);
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "DELETE",
@@ -130,7 +131,7 @@ function deleteTask(taskId) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function (data) {
-            window.location.replace("scrum_board.html/?projectId="+projectId);
+            window.location.replace("scrum_board.html?projectId="+projectId);
         },
         error: function (xhr) {
             if(xhr.status == 404){
