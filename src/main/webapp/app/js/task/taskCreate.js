@@ -20,7 +20,7 @@ $(document).ready(function () {
 })
 
 function updateLinks(projectId){
-    $("#backTaskCreate").attr("href","scrum_board.html?id="+projectId);
+    $("#backTaskCreate").attr("href","scrum_board.html?projectId="+projectId);
 }
 
 function getProjectDetail(projectId) {
@@ -101,7 +101,7 @@ $("#saveTask").click(function () {
         name: task_name,
         type: task_type,
         description: task_description,
-        assigneeId: getSelectedParticipants()[0]
+        assigneeId: assignee.accountId
     }));
 
     $.ajax({
@@ -113,14 +113,14 @@ $("#saveTask").click(function () {
             type: task_type,
             priority: task_priority,
             aimedCompletionDate: task_eta,
-            assigneeId: getSelectedParticipants()[0]
+            assigneeId: assignee.accountId
         }),
         contentType:"application/json; charset=utf-8",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function(data){
-            window.location.replace("scrum_board.html?id="+projectId);
+            window.location.replace("scrum_board.html?projectId="+projectId);
         },
         error: function(xhr){
             showMessage("Error "+xhr.status+"! Task could not be created!");
@@ -144,21 +144,28 @@ function stringToDate(_date,_format,_delimiter)
 
 function addAssignee(iduser){
     if(assignee == null){
-        $("#account"+iduser).remove();
         assignee = findUser(iduser);
+        $("#account"+iduser).remove();
+
+        // console.log(assignee);
         $("#assignedUser").append(buildUserElement(assignee,true));
-        availableUsers.pop(iduser);
+
+        availableUsers.slice(findUser(iduser));
+        // console.log(availableUsers);
     }
 }
 
 function removeAssignee(iduser){
+
     var html = buildUserElement(assignee,false);
 
     $("#account"+iduser).remove();
     $("#suggestedUsers").append(html);
 
     availableUsers.push(assignee);
+    // console.log(availableUsers);
     assignee = null;
+    // console.log(assignee);
 }
 
 function displayAvailableUsersForTask(jsonProjectObject, selector){
