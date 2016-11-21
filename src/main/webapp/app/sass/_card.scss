@@ -214,13 +214,13 @@
 		overflow: hidden;
 		
 		> img {
-			width: 96px;
-			height: 96px;
+			width: 48px;
+			height: 48px;
 			margin-right: 10px;
 		}
 		article {
 			position: relative;
-			margin-top: 30px;
+			margin-top: 5px;
 			
 			h4 {
 				color: white;
@@ -235,8 +235,8 @@
 		> a {
 			position: absolute;
 			right: 30px;
-			line-height: 30px;
-			font-size: 30px;
+			line-height: 48px;
+			font-size: 48px;
 			font-weight: 700;
 			color: $background-color;
 			cursor: pointer;

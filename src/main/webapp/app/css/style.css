@@ -10874,6 +10874,22 @@ body {
   margin-bottom: 30px;
 }
 
+.margin-more--top {
+  margin: 10px;
+}
+
+.margin-more--bottom {
+  margin-bottom: 10px;
+}
+
+.margin-more--left {
+  margin-left: 10px;
+}
+
+.margin-more--right {
+  margin-right: 10px;
+}
+
 .bg--task {
   background-color: #afaf4f;
 }
@@ -11116,14 +11132,14 @@ body {
 }
 
 .base .navbar-section {
-  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .base .navbar-section a img {
-  width: 96px;
-  height: 96px;
+  width: 64px;
+  height: 64px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .base .navbar-section p {
@@ -11173,9 +11189,13 @@ body {
 }
 
 @media all and (max-width: 768px) {
+  .base .navbar-section {
+    margin-top: 10px;
+  }
   .base .navbar-section a img {
     width: 48px;
     height: 48px;
+    margin-top: 5px;
   }
   .base .navbar-section p {
     font-size: 35px;
@@ -11254,6 +11274,47 @@ body {
 .base .tab-section li a.tab--right {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.base .tabs {
+  border-bottom: none;
+}
+
+.base .tabs li {
+  border: none;
+  margin: 0;
+  margin-bottom: 2px;
+  background: none;
+}
+
+.base .tabs li a {
+  border: none !important;
+  border-radius: 0;
+  margin: 0;
+  background-color: rgba(84, 112, 118, 0.5);
+  color: white !important;
+  font-size: 20px;
+}
+
+.base .tabs li a:hover {
+  cursor: pointer;
+  background-color: rgba(24, 50, 56, 0.5);
+}
+
+.base .tabs li.left {
+  margin-right: 2px;
+}
+
+.base .tabs li.left a {
+  border-top-left-radius: 5px;
+}
+
+.base .tabs li.right a {
+  border-top-right-radius: 5px;
+}
+
+.base .tabs li.active a {
+  background-color: rgba(24, 50, 56, 0.7) !important;
 }
 
 .base .card {
@@ -11469,14 +11530,14 @@ body {
 }
 
 .base .card-row--user > img {
-  width: 96px;
-  height: 96px;
+  width: 48px;
+  height: 48px;
   margin-right: 10px;
 }
 
 .base .card-row--user article {
   position: relative;
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .base .card-row--user article h4 {
@@ -11493,8 +11554,8 @@ body {
 .base .card-row--user > a {
   position: absolute;
   right: 30px;
-  line-height: 30px;
-  font-size: 30px;
+  line-height: 48px;
+  font-size: 48px;
   font-weight: 700;
   color: #789EA7;
   cursor: pointer;

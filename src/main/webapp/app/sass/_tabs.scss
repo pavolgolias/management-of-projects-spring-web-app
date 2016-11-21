@@ -42,3 +42,49 @@
 		}
 	}
 }
+
+.tabs {
+	border-bottom: none;
+	
+	li {
+		border: none;
+		margin: 0;
+		margin-bottom: 2px;
+		background: none;
+
+		a {
+			border: none !important;
+			border-radius: 0;
+			margin: 0;
+			background-color: $gray-blue--op_default;
+			color: white !important;
+			font-size: 20px;
+			
+			&:hover {
+				cursor: pointer;
+				background-color: $primary-dark--op_default;
+			}
+		}
+		
+		&.left {
+			margin-right: 2px;
+			
+			a {
+				border-top-left-radius: $r_default;
+			}
+		}
+		&.right {
+			
+			a {
+				border-top-right-radius: $r_default;	
+			}
+		}
+		
+		&.active {
+			
+			a {
+				background-color: $primary-dark--op_middle !important;
+			}
+		}
+	}
+}
