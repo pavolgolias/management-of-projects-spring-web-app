@@ -11,7 +11,7 @@ $( document ).ready(function() {
 });
 
 function getAllTasks() {
-    console.log("/api/projects/"+projectId+"/tasks");
+    //console.log("/api/projects/"+projectId+"/tasks");
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks",
         type: "GET",
@@ -25,7 +25,7 @@ function getAllTasks() {
             if(xhr.status == 401){
                 window.location.replace("index.html");
             }else{
-                showMessage("Error "+xhr.status+"! Unable to load projects!")
+                showMessage("Error "+xhr.status+"! Unable to load scrum board!")
             }
         }
     });
@@ -62,12 +62,21 @@ function buildTask(task) {
     html += "<div class='index hidden'>"+task.taskId+"</div>";
     html += "<header>";
     html += "<h4 class='float--left'>Task</h4>";
-    html += "<div data-addui=\'dropMenu\' data-pin=\'top-right\'>";
-    html += "<a href='#'>Move to Complete</a>";
-    html += "<a href='#'>Move to To Do</a>";
-    html += "<a href='#'>Move to In Progress</a>";
+    html += "<div data-addui='dropMenu' data-pin='top-right'>";
+    if(checkStatus(task, "Todo")){
+        html += "<a href='#'>Move to In Progress</a>";
+        html += "<a href='#'>Move to Done</a>";
+    }
+    if(checkStatus(task,"InProgress")){
+        html += "<a href='#'>Move to To Do</a>";
+        html += "<a href='#'>Move to Done</a>";
+    }
+    if(checkStatus(task,"Done")){
+        html += "<a href='#'>Move to To Do</a>";
+        html += "<a href='#'>Move to In Progress</a>";
+    }
     html += "<a href='task_edit.html?projectId="+projectId+"&taskId="+task.taskId+"'>Edit</a>";
-    html += "<a href='delete("+task.taskId+")'>Delete</a>";
+    html += "<a href='deleteTask("+task.taskId+")'>Delete</a>";
     html += "</div>";
     html += "<div class='float--clear'></div>";
     html += "</header>";
@@ -104,4 +113,25 @@ function getUrlParameter(sParam) {
 
 function updateLinks(projectId){
     $("#createTaskLink").attr("href","task_create.html?id="+projectId);
+}
+
+function deleteTask(taskId) {
+    return $.ajax({
+        url: "/api/projects/"+projectId+"/tasks/"+taskId,
+        type: "DELETE",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function (data) {
+            window.location.replace("scrum_board.html/?projectId="+projectId);
+        },
+        error: function (xhr) {
+            if(xhr.status == 404){
+                window.location.replace("scrum_board.html/?projectId="+projectId);
+                showMessage("Error "+xhr.status+"! Not possible to delete task yet!")
+            }else{
+                showMessage("Error "+xhr.status+"! Unable to delete task!")
+            }
+        }
+    });
 }
