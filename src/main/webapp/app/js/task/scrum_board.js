@@ -61,7 +61,7 @@ function buildTask(task) {
     html += "<div class='card card--task'>";
     html += "<div class='index hidden'>"+task.taskId+"</div>";
     html += "<header>";
-    html += "<h4 class='float--left'>Task</h4>";
+    html += "<h4 class='float--left'>"+task.type+"</h4>";
     html += "<div data-addui='dropMenu' data-pin='top-right'>";
     if(checkStatus(task, "Todo")){
         html += "<a href='#'>Move to In Progress</a>";
