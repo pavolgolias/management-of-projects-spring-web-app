@@ -11276,6 +11276,47 @@ body {
   border-bottom-right-radius: 5px;
 }
 
+.base .tabs {
+  border-bottom: none;
+}
+
+.base .tabs li {
+  border: none;
+  margin: 0;
+  margin-bottom: 2px;
+  background: none;
+}
+
+.base .tabs li a {
+  border: none !important;
+  border-radius: 0;
+  margin: 0;
+  background-color: rgba(84, 112, 118, 0.5);
+  color: white !important;
+  font-size: 20px;
+}
+
+.base .tabs li a:hover {
+  cursor: pointer;
+  background-color: rgba(24, 50, 56, 0.5);
+}
+
+.base .tabs li.left {
+  margin-right: 2px;
+}
+
+.base .tabs li.left a {
+  border-top-left-radius: 5px;
+}
+
+.base .tabs li.right a {
+  border-top-right-radius: 5px;
+}
+
+.base .tabs li.active a {
+  background-color: rgba(24, 50, 56, 0.7) !important;
+}
+
 .base .card {
   width: 100%;
   color: white;
