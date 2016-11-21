@@ -47,6 +47,7 @@ function displayTasks(data) {
             $("#doneTasks").append(html);
         }
     }
+    $("#loadDropMenu").append("<script src='js/addDropMenu.js'></script>");
 }
 
 function checkStatus(task,status) {
