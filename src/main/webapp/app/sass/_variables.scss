@@ -15,6 +15,8 @@ $info:						#5656c7;
 $bug:						#a04646;
 $review:					#5da044;
 $feature:					#873f90;
+$progress:                  #429da8;
+$progress-bar:              #429da8;
 
 // Colors with opacities
 $primary--op_default: 		rgba(35, 76, 85, $op_default);
@@ -31,6 +33,11 @@ $gray-blue--op_default:		rgba(84, 112, 118, $op_default);
 $gray-blue--op_less:		rgba(84, 112, 118, $op_less);
 $gray-blue--op_middle:		rgba(84, 112, 118, $op_middle);
 $gray-blue--op_more:		rgba(84, 112, 118, $op_more);
+
+$progress--op_default:      rgba(66, 157, 168,$op_default);
+$progress--op_less:         rgba(66, 157, 168,$op_less);
+$progress--op_middle:       rgba(66, 157, 168,$op_middle);
+$progress--op_more:         rgba(66, 157, 168,$op_more);
 
 // Fonts
 
