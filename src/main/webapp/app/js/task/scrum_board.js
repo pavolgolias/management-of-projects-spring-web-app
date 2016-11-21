@@ -8,8 +8,16 @@ $( document ).ready(function() {
     projectId = getUrlParameter("projectId");
     updateLinks(projectId);
     getAllTasks();
+
 });
 
+function insertScripts(){
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "js/addDropMenu.js";
+    // Use any selector
+    $("head").append(s);
+}
 function getAllTasks() {
     //console.log("/api/projects/"+projectId+"/tasks");
     return $.ajax({
@@ -47,7 +55,9 @@ function displayTasks(data) {
             $("#doneTasks").append(html);
         }
     }
-    $("#loadDropMenu").append("<script src='js/addDropMenu.js'></script>");
+    // $( document ).("<script src='js/addDropMenu.js'></script>")
+    // $("#loadDropMenu").append();
+    insertScripts();
 }
 
 function checkStatus(task,status) {
