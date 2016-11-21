@@ -148,10 +148,13 @@ function stringToDate(_date,_format,_delimiter)
 function addAssignee(iduser){
     if(assignee == null){
         assignee = findUser(iduser);
-        $("#account"+iduser).remove();
+        $("#account"+iduser).slideUp("normal",function(){
+            $("#account"+iduser).remove();
+            $("#assignedUser").append(buildUserElement(assignee,true)).hide().slideDown("normal");
+
+        })
 
         // console.log(assignee);
-        $("#assignedUser").append(buildUserElement(assignee,true));
 
         availableUsers.slice(findUser(iduser));
         // console.log(availableUsers);
@@ -162,8 +165,11 @@ function removeAssignee(iduser){
 
     var html = buildUserElement(assignee,false);
 
-    $("#account"+iduser).remove();
-    $("#suggestedUsers").append(html);
+    $("#account"+iduser).slideUp("normal",function(){
+        $("#account"+iduser).remove();
+        $("#suggestedUsers").append(html).hide().slideDown("normal");
+
+    });
 
     availableUsers.push(assignee);
     // console.log(availableUsers);
