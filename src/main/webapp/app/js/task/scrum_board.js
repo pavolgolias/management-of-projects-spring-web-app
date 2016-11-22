@@ -3,6 +3,7 @@
  */
 
 var projectId;
+var tasks = [];
 
 $( document ).ready(function() {
     projectId = getUrlParameter("projectId");
@@ -41,7 +42,7 @@ function getAllTasks() {
 
 function displayTasks(data) {
     console.log(data);
-
+    tasks = data;
     for(var index = 0; index < data.length; index++){
         var task = data[index];
         var html = buildTask(task);
@@ -81,16 +82,16 @@ function buildTask(task) {
     html += "<h4 class='float--left'>"+task.type+"</h4>";
     html += "<div data-addui='dropMenu' data-pin='top-right'>";
     if(checkStatus(task, "Todo")){
-        html += "<a href='#'>Move to In Progress</a>";
-        html += "<a href='#'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"InProgress\")'>Move to In Progress</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
     }
     if(checkStatus(task,"InProgress")){
-        html += "<a href='#'>Move to To Do</a>";
-        html += "<a href='#'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
     }
     if(checkStatus(task,"Done")){
-        html += "<a href='#'>Move to To Do</a>";
-        html += "<a href='#'>Move to In Progress</a>";
+        html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
+        html += "<a onclick='move("+task.taskId+",\"InProgress\")'>Move to In Progress</a>";
     }
     html += "<a href='task_edit.html?projectId="+projectId+"&taskId="+task.taskId+"'>Edit</a>";
     html += "<a onclick='deleteTask("+task.taskId+")'>Delete</a>";
@@ -130,6 +131,62 @@ function getUrlParameter(sParam) {
 
 function updateLinks(projectId){
     $("#createTaskLink").attr("href","task_create.html?projectId="+projectId);
+}
+
+function getTask(taskId){
+    for(var index = 0 ; index < tasks.length ; index++){
+        if(tasks[index].taskId == taskId)
+            return tasks[index];
+    }
+}
+
+function move(taskId, status){
+    var task = getTask(taskId);
+    var assignee = task.assignee;
+    var progress = task.progress;
+
+    if(status == "Done"){
+        progress = 100;
+    }
+
+    var assignee_id;
+    if(assignee != null)
+        assignee_id = assignee.accountId;
+
+
+    $.ajax({
+        url: "/api/projects/"+projectId+"/tasks/"+taskId,
+        type: "PUT",
+        data: JSON.stringify({
+            aimedCompletionDate: task.aimedCompletionDate,
+            assigneeId: assignee_id,
+            description: task.description,
+            name: task.name,
+            priority: task.priority,
+            progress: progress,
+            status: status,
+            timeEstimatedForTaskInMillis: task.timeEstimatedForTaskInMillis,
+            timeSpentOnTaskInMillis: task.timeSpentOnTaskInMillis,
+            type:task.type
+        }),
+        contentType:"application/json; charset=utf-8",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
+        },
+        success: function(data){
+            window.location.replace("scrum_board.html?projectId="+projectId);
+        },
+        error: function(xhr){
+            if(xhr.status == 403) {
+                showMessage("Error " + xhr.status + "! You are not allowed to update task!");
+                throw exception("Error " + xhr.status + "! Task could not be edited!");
+            }
+            else {
+                showMessage("Error " + xhr.status + "! Task could not be edited!");
+                throw exception("Error " + xhr.status + "! Task could not be edited!");
+            }
+        }
+    });
 }
 
 function deleteTask(taskId) {
