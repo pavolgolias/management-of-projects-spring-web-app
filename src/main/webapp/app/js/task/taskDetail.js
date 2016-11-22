@@ -32,16 +32,17 @@ function getTaskDetail(taskId, projectId) {
 }
 
 function displayTask(task) {
+    console.log(task);
     updateLinks(getUrlParameter("projectId"),getUrlParameter("taskId"));
     $("#taskName").text(task.name);
     $("#projectId").text(getUrlParameter("projectId"));
     $("#taskType").text(task.type);
     $("#taskPriority").text(task.priority);
     $("#taskStatus").text(task.status);
-    //future enhancement : counting hours and minutes
     $("#taskTimeEstimate").text(toHours(task.timeEstimatedForTaskInMillis));
     $("#taskTimeConsumed").text(toHours(task.timeSpentOnTaskInMillis));
-    $("#taskProgress").val(task.progress);
+    $("#taskProgress").width(task.progress+"%");
+    $("#taskProgressText").text(task.progress+" %");
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
     $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
