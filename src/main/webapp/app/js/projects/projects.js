@@ -90,8 +90,8 @@ function buildProject(index,projectObject){
     html = html + projectObject.name +"</h3></a>";
     html = html + "<p>" + projectObject.description + "</p></article><ul>";
 
-    for(var iconIndex=0; iconIndex < projectObject.participants.length ; iconIndex ++){
-        html = html + "<li><img src='images/icons/white/user.png' alt='user icon' title='"+ projectObject.participants[iconIndex].firstName+" "+projectObject.participants[iconIndex].lastName+"'></li>";
+    for(var iconIndex=0; iconIndex < projectObject.administrators.length ; iconIndex ++){
+        html = html + "<li><img src='images/icons/white/user.png' alt='user icon' title='"+ projectObject.administrators[iconIndex].firstName+" "+projectObject.administrators[iconIndex].lastName+"'></li>";
     }
     html = html + "</ul><div class='float--clear'></div></section></div></div></div>";
     return html;

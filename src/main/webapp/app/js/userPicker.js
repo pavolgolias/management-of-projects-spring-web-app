@@ -42,10 +42,12 @@ function searchForUser(){
             }
         });
     }else{
+        var ids = admins.concat(participants);
         $.ajax({
-            url:  "/api/accounts/search",
-            type: "GET",
-            data: "searchKey="+query+"&limit=10",
+            url:  "/api/accounts/search?searchKey="+query+"&limit=10",
+            type: "POST",
+            data: JSON.stringify(ids),
+            contentType:"application/json; charset=utf-8",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
             },
@@ -57,7 +59,7 @@ function searchForUser(){
                 if(xhr.status == 401){
                     window.location.replace("index.html");
                 }else{
-                    showMessage("Error "+xhr.status+"! Unable to suggested users!")
+                    showMessage("Error "+xhr.status+"! Unable to suggest users!")
                 }
             }
         });
