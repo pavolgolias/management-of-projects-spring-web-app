@@ -123,10 +123,10 @@ public class AccountController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized")
     })
-    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<List<AccountDto>> searchAccounts(@RequestParam String searchKey, @RequestParam Long limit) {
-        return new DataResponse<>(mapper.toAccountDtoList(accountService.suggestAccounts(searchKey, limit)));
+    public DataResponse<List<AccountDto>> searchAccounts(@RequestParam String searchKey, @RequestParam Long limit, @RequestBody List<Long> idsToExclude) {
+        return new DataResponse<>(mapper.toAccountDtoList(accountService.suggestAccounts(searchKey, limit, idsToExclude)));
     }
 
     @ApiOperation(value = "Activate account specified by action token")
