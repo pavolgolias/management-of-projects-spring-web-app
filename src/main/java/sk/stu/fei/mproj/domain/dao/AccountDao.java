@@ -58,10 +58,11 @@ public class AccountDao extends DaoBase<Account, Long> {
                 .fetch();
     }
 
-    public List<Account> findAllBySearchKeyLimitBy(String searchKey, Long limit) {
+    public List<Account> findAllBySearchKeyLimitBy(String searchKey, Long limit, List<Long> idsToExclude) {
         return queryFactory.selectFrom(account)
                 .where(account.active.isTrue()
                         .and(account.deletedAt.isNull())
+                        .and(account.accountId.notIn(idsToExclude))
                         .andAnyOf(account.email.containsIgnoreCase(searchKey),
                                 account.firstName.containsIgnoreCase(searchKey),
                                 account.lastName.containsIgnoreCase(searchKey)))

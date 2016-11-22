@@ -216,8 +216,8 @@ public class AccountService {
     }
 
     @RoleSecured
-    public List<Account> suggestAccounts(String searchKey, Long limit) {
-        return accountDao.findAllBySearchKeyLimitBy(searchKey, limit);
+    public List<Account> suggestAccounts(String searchKey, Long limit, List<Long> idsToExclude) {
+        return accountDao.findAllBySearchKeyLimitBy(searchKey, limit, idsToExclude);
     }
 
     public void activateAccount(String actionToken) {
