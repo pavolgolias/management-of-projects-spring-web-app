@@ -5,7 +5,7 @@ body {
 }
 
 .background {
-	background: url(../images/background_2560x1600_lower.png) no-repeat center center fixed;
+	background: url(../images/background_2560x1600_jpeg.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -80,6 +80,24 @@ body {
 		margin-bottom: $m_3x-more;
 	}
 }
+.margin {
+	
+	&-more {
+		
+		&--top {
+			margin: $m_more;
+		}
+		&--bottom {
+			margin-bottom: $m_more;
+		}
+		&--left {
+			margin-left: $m_more;
+		}
+		&--right {
+			margin-right: $m_more;
+		}	
+	}
+}
 
 .bg {
 	
@@ -100,31 +118,31 @@ body {
 	}
 }
 
-.card-scrollable{
+.card-scrollable {
     height: 600px;
     overflow-y: auto;
 }
 
-.visible{
-    	display: block;
+.visible {
+	display: block;
 }
 
-.invisible{
-    	display:none;
+.invisible {
+	display:none;
 }
 
-.size30{
-        width:30px;
+.size30 {
+   	width: 30px;
 }
 
 @media screen and (max-width: 991px) {
-    .visible{
-    	display: none;
-}
+	
+    .visible {
+		display: none;
+	}
 
-.invisible{
-    	display:block;
-        visibility: visible;
-}
- 
+	.invisible {
+		display: block;
+		visibility: visible;
+	}
 }

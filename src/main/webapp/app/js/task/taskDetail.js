@@ -12,7 +12,6 @@ $(document).ready(function () {
 })
 
 function getTaskDetail(taskId, projectId) {
-    console.log("/api/projects/"+projectId+"/tasks/"+taskId);
     return $.ajax({
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "GET",
@@ -33,7 +32,6 @@ function getTaskDetail(taskId, projectId) {
 }
 
 function displayTask(task) {
-    console.log(task);
     updateLinks(getUrlParameter("projectId"),getUrlParameter("taskId"));
     $("#taskName").text(task.name);
     $("#projectId").text(getUrlParameter("projectId"));
@@ -41,24 +39,25 @@ function displayTask(task) {
     $("#taskPriority").text(task.priority);
     $("#taskStatus").text(task.status);
     //future enhancement : counting hours and minutes
-    $("#taskTimeEstimate").text(task.timeEstimatedForTaskInMillis / 3600000);
-    $("#taskTimeConsumed").text(task.timeSpentOnTaskInMillis / 3600000);
-    $("#taskProgress").val((task.timeSpentOnTaskInMillis / task.timeEstimatedForTaskInMillis) * 100);
-    $("#taskCreatedAt").text((new Date(task.assignee.createdAt)).toLocaleString());
-    $("#taskLastUpdate").text((new Date(task.assignee.createdAt)).toLocaleString()); // needs to be changed after it is addted to DTO
+    $("#taskTimeEstimate").text(toHours(task.timeEstimatedForTaskInMillis));
+    $("#taskTimeConsumed").text(toHours(task.timeSpentOnTaskInMillis));
+    $("#taskProgress").val(task.progress);
+    $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
+    $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
     $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").text(task.description);
-    $("#taskAssignee").append(buildUser(task.assignee));
+    $("#assignedUser").append(buildUser(task.assignee));
 }
 
 function updateLinks(projectId, taskId){
     $("#editTaskId").attr("href","task_edit.html?projectId="+projectId+"&taskId="+taskId);
+    $("#backToScrumBoard").attr("href","scrum_board.html?projectId="+projectId);
 }
 
 function buildUser(user) {
     if(user === null )
         return;
-    console.log(user);
+
     var html="<div class='card-row card-row--user'>";
     //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
     html += "<img class='float float--left' src='images/avatar.png' alt='user icon'>";
@@ -70,6 +69,14 @@ function buildUser(user) {
     html += "</div>";
 
     return html;
+}
+
+function toHours(dataInMilis){
+    return (dataInMilis / 3600000);
+}
+
+function toMilis(dataInHours){
+    return (dataInHours * 3600000);
 }
 
 function getUrlParameter(sParam) {

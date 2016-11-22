@@ -36,7 +36,7 @@ public class TaskDao extends DaoBase<Task, Long> {
     public List<Task> findAllTasksByProject(@NotNull Project project) {
         return queryFactory.selectFrom(task)
                 .where(task.project.eq(project)
-                        .and(task.deletedAt.isNotNull()))
+                        .and(task.deletedAt.isNull()))
                 .fetch();
     }
 

@@ -20,23 +20,24 @@
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="#">
+				<a id="backTaskDetail" href="task_detail.html">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<input type="text" id="task_name" value="Lorem Ipsum">
+				<input type="text" id="taskName" value="Lorem Ipsum">
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
    	
    	<div class="container-fluid">
+   	
    		<div class="col-md-6">
    			<div class="card-row">
    				<h3 class="float--left">
    					Task ID
    				</h3>
-				<p class="float--right">
+				<p id="projectId" class="float--right">
   					770
 				</p>
    				<div class="float--clear"></div>
@@ -45,12 +46,11 @@
    				<h3 class="float--left">
    					Type
    				</h3>
-  				<select class="float--right" id="task_type">
+  				<select class="float--right" id="taskType">
+					<option>ChangeRequest</option>
 					<option>Task</option>
-					<option>Info</option>
 					<option selected>Bug</option>
-					<option>Review</option>
-					<option>Feature</option>
+					<option>Test</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -58,9 +58,10 @@
    				<h3 class="float--left">
    					Priority
    				</h3>
-   				<select class="float--right" id="task_priority">
-					<option selected>High</option>
-					<option>Medium</option>
+   				<select class="float--right" id="taskPriority">
+					<option selected>Critical</option>
+					<option >High</option>
+					<option>Normal</option>
 					<option>Low</option>
 				</select>
    				<div class="float--clear"></div>
@@ -70,17 +71,17 @@
    					Add Spent Time
    				</h3>
    				<span class="float--right">h</span>
-   				<input class="float--right" type="text" id="task_name" value="1.38">
+   				<input class="float--right" type="text" id="timeToAdd" value="1.38">
    				<div class="float--clear"></div>
    			</div>
    			<div class="card-row">
    				<h3 class="float--left">
    					Status
    				</h3>
-   				<select class="float--right" id="task_status">
-					<option>To Do</option>
-					<option selected>In Progress</option>
-					<option>Complete</option>
+   				<select class="float--right" id="taskStatus">
+					<option>Todo</option>
+					<option>InProgress</option>
+					<option>Done</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -88,18 +89,19 @@
    				<h3 class="float--left">
    					Progress
    				</h3>
-   				<select class="float--right" id="task_progress">
-					<option selected>0 %</option>
-					<option>10 %</option>
-					<option>20 %</option>
-					<option>30 %</option>
-					<option>40 %</option>
-					<option>50 %</option>
-					<option>60 %</option>
-					<option>70 %</option>
-					<option>80 %</option>
-					<option>90 %</option>
-					<option>100 %</option>
+				<span class="float--right">%</span>
+   				<select class="float--right" id="taskProgress">
+					<option>0</option>
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+					<option>40</option>
+					<option>50</option>
+					<option>60</option>
+					<option>70</option>
+					<option>80</option>
+					<option>90</option>
+					<option>100</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -107,7 +109,7 @@
    				<h3 class="float--left">
    					Created
    				</h3>
-   				<p class="float--right">
+   				<p id="taskCreatedAt" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -116,7 +118,7 @@
    				<h3 class="float--left">
    					Last Update
    				</h3>
-   				<p class="float--right">
+   				<p id="taskLastUpdate" class="float--right">
    					10.11.2016
    				</p>
    				<div class="float--clear"></div>
@@ -125,7 +127,8 @@
    				<h3 class="float--left">
    					ETA
    				</h3>
-   				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
+   				<!--<input class="float--right datepicker" id="taskETA" value="20.11.2016">-->
+				<p id="taskETA" class="float--right"></p>
    				<div class="float--clear"></div>
    			</div>
             <a id="saveTask" class="card-button text-center" href="#">
@@ -142,7 +145,7 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="taskDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -151,7 +154,7 @@
         <div class="col-md-6">
 			<div class="card-row">
    				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
-   				<input class="float--right" type="text" id="task_id" value="Jozko">
+   				<input class="float--right" type="text" id="task_id" placeholder="name">
    				<div class="float--clear"></div>
    			</div>
             </div>
@@ -162,7 +165,7 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
+		</div>
         <div class="col-md-3 visible">
             <div class="card-row card-row--heading">
    				<h3 class="float--left">
@@ -170,64 +173,10 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
-        
-             <div class="col-md-3 card-scrollable">
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-                <img class="float float--left" src="images/icons/avatars/avatar1.png" alt="user icon">
-                <!--<img class="float float--left" src="images/icons/white/user.png" alt="user icon">-->
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar10.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar20.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar12.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-   		</div>
-        
+		</div>
+		<div id="suggestedUsers" class="col-md-3 card-scrollable">
+			<!-- Dynamic content -->
+		</div><!-- ./card-scrollable -->
         <div class="col-md-3 invisible">
             <div class="card-row card-row--heading">
    				<h3 class="float--left">
@@ -235,45 +184,12 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
-        
-            <div id="assignedUsers" class="col-md-3 card-scrollable">
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				
-            </div>
-<!--
-   		<div class="col-md-6">
-			<div class="card-row card-row--user">
-				<a class="float--right">&times;</a>
-				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
-				<article class="float float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						Total 8 opened tasks
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-			<a class="card-button text-center hidden" href="#">
-				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
-			</a>
-   		</div>
--->
-   	</div> <!-- ./container-fluid -->
+		</div><!-- ./card-scrollable -->
+		<div id="assignedUser" class="col-md-3 card-scrollable">
+			<!-- Generated content -->
+		</div><!-- ./card-scrollable -->
+
+	</div> <!-- ./container-fluid -->
    	
    	<!-- Dialogs -->
    	<div class="dialog hidden">
@@ -292,7 +208,8 @@
 	<script type="text/javascript" src="js/dialogs.js"></script>
 	<script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/task/taskEdit.js.js"></script>
+	<script type="text/javascript" src="js/task/taskEdit.js"></script>
+
 
 </body>
 </html>

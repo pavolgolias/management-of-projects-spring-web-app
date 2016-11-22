@@ -20,7 +20,7 @@
   	<nav class="navbar-section">
 		<div class="container-fluid">
 			<div class="col-xs-2">
-				<a href="#">
+				<a id="backTaskCreate" href="scrum_board.html">
 					<img src="images/icons/white/arrows.png" alt="menu icon">
 				</a>
 			</div>
@@ -37,11 +37,10 @@
    					Type
    				</h3>
   				<select class="float--right" id="task_type">
+					<option>ChangeRequest</option>
 					<option>Task</option>
-					<option>Info</option>
 					<option selected>Bug</option>
-					<option>Review</option>
-					<option>Feature</option>
+					<option>Test</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -50,8 +49,9 @@
    					Priority
    				</h3>
    				<select class="float--right" id="task_priority">
-					<option selected>High</option>
-					<option>Medium</option>
+					<option selected>Critical</option>
+					<option >High</option>
+					<option>Normal</option>
 					<option>Low</option>
 				</select>
    				<div class="float--clear"></div>
@@ -60,8 +60,8 @@
    				<h3 class="float--left">
    					Created
    				</h3>
-   				<p class="float--right">
-   					10.11.2016
+   				<p id="task_created" class="float--right">
+					21.11.2016
    				</p>
    				<div class="float--clear"></div>
    			</div>  
@@ -81,7 +81,9 @@
                 </header>
                 <section>
                     <article>
-                        <textarea>Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                        <textarea id="task_decscription">
+                        	
+                        </textarea>
                     </article>
                     <div class="float--clear"></div>
                 </section>
@@ -94,7 +96,7 @@
         <div class="col-md-6">
 			<div class="card-row">
    				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
-   				<input class="float--right" type="text" id="task_id" value="Jozko">
+   				<input class="float--right" type="text" id="searchInput" placeholder="Search for users...">
    				<div class="float--clear"></div>
    			</div>
             </div>
@@ -105,7 +107,7 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
+		</div>
         <div class="col-md-3 visible">
             <div class="card-row card-row--heading">
    				<h3 class="float--left">
@@ -114,62 +116,10 @@
    				<div class="float--clear"></div>
    			</div>
             </div>
-        
-             <div class="col-md-3 card-scrollable">
-			<div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-                <img class="float float--left" src="images/icons/avatars/avatar1.png" alt="user icon">
-                <!--<img class="float float--left" src="images/icons/white/user.png" alt="user icon">-->
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar10.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar20.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-                 <div class="card-row card-row--user">
-				<a class="float--right">&plus;</a>
-				<img class="float float--left" src="images/icons/avatars/avatar12.png" alt="user icon">
-				<article class="float--left">
-					<h4>
-						User's Name
-					</h4>
-					<p>
-						user@gmail.com
-					</p>
-				</article>
-				<div class="float--both"></div>
-			</div>
-   		</div>
+
+		<div id="suggestedUsers" class="col-md-3 card-scrollable">
+			<!-- Dynamic content -->
+   		</div><!-- ./card-scrollable -->
         
         <div class="col-md-3 invisible">
             <div class="card-row card-row--heading">
@@ -178,26 +128,27 @@
    				</h3>
    				<div class="float--clear"></div>
    			</div>
-            </div>
-        
-            <div id="assignedUsers" class="col-md-3 card-scrollable">
-				<div class="card-row card-row--user">
-					<a class="float--right">&minus;</a>
-					<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
-					<article class="float--left">
-						<h4>
-							User's Name
-						</h4>
-						<p>
-							user@gmail.com
-						</p>
-					</article>
-					<div class="float--both"></div>
-				</div>
-				
-            </div>
+		</div>
+		<div id="assignedUser" class="col-md-3 card-scrollable">
+			<!-- Assigned user placeholder -->
+			<div class="card-row card-row--user">
+				<a class="float--right">&minus;</a>
+				<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
+				<article class="float--left">
+					<h4>
+						User's Name
+					</h4>
+					<p>
+						user@gmail.com
+					</p>
+				</article>
+				<div class="float--both"></div>
+			</div>
+			<!-- ./Assigned user placeholder -->
+		</div><!-- ./card-scrollable -->
+		<div class="col-md-6">
+   			<!-- User placeholder -->
 <!--
-   		<div class="col-md-6">
 			<div class="card-row card-row--user">
 				<a class="float--right">&times;</a>
 				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
@@ -211,11 +162,14 @@
 				</article>
 				<div class="float--both"></div>
 			</div>
+-->
+			<!-- ./User placeholder -->
+			
+			<!-- Generated content -->
 			<a class="card-button text-center hidden" href="#">
 				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
 			</a>
    		</div>
--->
    	</div> <!-- ./container-fluid -->
    	
    	<!-- Dialogs -->
@@ -232,8 +186,10 @@
 	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
 
     <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
     <script type="text/javascript" src="js/datepicker.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+<!--	<script type="text/javascript" src="js/task/taskCreate.js"></script>-->
 
 </body>
 </html>

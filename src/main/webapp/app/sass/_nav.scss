@@ -88,15 +88,16 @@
 }
 
 .navbar-section {
-	margin-top: 10px;
+//	margin-top: 10px;
 	margin-bottom: 10px;
 	
 	a {
 		
 		img {
-			width: 96px;
-			height: 96px;
+			width: 64px;
+			height: 64px;
 			cursor: pointer;
+			margin-top: 20px;
 		}
 	}
 	p {
@@ -143,15 +144,16 @@
 	margin-left: 40px;
 }
 
-
 @media all and (max-width: 768px) {
 	
 	.navbar-section {
+		margin-top: 10px;
 		
 		a {
 			img {
 				width: 48px;
 				height: 48px;
+				margin-top: 5px;	
 			}
 		}
 		p {

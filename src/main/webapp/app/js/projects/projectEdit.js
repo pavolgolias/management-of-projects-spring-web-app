@@ -5,7 +5,7 @@ var projectId;
 
 
 $( document ).ready(function() {
-    projectId = getParameterByName("id",window.location.href);
+    projectId = getParameterByName("projectId",window.location.href);
     if(projectId != null){
         getProjectDetail(projectId);
     }
@@ -49,7 +49,7 @@ function displayProject(jsonResult){
 }
 
 function updateEditLink(projectId){
-    $("#editTaskLink").attr("href","project_edit.html?id="+projectId);
+    $("#editTaskLink").attr("href","project_edit.html?projectId="+projectId);
 }
 function getParameterByName(name, url) {
     if (!url) {
@@ -95,7 +95,7 @@ function buildUser(user, isAdmin) {
 }
 
 function backToProject() {
-    window.location.replace("project_detail.html?id="+projectId);
+    window.location.replace("project_detail.html?projectId="+projectId);
 }
 
 $("#saveProject").click(function () {
@@ -126,7 +126,7 @@ $("#saveProject").click(function () {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
         },
         success: function(data){
-            window.location.replace("project_detail.html?id="+projectId);
+            window.location.replace("project_detail.html?projectId="+projectId);
         },
         error: function(xhr){
             showMessage("Error "+xhr.status+"! Project could not be edited!");
