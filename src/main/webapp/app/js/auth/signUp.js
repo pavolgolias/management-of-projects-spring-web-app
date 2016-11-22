@@ -2,6 +2,20 @@
  * Created by Patrik on 10/11/2016.
  */
 
+function resetSignUp(){
+    $("#exampleInputName").val('');
+    $("#exampleInputSurname").val('');
+    $("#exampleInputEmail1").val('');
+    $("#exampleInputPassword1").val('');
+    $("#exampleInputPassword2").val('');
+}
+
+function resetChangePass(){
+    $("#oldPasswordInput").val('');
+    $("#newPasswordInput").val('');
+    $("#newPasswordInputAgain").val('');
+}
+
 function signUp(){
     var email = $("#exampleInputEmail1").val();
     var name = $("#exampleInputName").val();
@@ -102,3 +116,4 @@ function changePassword(){
 
 
 }
+
