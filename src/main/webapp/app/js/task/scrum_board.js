@@ -103,9 +103,16 @@ function buildTask(task) {
     html += "<a href='task_detail.html?projectId="+projectId+"&taskId="+task.taskId+"'><h3>"+task.name+"</h3></a>";
     html += "<p>"+task.description+"</p>";
     html += "</article>";
-    html += "<ul>";
-    html += "<li><img src='images/icons/white/user.png' alt='user icon'></li>";
-    html += "</ul>";
+    if(task.assignee != null){
+        html += "<ul>";
+        html += "<li><img src='images/icons/white/user.png' alt='user icon' title='"+task.assignee.firstName+" "+task.assignee.lastName+"'></li>";
+        html += "</ul>";
+    }else {
+        html += "<ul>";
+        html += "<li><img src='images/icons/white/lock.png' alt='user icon'></li>";
+        html += "</ul>";
+    }
+
     html += "<div class='float--clear'></div>";
     html += "</section>";
     html += "</div>";
