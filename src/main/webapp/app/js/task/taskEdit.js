@@ -85,8 +85,8 @@ $("#saveTask").click(function () {
     var task_status = $('#taskStatus').val();
     var task_type = $('#taskType').val();
     var time_to_add = $('#timeToAdd').val();
-    var task_timeEstimatedForTaskInMillis = taskDetail.timeEstimatedForTaskInMillis + toMilis(time_to_add);
-    var task_timeSpentOnTaskInMillis = taskDetail.timeSpentOnTaskInMillis;
+    var task_timeEstimatedForTaskInMillis = taskDetail.timeEstimatedForTaskInMillis;
+    var task_timeSpentOnTaskInMillis = taskDetail.timeSpentOnTaskInMillis + toMilis(time_to_add);
 
 
 
