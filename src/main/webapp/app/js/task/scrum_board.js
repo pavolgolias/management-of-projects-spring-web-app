@@ -129,7 +129,7 @@ function getUrlParameter(sParam) {
 }
 
 function updateLinks(projectId){
-    $("#createTaskLink").attr("href","task_create.html?id="+projectId);
+    $("#createTaskLink").attr("href","task_create.html?projectId="+projectId);
 }
 
 function deleteTask(taskId) {

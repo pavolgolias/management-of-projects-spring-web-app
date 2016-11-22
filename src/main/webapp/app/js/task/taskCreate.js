@@ -10,7 +10,7 @@ $(document).ready(function () {
     if(localStorage.getItem("account") == null){
         window.location.replace("index.html");
     }
-    projectId = getParameterByName("id",window.location.href);
+    projectId = getParameterByName("projectId",window.location.href);
     if(projectId != null){
         updateLinks(projectId);
         getProjectDetail(projectId);
@@ -99,6 +99,10 @@ $("#saveTask").click(function () {
 
     if(task_name == '') {
         showMessage("Task name cannot be empty!");
+        return;
+    }
+    if(task_description == '') {
+        showMessage("Task description cannot be empty!");
         return;
     }
 
