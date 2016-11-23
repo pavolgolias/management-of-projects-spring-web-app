@@ -94,6 +94,8 @@ $("#saveTask").click(function () {
     var task_priority = $('#task_priority').val();
     var task_eta = stringToDate($('#task_eta').val(),"dd.MM.yyyy",".");
     var task_description = $('#task_decscription').val();
+    var task_estimate = $('#taskTimeEstimate').val();
+    var task_estimate_milis = toMilis(task_estimate);
 
     var admin_id = JSON.parse(localStorage.getItem("account")).accountId;
 
@@ -103,6 +105,10 @@ $("#saveTask").click(function () {
     }
     if(task_description == '') {
         showMessage("Task description cannot be empty!");
+        return;
+    }
+    if(task_estimate == 0){
+        showMessage("Task estimate time cannot be 0!");
         return;
     }
 
@@ -119,7 +125,8 @@ $("#saveTask").click(function () {
             type: task_type,
             priority: task_priority,
             aimedCompletionDate: task_eta,
-            assigneeId: assignee_id
+            assigneeId: assignee_id,
+            timeEstimatedForTaskInMillis: task_estimate_milis
         }),
         contentType:"application/json; charset=utf-8",
         beforeSend: function (xhr) {
@@ -178,6 +185,10 @@ function removeAssignee(iduser){
     // console.log(availableUsers);
     assignee = null;
     // console.log(assignee);
+}
+
+function toMilis(dataInHours){
+    return (dataInHours * 3600000);
 }
 
 function displayAvailableUsersForTask(jsonProjectObject, selector){
