@@ -152,8 +152,8 @@ public class AccountService {
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("activationUrl", applicationProperties.buildFrontendUrl("/account_management.html?activate-account=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discard-account=" + account.getActionToken()).toString());
+        model.put("activationUrl", applicationProperties.buildFrontendUrl("/account_management.html?activateAccount=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discardAccount=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
 
         return account;
@@ -256,8 +256,8 @@ public class AccountService {
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/account_management.html?recover-account=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discard-account-recovery=" + account.getActionToken()).toString());
+        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/account_management.html?recoverAccount=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discardAccountRecovery=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account recovery", "account-recovery", model);
     }
 

@@ -154,7 +154,7 @@ function updateLinks(projectId, taskId) {
     $("#backTaskDetail").attr("href","task_detail.html?projectId="+projectId+"&taskId="+taskId);
 }
 
-var getUrlParameter = function getUrlParameter(sParam) {
+function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
