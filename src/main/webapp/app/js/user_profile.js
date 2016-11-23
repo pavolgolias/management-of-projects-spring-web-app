@@ -45,7 +45,7 @@ function displayProjects(data){
 
 function buildHTMLForProject(project){
     console.log(project)
-    var html = "<div class='card-row'><a href='project_detail.html?id="+project.projectId+"'><h3 class='float--left'>";
+    var html = "<div class='card-row'><a href='project_detail.html?projectId="+project.projectId+"'><h3 class='float--left'>";
     html = html + "<h3 class='float--left'>"+project.name+"</h3>";
     html = html +"<p class='float--right'>></p><div class='float--clear'></div></a></div>";
     return html;
