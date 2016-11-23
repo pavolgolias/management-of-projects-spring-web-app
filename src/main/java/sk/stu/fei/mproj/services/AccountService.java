@@ -138,9 +138,9 @@ public class AccountService {
         }
         Account account = mapper.toAccount(dto);
         //TODO set account to inactive later on and create action token for it
-//        account.setActive(false);
-//        setActionToken(account);
-        account.setActive(true);
+        account.setActive(false);
+        setActionToken(account);
+//        account.setActive(true);
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
@@ -152,8 +152,8 @@ public class AccountService {
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("activationUrl", applicationProperties.buildFrontendUrl("/activate-account.html?code=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account.html?code=" + account.getActionToken()).toString());
+        model.put("activationUrl", applicationProperties.buildFrontendUrl("/account_management.html?activate-account=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discard-account=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
 
         return account;
@@ -256,8 +256,8 @@ public class AccountService {
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/recover-account.html?code=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account-recovery.html?code=" + account.getActionToken()).toString());
+        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/account_management.html?recover-account=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discard-account-recovery=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account recovery", "account-recovery", model);
     }
 
