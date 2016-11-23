@@ -188,3 +188,6 @@ Temporary Items
 /src/main/generated/
 *.iml
 .idea/
+/.openshift/
+src/main/webapp/app/prepros.cfg
+/webapps/

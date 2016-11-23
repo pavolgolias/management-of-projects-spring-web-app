@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj Task Edit</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
+</head>
+
+<body class="base page background">
+  	
+  	<nav class="navbar-section">
+		<div class="container-fluid">
+			<div class="col-xs-2">
+				<a id="backTaskDetail" href="task_detail.html">
+					<img src="images/icons/white/arrows.png" alt="menu icon">
+				</a>
+			</div>
+			<div class="col-xs-8 text-center">
+				<input type="text" id="taskName" value="Lorem Ipsum">
+			</div>
+		</div><!-- ./container-fluid -->
+	</nav><!-- ./navbar-section -->
+   	
+   	<div class="container-fluid">
+   	
+   		<div class="col-md-6">
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Task ID
+   				</h3>
+				<p id="projectId" class="float--right">
+  					770
+				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Type
+   				</h3>
+  				<select class="float--right" id="taskType">
+					<option>ChangeRequest</option>
+					<option>Task</option>
+					<option selected>Bug</option>
+					<option>Test</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Priority
+   				</h3>
+   				<select class="float--right" id="taskPriority">
+					<option selected>Critical</option>
+					<option >High</option>
+					<option>Normal</option>
+					<option>Low</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Add Spent Time
+   				</h3>
+   				<span class="float--right">h</span>
+   				<input class="float--right" type="text" id="timeToAdd" value="1.38">
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Status
+   				</h3>
+   				<select class="float--right" id="taskStatus">
+					<option>Todo</option>
+					<option>InProgress</option>
+					<option>Done</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Progress
+   				</h3>
+				<span class="float--right">%</span>
+   				<select class="float--right" id="taskProgress">
+					<option>0</option>
+					<option>10</option>
+					<option>20</option>
+					<option>30</option>
+					<option>40</option>
+					<option>50</option>
+					<option>60</option>
+					<option>70</option>
+					<option>80</option>
+					<option>90</option>
+					<option>100</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Created
+   				</h3>
+   				<p id="taskCreatedAt" class="float--right">
+   					10.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Last Update
+   				</h3>
+   				<p id="taskLastUpdate" class="float--right">
+   					10.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					ETA
+   				</h3>
+   				<!--<input class="float--right datepicker" id="taskETA" value="20.11.2016">-->
+				<p id="taskETA" class="float--right"></p>
+   				<div class="float--clear"></div>
+   			</div>
+            <a id="saveTask" class="card-button text-center" href="#">
+				<img src="images/icons/white/save.png" alt="user icon">
+			</a>
+   		</div>
+   		<div class="col-md-6">
+   		    <div class="card card--default card--bug">
+                <header>
+					<h4 class="float--left">
+						Task Description
+					</h4>
+                	<div class="float--clear"></div>
+                </header>
+                <section>
+                    <article>
+                        <textarea id="taskDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                    </article>
+                    <div class="float--clear"></div>
+                </section>
+            </div>
+   		</div>
+        <!--<div class="col-md-6">
+			<div class="card-row">
+   				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
+   				<input class="float--right" type="text" id="task_id" placeholder="Search for users...">
+   				<div class="float--clear"></div>
+   			</div>
+            </div>-->
+        <div class="col-md-3">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Available
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div>
+        <div class="col-md-3 visible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div>
+		<div id="suggestedUsers" class="col-md-3 card-scrollable">
+			<!-- Dynamic content -->
+		</div><!-- ./card-scrollable -->
+        <div class="col-md-3 invisible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div><!-- ./card-scrollable -->
+		<div id="assignedUser" class="col-md-3 card-scrollable">
+			<!-- Generated content -->
+		</div><!-- ./card-scrollable -->
+
+	</div> <!-- ./container-fluid -->
+   	
+   	<!-- Dialogs -->
+   	<div class="dialog hidden">
+		<p id="message">Empty message</p>
+	</div>
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker Library -->
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
+	<script type="text/javascript" src="js/datepicker.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/task/taskEdit.js"></script>
+
+
+</body>
+</html>

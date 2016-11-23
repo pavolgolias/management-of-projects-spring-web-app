@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj Task</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="base page page--projects background">
+
+<nav class="navbar-section">
+	<div class="container-fluid">
+		<div class="col-xs-1">
+			<a href="scrum_board.html" id="backToScrumBoard">
+				<img class="float--right" src="images/icons/white/arrows.png" alt="plus icon">
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-9 text-center">
+			<p id="taskName">Task Name</p>
+		</div>
+
+		<div class="col-xs-2 col-sm-2">
+			<a href="task_edit.html" id="editTaskId">
+				<img class="float--right" src="images/icons/white/signature.png" alt="plus icon">
+			</a>
+		</div>
+	</div><!-- ./container-fluid -->
+</nav><!-- ./navbar-section -->
+   	
+   	<div class="container-fluid">
+   		<div class="col-md-6">
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Project ID
+   				</h3>
+				<p id="projectId" class="float--right">
+  					770
+				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Type
+   				</h3>
+   				<p id="taskType" class="float--right">
+   					BUG
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Priority
+   				</h3>
+   				<p id="taskPriority" class="float--right">
+   					High
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Status
+   				</h3>
+   				<p id="taskStatus" class="float--right">
+   					In Progress
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+			<div class="card-row">
+				<h3 class="float--left">
+					Estimated time
+				</h3>
+				<span class="float--right">h</span>
+				<p id="taskTimeEstimate" class="float--right">
+					30.00
+				</p>
+				<div class="float--clear"></div>
+			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Time Consumed
+   				</h3>
+   				<span class="float--right">h</span>
+   				<p id="taskTimeConsumed" class="float--right">
+   					1.38
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Progress
+   				</h3>
+                <div class="custom-progress">
+                    <div id="taskProgress" class="custom-progress-bar custom-progress-bar-striped size30" role="progressbar"
+                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                        <span id="taskProgressText">50%</span>
+<!--                      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Pre zmenu progress baru treba menit hodnotu style="width" a hodnotu v spane !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                    </div>
+                </div>
+<!--   				<progress id="taskProgress" class="float--right" value="50" max="100"></progress>-->
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Created
+   				</h3>
+   				<p id="taskCreatedAt" class="float--right">
+   					10.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Last Update
+   				</h3>
+   				<p id="taskLastUpdate" class="float--right">
+   					10.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					ETA
+   				</h3>
+   				<p id="taskETA" class="float--right">
+   					20.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   		</div>
+   		<div class="col-md-6">
+   		    <div class="card card--default card--bug">
+                <header>
+					<h4 class="float--left">
+						Task Description
+					</h4>
+                	<div class="float--clear"></div>
+                </header>
+                <section>
+                    <article>
+                        <p id="taskDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</p>
+                    </article>
+                    <div class="float--clear"></div>
+                </section>
+            </div>
+   		</div>
+   		<div id="assignedUser" class="col-md-6">
+			<!-- Generated content -->
+   		</div>
+   	</div><!-- ./container-fluid -->
+   	
+   	<!-- Dialogs -->
+	<div class="dialog hidden">
+		<p id="message">Empty message</p>
+	</div>
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+   
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/sideBarNavigationMenu.js"></script>
+	<script type="text/javascript" src="js/task/taskDetail.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+.dialog {
+	position: fixed;
+	display: block;
+	top: 30%;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	background-color: $gray-blue--op_middle;
+	border-radius: $r_default;
+	padding: $p_more;
+	margin-bottom: $m_default;
+	padding: 30px;
+	z-index: 1000;
+
+	p {
+		text-align: center;
+		margin: 0;
+		color: white;
+		font-size: 30px;
+	}
+    
+	 &--picpick {
+        width: 760px;
+         
+        img {
+            margin: 10px;
+            float: left;
+            width: 50px;
+            
+           &:hover{
+               margin: 5px;
+               width: 60px;
+               
+            }
+        }
+    }
+	&--dim {
+		position:fixed;
+    	top: 0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+    	background: rgba(0, 0, 0, 0.5);
+	}
+}
+
+@media screen and (max-width: 768px) {
+    
+    .dialog {
+        position: absolute;
+//        top: 10%;
+        
+        &--picpick {
+            width: 100%;
+            overflow-y: auto;
+        }
+    }
+}

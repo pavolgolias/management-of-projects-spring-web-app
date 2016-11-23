@@ -14,9 +14,12 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.view.RedirectView;
+import sk.stu.fei.mproj.services.StorageService;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +65,7 @@ public class IndexController {
         handleException(ex, HttpStatus.FORBIDDEN, response);
     }
 
-    @ExceptionHandler({EntityNotFoundException.class})
+    @ExceptionHandler({EntityNotFoundException.class, StorageService.FileNotFoundException.class})
     public void notFound(Exception ex, HttpServletResponse response) throws IOException {
         handleException(ex, HttpStatus.NOT_FOUND, response);
     }
@@ -70,6 +73,16 @@ public class IndexController {
     @ExceptionHandler({NullPointerException.class, DataIntegrityViolationException.class, ConstraintViolationException.class, IllegalArgumentException.class, IllegalStateException.class, MethodArgumentNotValidException.class})
     public void integrityViolation(Exception ex, HttpServletResponse response) throws IOException {
         handleException(ex, HttpStatus.UNPROCESSABLE_ENTITY, response);
+    }
+
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
+    public void methodNotAllowed(Exception ex, HttpServletResponse response) throws IOException {
+        handleException(ex, HttpStatus.METHOD_NOT_ALLOWED, response);
+    }
+
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    public void badRequest(Exception ex, HttpServletResponse response) throws IOException {
+        handleException(ex, HttpStatus.BAD_REQUEST, response);
     }
 
     private void handleException(Exception ex, HttpStatus status, HttpServletResponse resp) throws IOException {

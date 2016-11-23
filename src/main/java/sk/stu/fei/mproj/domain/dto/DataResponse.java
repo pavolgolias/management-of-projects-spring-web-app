@@ -1,24 +1,21 @@
 package sk.stu.fei.mproj.domain.dto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@ApiModel
+@Getter
+@Setter
 public class DataResponse<T> {
-
-    @ApiModelProperty(required = true)
+    @ApiModelProperty(value = "Response data")
     private T data;
 
     public DataResponse() {
     }
 
     public DataResponse(T data) {
-        this.data = data;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
         this.data = data;
     }
 }

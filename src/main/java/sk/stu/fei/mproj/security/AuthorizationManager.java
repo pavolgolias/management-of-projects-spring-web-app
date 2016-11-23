@@ -42,6 +42,6 @@ public class AuthorizationManager {
             throw new SecurityException("No authenticated account found in session.");
         }
 
-        return current != null ? accountDao.findById(current.getId()) : null;
+        return current != null ? accountDao.findById(current.getAccountId()) : null;
     }
 }

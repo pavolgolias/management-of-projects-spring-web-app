@@ -1,0 +1,301 @@
+.card {
+	width: 100%;
+	color: white;
+	margin-bottom: 30px;
+//    min-width: 300px;
+	
+	header {
+		height: 30px;
+		padding: $p_more;
+		border-top-left-radius: $r_default;
+		border-top-right-radius: $r_default;
+		
+		h4 {
+			font-weight: 100;
+		}
+	}
+	section {
+		background-color: $gray-blue--op_middle;
+		border-bottom-left-radius: $r_default;
+		border-bottom-right-radius: $r_default;
+		min-height: 150px;
+		
+		> img {
+			position: absolute;
+			width: 100px;
+			height: 96px;
+			margin: 10px;
+		}
+		article {
+			position: relative;
+            padding: $p_more;
+			min-height: 120px;
+	
+			a {
+				color: white;
+				transition: 0.3s; 
+				
+				h3 {
+					font-size: 20px;
+					margin-bottom: 10px;
+				}
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			p {
+//				font-weight: 100;
+                margin-bottom: 0;
+				word-break: break-all;
+			}
+			textarea {
+				width: 100%;
+				height: 200px;
+				background-color: transparent;
+				border: none;
+			}
+		}
+		ul {
+			position: relative;
+
+			li {
+				float: left;
+				margin-right: $m_default;
+				margin-bottom: $m_default;
+				
+				img {
+					width: 48px;
+					height: 48px;
+				}
+			}
+		}
+	}
+	
+    &--no-header {
+        
+        section {
+            border-top-left-radius: $r_default;
+		    border-top-right-radius: $r_default;
+        }
+    }
+    &--default {
+        
+        header {
+            background-color: $gray-blue;
+        }
+    }
+	&--project {
+		
+		header {
+			background-color: $gray-blue;
+		}
+		article {
+			margin-left: 110px;
+		}
+		ul {
+			margin-left: 110px;
+		}
+	}
+	&--task {
+		
+		header {
+			background-color: $task;
+			
+			h4 {
+				text-transform: uppercase;
+			}
+		}		
+		article {
+			margin-left: 0;
+		}
+		ul {
+			margin-left: $m_more;
+			margin-right: $m_more;
+		}
+	}
+	&--info {
+		
+		header {
+			background-color: $info !important;
+		}
+	}
+	&--bug {
+		
+		header {
+			background-color: $bug !important;
+		}
+	}
+	&--review {
+		
+		header {
+			background-color: $review !important;
+		}
+	}
+	&--feature {
+		
+		header {
+			background-color: $feature !important;
+		}
+	}
+}
+
+.card-row {
+	width: 100%;
+	background-color: $gray-blue--op_middle;
+	border-radius: $r_default;
+	padding: $p_more;
+	margin-bottom: $m_default;
+	
+	h3 {
+		line-height: 28.5px;
+		color: white;
+		font-size: 20px;
+		font-weight: 100;
+	}
+	p {
+		margin: 0;
+		color: $background-color;
+		font-size: 20px;
+//		font-weight: 100;
+	}
+	.img-wrap {
+		
+		img {
+			width: 48px;
+			height: 48px;
+		}
+	}
+	> span {
+		margin-left: 10px;
+		color: $background-color;
+		font-size: 20px;
+	}
+	.img-label {
+		line-height: 48px;
+	}
+	input[type="text"] {
+		background-color: transparent;
+		border: none;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+	}
+	select {
+		background-color: transparent;
+		border: none;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+		width: 130px;
+		
+		option {
+			background-color: $gray-blue;
+		}
+	}
+	.datepicker {
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+		font-size: 20px;
+		color: white;
+		text-align: right;
+	}
+	.avatar {
+		width: 28px;
+		height: 28px;
+	}
+    
+    progress {
+        margin-top: 5px;
+        background-color: white;
+    }
+	
+	&--user {
+		overflow: hidden;
+		
+		> img {
+			width: 48px;
+			height: 48px;
+			margin-right: 10px;
+		}
+		article {
+			position: relative;
+			margin-top: 5px;
+			
+			h4 {
+				color: white;
+				font-size: 20px;
+				font-weight: 100;
+				white-space: nowrap;
+			}
+			p {
+				font-size: 15px;
+			}
+		}
+		> a {
+			position: absolute;
+			right: 30px;
+			line-height: 48px;
+			font-size: 48px;
+			font-weight: 700;
+			color: $background-color;
+			cursor: pointer;
+			
+			&:hover {
+				color: white;
+			}
+		}
+		> input[type="checkbox"] {
+			width: 30px;
+			height: 100px;
+			margin: 0;
+			cursor: pointer;
+		}
+	}
+	&--heading {
+		background-color: transparent;
+		border-radius: 0;
+		padding: $p_more $p_more 0 $p_more;
+		margin-bottom: 0;
+	}
+}
+
+a.card-button {
+	display: inline-block;
+	width: 100%;
+	background-color: $gray-blue--op_middle;
+	border-radius: $r_default;
+	padding: $p_more;
+	margin-bottom: $m_default;
+	
+	img {
+		width: 48px;
+		height: 48px;
+	}
+	p {
+		margin: 0;
+		color: $background-color;
+		font-size: 20px;
+	}
+	
+	&:hover {
+		background-color: $primary-dark--op_middle;
+		
+		p {
+			color: white;
+		}
+	}
+}
+
+@media screen and (max-width: 355px) {
+	
+	.card-row {
+		
+		&--user {
+			
+			article {
+				margin-top: 0 !important;
+			}
+		}
+	}
+}

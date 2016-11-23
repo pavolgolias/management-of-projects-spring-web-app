@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style th:inline="text">
+        @font-face {
+            font-family: AvenirNext;
+            src: url([[${avenirNextRegularFontUrl}]]);
+        }
+        @font-face {
+            font-family: AvenirNext;
+            src: url([[${avenirNextItalicFontUrl}]]);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div style="
+        background-color: white;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: AvenirNext, Arial, sans-serif;
+        ">
+    <table>
+        <tr>
+            <td valign="bottom" style="
+                padding-bottom: 15px;
+            ">
+                <img th:src="${projectsLogoUrl}" width="100px"/>
+            </td>
+            <td valign="bottom" style="
+                text-align: right;
+                font-size: 30px;
+                padding-bottom: 15px;
+                font-style: italic;
+            ">
+                Account activation
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="
+                border-top: black 3px solid;
+                border-bottom: black 3px solid;
+                padding: 100px 14px 100px 14px;
+                text-align: center;
+                font-size: 23px;
+            ">
+                Your account was created and needs to be activated. <br/> <br/>
+                To activate your account click <a
+                    th:href="${activationUrl}">here</a>.
+                <br/> <br/>
+                If you did not request to create account, please visit <a
+                    th:href="${discardUrl}">this site</a>
+                and discard this
+                request.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="
+                padding-top: 15px;
+                font-size: 30px;
+                text-align: left;
+                font-style: italic;
+            ">
+                Sincerely yours Projects team
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

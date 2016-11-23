@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj Project Edit</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="base page page--projects background">
+
+<nav class="navbar-section">
+    <div class="container-fluid">
+        <div class="col-xs-2">
+            <a onclick="backToProject()" href="#">
+                <img src="images/icons/white/arrows.png" alt="menu icon">
+            </a>
+        </div>
+        <div class="col-xs-8 text-center">
+            <input type="text" id="projectName" value="Lorem Ipsum">
+        </div>
+    </div><!-- ./container-fluid -->
+</nav><!-- ./navbar-section -->
+
+<div class="container-fluid">
+   
+    <div class="col-md-6">
+        <div class="card-row">
+            <h3 class="float--left">
+                Project ID
+            </h3>
+            <input readonly="true" class="float--right" type="text" id="projectId" value="775">
+            <div class="float--clear"></div>
+        </div>
+        <div class="card-row hidden">
+            <h3 class="img-label float--left">
+                Project Image
+            </h3>
+            <p class="float--right">
+                <img src="images/icons/xs/Info_xs.png" alt="poject illlustration">
+            </p>
+            <div class="float--clear"></div>
+        </div>
+        <div class="card card--default">
+            <header>
+                <h4 class="float--left">
+                    Project Description
+                </h4>
+                <div class="float--clear"></div>
+            </header>
+            <section>
+                <article>
+                    <textarea id="projectDescription">Phasellus pretium nisi eu molestie facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque ornare pretium luctus. Phasellus efficitur in nunc eget ullamcorper. Mauris convallis, diam et dapibus vulputate, felis turpis euismod nunc, in sodales risus nulla vel libero. Etiam et ante tincidunt tortor molestie pulvinar. Proin euismod dignissim sem, in viverra diam facilisis ut. Nullam venenatis ante quis eros convallis, ut malesuada dolor placerat. Nam dignissim velit eget elit ultrices, nec semper sapien convallis. Aliquam erat volutpat. Praesent molestie vitae neque vel fringilla. Praesent maximus bibendum tortor in bibendum. In posuere dui nec euismod rhoncus. Aenean sed mi et dolor vulputate luctus. Duis mattis nec odio vitae hendrerit.</textarea>
+                </article>
+            </section>
+        </div>
+        <a id="saveProject" class="card-button text-center" href="#">
+            <img src="images/icons/white/save.png" alt="user icon">
+        </a>
+    </div>
+
+
+    <div class="col-md-6">
+        <ul class="nav nav-tabs tabs">
+            <li class="active left"><a href="#assigneeTab" role="tab" data-toggle="tab">Assignee</a></li>
+            <li class="right"><a href="#adminTab" role="tab" data-toggle="tab">Admins</a></li>
+        </ul>
+        <div class="card-row">
+            <img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
+            <input class="float--right" type="text" id="searchUserInput" onkeyup="searchForUser()"
+                   placeholder="Search for users...">
+            <div class="float--clear"></div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+
+		<div id="assigneeTab" role="tabpanel" class="tab-pane active">
+			<div  class="col-md-3">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Avalaible
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div class="col-md-3 visible">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Assigned
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div id="suggestedUsers" class="col-md-3 card-scrollable">
+
+			</div><!-- ./card-scrollable -->
+			<div class="col-md-3 invisible">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Assigned
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div id="assignedUsers" class="col-md-3 card-scrollable">
+				<!-- Generated content -->
+			</div><!-- ./card-scrollable -->
+		</div><!-- ./tab-pane -->
+
+		<div id="adminTab"  role="tabpanel" class="tab-pane">
+			<div  class="col-md-3">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Avalaible
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div class="col-md-3 visible">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Admins
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div id="suggestedAdmins" class="col-md-3 card-scrollable">
+				<!-- Dynamic content -->
+			</div>
+			<div class="col-md-3 invisible">
+				<div class="card-row card-row--heading">
+					<h3 class="float--left">
+						Assigned
+					</h3>
+					<div class="float--clear"></div>
+				</div>
+			</div>
+			<div id="admins" class="col-md-3 card-scrollable">
+				<!-- Generated content -->
+			</div><!-- ./card-scrollable -->
+		</div><!-- ./tab-pane -->
+   
+    </div><!-- ./tab-content -->
+    
+</div> <!-- ./container-fluid -->
+
+<!-- Dialogs -->
+<div class="dialog hidden">
+    <p id="message">Empty message</p>
+</div>
+<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+<!-- Custom scripts -->
+<script type="text/javascript" src="js/dialogs.js"></script>
+<script type="text/javascript" src="js/userPicker.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/projects/projectEdit.js"></script>
+
+</body>
+</html>

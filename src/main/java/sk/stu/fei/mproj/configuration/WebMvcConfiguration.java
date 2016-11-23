@@ -5,17 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 @EnableWebMvc
 @Configuration
 public class WebMvcConfiguration extends WebMvcAutoConfiguration {
+    private final JwtProperties jwtProperties;
 
     @Autowired
-    private JwtProperties jwtProperties;
+    public WebMvcConfiguration(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -43,6 +43,13 @@ public class WebMvcConfiguration extends WebMvcAutoConfiguration {
                                 jwtProperties.getHeader())
                         .allowCredentials(true)
                         .maxAge(3600);
+            }
+
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/app/css/**", "/app/fonts/**", "/app/images/**", "/app/js/**")
+                        .addResourceLocations("/app/css/", "/app/fonts/", "/app/images/", "/app/js/")
+                        .setCachePeriod(31556926);
             }
         };
     }

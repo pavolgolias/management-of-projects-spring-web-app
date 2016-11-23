@@ -12,8 +12,7 @@ import java.util.Collection;
 public class RoleSecuredAnnotationMetadataExtractor implements AnnotationMetadataExtractor<RoleSecured> {
     @SuppressWarnings("unchecked")
     @Override
-    public Collection<? extends ConfigAttribute> extractAttributes(RoleSecured roleSecured)
-    {
+    public Collection<? extends ConfigAttribute> extractAttributes(RoleSecured roleSecured) {
         AccountRole[] attributeTokens = roleSecured.value();
         if ( attributeTokens.length == 0 ) {
             attributeTokens = AccountRole.values();

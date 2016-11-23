@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj Task Edit</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
+</head>
+
+<body class="base page background">
+  	
+  	<nav class="navbar-section">
+		<div class="container-fluid">
+			<div class="col-xs-2">
+				<a id="backTaskCreate" href="scrum_board.html">
+					<img src="images/icons/white/arrows.png" alt="menu icon">
+				</a>
+			</div>
+			<div class="col-xs-8 text-center">
+				<input type="text" id="task_name" placeholder="Enter task name">
+			</div>
+		</div><!-- ./container-fluid -->
+	</nav><!-- ./navbar-section -->
+   	
+   	<div class="container-fluid">
+   		<div class="col-md-6">
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Type
+   				</h3>
+  				<select class="float--right" id="task_type">
+					<option>ChangeRequest</option>
+					<option>Task</option>
+					<option selected>Bug</option>
+					<option>Test</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Priority
+   				</h3>
+   				<select class="float--right" id="task_priority">
+					<option selected>Critical</option>
+					<option >High</option>
+					<option>Normal</option>
+					<option>Low</option>
+				</select>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					Created
+   				</h3>
+   				<p id="task_created" class="float--right">
+					21.11.2016
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>  
+   			<div class="card-row">
+   				<h3 class="float--left">
+   					ETA
+   				</h3>
+   				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
+   				<div class="float--clear"></div>
+   			</div>
+   		    <div class="card card--default card--bug">
+                <header>
+					<h4 class="float--left">
+						Task Description
+					</h4>
+                	<div class="float--clear"></div>
+                </header>
+                <section>
+                    <article>
+                        <textarea id="task_decscription"></textarea>
+                    </article>
+                    <div class="float--clear"></div>
+                </section>
+            </div>
+            <a id="saveTask" class="card-button text-center" href="#">
+				<img src="images/icons/white/save.png" alt="user icon">
+			</a>
+   		</div>
+   		
+        <!--<div class="col-md-6">
+			<div class="card-row">
+   				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
+   				<input class="float--right" type="text" id="searchInput" placeholder="Search for users...">
+   				<div class="float--clear"></div>
+   			</div>
+            </div>-->
+        <div class="col-md-3">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Avaliable
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div>
+        <div class="col-md-3 visible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+            </div>
+
+		<div id="suggestedUsers" class="col-md-3 card-scrollable">
+			<!-- Dynamic content -->
+   		</div><!-- ./card-scrollable -->
+        
+        <div class="col-md-3 invisible">
+            <div class="card-row card-row--heading">
+   				<h3 class="float--left">
+   					Assigned
+   				</h3>
+   				<div class="float--clear"></div>
+   			</div>
+		</div>
+		<div id="assignedUser" class="col-md-3 card-scrollable">
+			<!-- Assigned user placeholder -->
+			<!--<div class="card-row card-row--user">
+				<a class="float--right">&minus;</a>
+				<img class="float float--left" src="images/icons/avatars/avatar48.png" alt="user icon">
+				<article class="float--left">
+					<h4>
+						User's Name
+					</h4>
+					<p>
+						user@gmail.com
+					</p>
+				</article>
+				<div class="float--both"></div>
+			</div>-->
+			<!-- ./Assigned user placeholder -->
+		</div><!-- ./card-scrollable -->
+		<div class="col-md-6">
+   			<!-- User placeholder -->
+<!--
+			<div class="card-row card-row--user">
+				<a class="float--right">&times;</a>
+				<img class="float float--left" src="images/icons/white/user.png" alt="user icon">
+				<article class="float float--left">
+					<h4>
+						User's Name
+					</h4>
+					<p>
+						Total 8 opened tasks
+					</p>
+				</article>
+				<div class="float--both"></div>
+			</div>
+-->
+			<!-- ./User placeholder -->
+			
+			<!-- Generated content -->
+			<a class="card-button text-center hidden" href="#">
+				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
+			</a>
+   		</div>
+   	</div> <!-- ./container-fluid -->
+   	
+   	<!-- Dialogs -->
+   	<div class="dialog hidden">
+		<p id="message">Empty message</p>
+	</div>
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker Library -->
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
+    <script type="text/javascript" src="js/datepicker.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/task/taskCreate.js"></script>
+
+</body>
+</html>

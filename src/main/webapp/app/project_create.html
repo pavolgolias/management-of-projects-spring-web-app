@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mproj Project Create</title>
+
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="base page page--projects background">
+  	
+  	<nav class="navbar-section">
+		<div class="container-fluid">
+			<div class="col-xs-2">
+				<a href="projects.html">
+					<img src="images/icons/white/arrows.png" alt="menu icon">
+				</a>
+			</div>
+			<div class="col-xs-8 text-center">
+				<p>Create your own project</p>
+			</div>
+		</div><!-- ./container-fluid -->
+	</nav><!-- ./navbar-section -->
+   	
+   	<div class="container-fluid">
+   		<div class="col-md-6 margin-bottom--3x-more">
+   			<div class="card-row">
+   				<h3 class="img-label float--left">
+   					Project Name
+   				</h3>
+   				<p class="float--right">
+   					<input type="text" id="project_name" placeholder="Project name">
+   				</p>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card-row">
+   				<h3 class="img-label float--left">
+   					Project Image
+   				</h3>
+   				<div class="img-wrap float--right">
+   					<img src="images/icons/white/interface.png" alt="poject illlustration">
+   				</div>
+   				<div class="float--clear"></div>
+   			</div>
+   			<div class="card card--default">
+                <header>
+					<h4 class="float--left">
+						Project Description
+					</h4>
+                	<div class="float--clear"></div>
+                </header>
+                <section>
+                    <article>
+                        <textarea id="project_decscription" placeholder="Enter project description"></textarea>
+                    </article>
+                </section>
+            </div>
+            <a class="card-button text-center" id="saveProject" href="#">
+				<img src="images/icons/white/save.png" alt="user icon">
+			</a>
+   		</div>
+
+
+		<div class="col-md-6">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#assigneeTab" role="tab" data-toggle="tab" style="color:#5e5e5e">Assignee</a></li>
+				<li><a href="#adminTab" role="tab" data-toggle="tab" style="color:#5e5e5e">Admins</a></li>
+
+			</ul>
+			<div class="card-row">
+				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
+				<input class="float--right" type="text" id="searchUserInput" onkeyup="searchForUser()"
+					   placeholder="Search for users...">
+				<div class="float--clear"></div>
+			</div>
+		</div>
+
+		<div class="tab-content">
+
+			<div id="assigneeTab" role="tabpanel" class="tab-pane active">
+				<div  class="col-md-3">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Avalaible
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+				<div class="col-md-3 visible">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Assigned
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+
+				<div id="suggestedUsers" class="col-md-3 card-scrollable">
+
+				</div>
+
+				<div class="col-md-3 invisible">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Assigned
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+
+				<div id="assignedUsers" class="col-md-3 card-scrollable">
+
+				</div>
+			</div>
+
+			<div id="adminTab"  role="tabpanel" class="tab-pane">
+				<div  class="col-md-3">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Avalaible
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+				<div class="col-md-3 visible">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Admins
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+
+				<div id="suggestedAdmins" class="col-md-3 card-scrollable">
+
+				</div>
+
+				<div class="col-md-3 invisible">
+					<div class="card-row card-row--heading">
+						<h3 class="float--left">
+							Assigned
+						</h3>
+						<div class="float--clear"></div>
+					</div>
+				</div>
+
+				<div id="admins" class="col-md-3 card-scrollable">
+
+				</div>
+
+			</div>
+		</div>
+   	</div> <!-- ./container-fluid -->	
+
+   <!-- Dialogs -->
+   <div class="dialog hidden">
+		<p id="message">Empty message</p>
+	</div>
+	<div class="dialog--dim hidden"></div><!-- JS usage SHOW: $('.dialog--dim').removeClass('hidden'); -->
+   
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Custom scripts -->
+	<script type="text/javascript" src="js/dialogs.js"></script>
+	<script type="text/javascript" src="js/dialogs.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/userPicker.js"></script>
+	<script type="text/javascript" src="js/projects/projectCreate.js"></script>
+
+
+</body>
+</html>

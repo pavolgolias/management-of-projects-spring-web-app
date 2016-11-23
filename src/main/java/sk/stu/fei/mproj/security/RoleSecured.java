@@ -1,7 +1,6 @@
 package sk.stu.fei.mproj.security;
 
 
-
 import sk.stu.fei.mproj.domain.enums.AccountRole;
 
 import java.lang.annotation.*;
@@ -10,7 +9,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface RoleSecured
-{
+public @interface RoleSecured {
     AccountRole[] value() default {};
 }
