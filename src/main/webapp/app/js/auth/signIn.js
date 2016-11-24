@@ -2,7 +2,6 @@
  * Created by Patrik on 09/11/2016.
  */
 
-
 function checkIsSignedIn(){
     var token = localStorage.getItem("token");
     if(token == undefined || token == '')

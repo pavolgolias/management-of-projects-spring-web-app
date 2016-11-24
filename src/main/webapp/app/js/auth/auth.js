@@ -41,8 +41,14 @@ function getUrlParameter(sParam) {
 };
 
 function buildForgotPage() {
-    var html = "<input id='emailAddress' type='text' placeholder='Insert your eamil here'>";
-    html += "<button onclick='askToRecoverAccount()'>Recover</button>";
+    var html = "<div class='login-section'>";
+    html += "<div class='container-xs'>";
+    html += "<input id='emailAddress' type='text' placeholder='Insert your eamil here'>";
+    html += "<div class='login-section__btn-group'>";
+    html += "<a href='#' onclick='askToRecoverAccount()'>Recover</a>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
 
     return html;
 }
