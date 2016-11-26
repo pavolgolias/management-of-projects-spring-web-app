@@ -2,6 +2,16 @@
  * Created by Patrik on 10/11/2016.
  */
 
+$(document).ready(function() {
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            signUp();
+        }
+    });
+
+});
+
 function resetSignUp(){
     $("#exampleInputName").val('');
     $("#exampleInputSurname").val('');
