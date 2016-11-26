@@ -59,12 +59,11 @@
 	}
 	&__btn-group {
 		width: 100%;
-		clear: both;
+		margin-bottom: 10px;
 		
 		a {
 			padding: $p_default;
 			background-color: $primary--op_middle; 
-//			opacity: $op_button; 
 			font-size: 20px;
 			font-weight: 100;
 			color: white;
@@ -74,14 +73,24 @@
 			}
 		}
 		.left {
-			float: left;
 			width: 50%;
 			border-bottom-left-radius: $p_default;
 		}
 		.right {
-			float: right;
 			width: 49.5%;
 			border-bottom-right-radius: $p_default;
+		}
+	}
+	&__text {
+		
+		&--bottom {
+			font-size: 20px;
+			color: white;
+			font-weight: 100;
+			
+			&:hover {
+				border-bottom: 1px solid white;
+			}
 		}
 	}
 }

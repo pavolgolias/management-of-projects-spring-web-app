@@ -11013,7 +11013,7 @@ body {
 
 .base .login-section__btn-group {
   width: 100%;
-  clear: both;
+  margin-bottom: 10px;
 }
 
 .base .login-section__btn-group a {
@@ -11029,15 +11029,23 @@ body {
 }
 
 .base .login-section__btn-group .left {
-  float: left;
   width: 50%;
   border-bottom-left-radius: 5px;
 }
 
 .base .login-section__btn-group .right {
-  float: right;
   width: 49.5%;
   border-bottom-right-radius: 5px;
+}
+
+.base .login-section__text--bottom {
+  font-size: 20px;
+  color: white;
+  font-weight: 100;
+}
+
+.base .login-section__text--bottom:hover {
+  border-bottom: 1px solid white;
 }
 
 .base .side-navbar {
