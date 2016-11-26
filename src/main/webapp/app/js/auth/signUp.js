@@ -55,6 +55,12 @@ function signUp(){
         }),
         contentType:"application/json; charset=utf-8",
         success: function(data){
+            setTimeout(function() {
+                showMessage("You were registered! Authentification email was sent to your email adress!");
+            }, 10000);
+            setTimeout(function() {
+                showMessage("You will be redirected to login page in 3 seconds.");
+            }, 3000);
             window.location.replace("index.html");
         },
         error: function(xhr){
