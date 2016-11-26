@@ -109,7 +109,7 @@ function buildTask(task) {
         html += "</ul>";
     }else {
         html += "<ul>";
-        html += "<li><img src='images/icons/white/lock.png' alt='user icon'></li>";
+        html += "<li><img src='images/icons/white/user-add.png' alt='user icon'></li>";
         html += "</ul>";
     }
 
