@@ -55,13 +55,13 @@ function signUp(){
         }),
         contentType:"application/json; charset=utf-8",
         success: function(data){
-            setTimeout(function() {
-                showMessage("You were registered! Authentification email was sent to your email adress!");
-            }, 10000);
+            showMessage("You were registered! Authentification email was sent to your email address!");
             setTimeout(function() {
                 showMessage("You will be redirected to login page in 3 seconds.");
-            }, 3000);
-            window.location.replace("index.html");
+            }, 5000);
+            setTimeout(function() {
+                window.location.replace("index.html");
+            }, 8000);
         },
         error: function(xhr){
             showMessage("Error "+xhr.status+"! Unable to sign in!");
