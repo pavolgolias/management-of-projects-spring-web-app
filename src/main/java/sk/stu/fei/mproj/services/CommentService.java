@@ -1,6 +1,8 @@
 package sk.stu.fei.mproj.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.Mapper;
 import sk.stu.fei.mproj.domain.dao.CommentDao;
 import sk.stu.fei.mproj.domain.dao.DaoBase;
@@ -18,7 +20,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
-
+@Service
+@Transactional
 public class CommentService {
 
     private final CommentDao commentDao;

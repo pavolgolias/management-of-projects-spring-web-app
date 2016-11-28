@@ -1,5 +1,7 @@
 package sk.stu.fei.mproj.domain.dao;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.entities.Comment;
 import sk.stu.fei.mproj.domain.entities.Task;
 
@@ -10,7 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import static sk.stu.fei.mproj.domain.entities.QComment.comment;
-
+@Repository
+@Transactional
 public class CommentDao extends DaoBase<Comment, Long> {
 
     @Override
