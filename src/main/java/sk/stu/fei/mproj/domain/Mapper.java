@@ -7,6 +7,9 @@ import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 import sk.stu.fei.mproj.domain.dto.account.AccountDto;
 import sk.stu.fei.mproj.domain.dto.account.CreateAccountRequestDto;
 import sk.stu.fei.mproj.domain.dto.account.UpdateAccountRequestDto;
+import sk.stu.fei.mproj.domain.dto.comment.CommentDto;
+import sk.stu.fei.mproj.domain.dto.comment.CreateCommentRequestDto;
+import sk.stu.fei.mproj.domain.dto.comment.UpdateCommentRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.CreateProjectRequestDto;
 import sk.stu.fei.mproj.domain.dto.project.ProjectDto;
 import sk.stu.fei.mproj.domain.dto.project.UpdateProjectRequestDto;
@@ -15,6 +18,7 @@ import sk.stu.fei.mproj.domain.dto.task.TaskBaseDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
+import sk.stu.fei.mproj.domain.entities.Comment;
 import sk.stu.fei.mproj.domain.entities.Project;
 import sk.stu.fei.mproj.domain.entities.Task;
 
@@ -140,5 +144,30 @@ public class Mapper {
     public List<TaskDto> toTaskDtoList(@NotNull List<Task> tasks) {
         Objects.requireNonNull(tasks);
         return mapperFactory.getMapperFacade().mapAsList(tasks, TaskDto.class);
+    }
+
+    public Comment toComment(@NotNull CreateCommentRequestDto dto) {
+        Objects.requireNonNull(dto);
+
+        return mapperFactory.getMapperFacade().map(dto, Comment.class);
+    }
+
+    public CommentDto toCommentDto(@NotNull Comment comment) {
+        Objects.requireNonNull(comment);
+
+        return mapperFactory.getMapperFacade().map(comment, CommentDto.class);
+    }
+
+    public void fillComment(@NotNull UpdateCommentRequestDto dto, @NotNull Comment comment) {
+        Objects.requireNonNull(dto);
+        Objects.requireNonNull(comment);
+
+        mapperFactory.getMapperFacade().map(dto, comment);
+    }
+
+    public List<CommentDto> toCommentDtoList(@NotNull List<Comment> comments) {
+        Objects.requireNonNull(comments);
+
+        return mapperFactory.getMapperFacade().mapAsList(comments, CommentDto.class);
     }
 }

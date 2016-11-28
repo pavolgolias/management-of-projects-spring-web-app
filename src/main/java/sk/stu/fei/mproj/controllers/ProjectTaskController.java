@@ -42,7 +42,7 @@ public class ProjectTaskController {
     @RequestMapping(value = "/{taskId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
     public DataResponse<TaskDto> getTask(@PathVariable Long projectId, @PathVariable Long taskId) {
-        return new DataResponse<>(mapper.toTaskDto(projectTaskService.getTask(projectId, taskId)));
+        return new DataResponse<>(mapper.toTaskDto(projectTaskService.getTask(taskId)));
     }
 
     @ApiOperation(value = "Create a task")
