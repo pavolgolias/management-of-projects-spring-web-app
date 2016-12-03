@@ -11000,6 +11000,11 @@ body {
   border-top-right-radius: 5px;
 }
 
+.base .login-section input.bottom {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 .base .login-section input.email {
   background-image: url(../images/icons/white/mail.png);
   background-size: 24px 24px;
@@ -11030,11 +11035,20 @@ body {
 .base .login-section__btn-group .left {
   width: 50%;
   border-bottom-left-radius: 5px;
+  float: left;
 }
 
 .base .login-section__btn-group .right {
   width: 49.5%;
   border-bottom-right-radius: 5px;
+  float: right;
+}
+
+.base .login-section__btn-group .bottom {
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  float: left;
 }
 
 .base .login-section__text--bottom {
