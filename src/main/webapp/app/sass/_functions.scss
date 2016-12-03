@@ -32,6 +32,14 @@
   	-ms-transform: translateX(-50%);
 }
 
+@mixin centerFixed() {
+	position: fixed;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ 	-ms-transform: translate(-50%);
+}
+
 @mixin centerAbsolute() {
     position: absolute;
     top: 50%;
