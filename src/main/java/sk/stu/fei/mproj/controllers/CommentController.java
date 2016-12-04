@@ -45,7 +45,9 @@ public class CommentController {
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @RoleSecured
-    public DataResponse<CommentDto> createComment(@PathVariable Long taskId, @RequestBody @Valid CreateCommentRequestDto dto) {
+    public DataResponse<CommentDto> createComment(@PathVariable Long projectId,
+                                                  @PathVariable Long taskId,
+                                                  @RequestBody @Valid CreateCommentRequestDto dto) {
         Comment comment = commentService.createComment(taskId, dto);
         return new DataResponse<>(mapper.toCommentDto(comment));
     }
@@ -60,7 +62,10 @@ public class CommentController {
     })
     @RequestMapping(value = "/{commentId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<CommentDto> updateComment(@PathVariable Long commentId, @RequestBody @Valid UpdateCommentRequestDto dto) {
+    public DataResponse<CommentDto> updateComment(@PathVariable Long projectId,
+                                                  @PathVariable Long taskId,
+                                                  @PathVariable Long commentId,
+                                                  @RequestBody @Valid UpdateCommentRequestDto dto) {
         return new DataResponse<>(mapper.toCommentDto(commentService.updateComment(commentId, dto)));
     }
 
@@ -87,7 +92,9 @@ public class CommentController {
     })
     @RequestMapping(value = "/{commentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<CommentDto> getComment(@PathVariable Long commentId) {
+    public DataResponse<CommentDto> getComment(@PathVariable Long projectId,
+                                               @PathVariable Long taskId,
+                                               @PathVariable Long commentId) {
         return new DataResponse<>(mapper.toCommentDto(commentService.getComment(commentId)));
     }
 
@@ -99,6 +106,7 @@ public class CommentController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
     public PageableDataResponse<List<CommentDto>> getComments(
+            @PathVariable Long projectId,
             @PathVariable Long taskId,
             @RequestParam(defaultValue = "-1", required = false) Long nextId,
             @RequestParam(defaultValue = "20", required = false) Long pageSize) {

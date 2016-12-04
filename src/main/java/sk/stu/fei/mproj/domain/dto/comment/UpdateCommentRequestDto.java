@@ -10,9 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Getter
 @Setter
 public class UpdateCommentRequestDto {
-
-    @ApiModelProperty(value = "Text", required = true)
+    @ApiModelProperty(value = "Content of the comment", required = true)
     @NotBlank
     private String text;
-
 }

@@ -137,10 +137,8 @@ public class AccountService {
             throw new IllegalArgumentException(String.format("Email=%s is already used by another account.", dto.getEmail()));
         }
         Account account = mapper.toAccount(dto);
-        //TODO set account to inactive later on and create action token for it
         account.setActive(false);
         setActionToken(account);
-//        account.setActive(true);
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");

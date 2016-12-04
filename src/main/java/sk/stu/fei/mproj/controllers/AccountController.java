@@ -13,12 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sk.stu.fei.mproj.domain.Mapper;
+import sk.stu.fei.mproj.domain.dao.DataPage;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
+import sk.stu.fei.mproj.domain.dto.PageableDataResponse;
 import sk.stu.fei.mproj.domain.dto.account.*;
+import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.entities.Account;
+import sk.stu.fei.mproj.domain.entities.Task;
 import sk.stu.fei.mproj.security.AuthorizationManager;
 import sk.stu.fei.mproj.security.RoleSecured;
 import sk.stu.fei.mproj.services.AccountService;
+import sk.stu.fei.mproj.services.ProjectTaskService;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -32,12 +37,14 @@ public class AccountController {
     private final AccountService accountService;
     private final Mapper mapper;
     private final AuthorizationManager authorizationManager;
+    private final ProjectTaskService taskService;
 
     @Autowired
-    public AccountController(AccountService accountService, Mapper mapper, AuthorizationManager authorizationManager) {
+    public AccountController(AccountService accountService, Mapper mapper, AuthorizationManager authorizationManager, ProjectTaskService taskService) {
         this.accountService = accountService;
         this.mapper = mapper;
         this.authorizationManager = authorizationManager;
+        this.taskService = taskService;
     }
 
     @ApiOperation(value = "Sign up and create account")
@@ -226,5 +233,21 @@ public class AccountController {
     public DataResponse<Void> deleteAccountAvatar(@PathVariable Long accountId) {
         accountService.deleteAccountAvatar(accountId);
         return new DataResponse<>();
+    }
+
+    @ApiOperation(value = "Get page of assigned tasks for user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @RequestMapping(value = "/{accountId}/assignedTasks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RoleSecured
+    public PageableDataResponse<List<TaskDto>> getAssignedTasksForAccount(
+            @PathVariable Long accountId,
+            @RequestParam(defaultValue = "20", required = false) Long pageSize,
+            @RequestParam(defaultValue = "-1", required = false) Long nextId) {
+        DataPage<List<Task>> tasksPage = taskService.getAssignedTasksForAccountPage(accountId, pageSize, nextId);
+        return new PageableDataResponse<>(mapper.toTaskDtoList(tasksPage.getPage()), tasksPage.getPageSize(), tasksPage.getNextId());
     }
 }

@@ -6,21 +6,21 @@ import lombok.Getter;
 import lombok.Setter;
 import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @ApiModel
 @Getter
 @Setter
 public class CommentDto {
-
     @ApiModelProperty(value = "Comment ID", required = true)
     private Long commentId;
 
-    @ApiModelProperty(value = "Text", required = true)
+    @ApiModelProperty(value = "Content of the comment", required = true)
     private String text;
 
-    @ApiModelProperty(value = "Last update timestamp")
+    @ApiModelProperty(value = "Last update timestamp", required = true)
     private Date updatedAt;
+
+    @ApiModelProperty(value = "Comment author", required = true)
+    private AccountBaseDto author;
 }

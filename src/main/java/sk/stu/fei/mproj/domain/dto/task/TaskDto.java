@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import sk.stu.fei.mproj.domain.dto.account.AccountDto;
+import sk.stu.fei.mproj.domain.dto.account.AccountBaseDto;
 
 import java.util.Date;
 
@@ -28,7 +28,7 @@ public class TaskDto extends TaskBaseDto {
     private Integer progress;
 
     @ApiModelProperty(value = "Author of the task", required = true)
-    private AccountDto author;
+    private AccountBaseDto author;
 
     @ApiModelProperty(value = "Last update timestamp", required = true)
     private Date updatedAt;

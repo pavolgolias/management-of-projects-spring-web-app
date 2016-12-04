@@ -20,6 +20,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
+
 @Service
 @Transactional
 public class CommentService {
@@ -93,7 +94,7 @@ public class CommentService {
     @RoleSecured
     public DataPage<List<Comment>> getCommentPage(Long pageSize, Long startId, Long taskId) {
         final Task task = getOrElseThrowEntityNotFoundEx(taskId, taskDao, String.format("Task id=%d not found", taskId));
-        return commentDao.findCommentPageFilteredByTask(pageSize, startId, task);
+        return commentDao.findCommentsForTaskPage(pageSize, startId, task);
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {
