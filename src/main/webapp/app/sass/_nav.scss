@@ -105,7 +105,7 @@
 		font-size: 30px;
 		font-weight: 100;
 		margin-top: 20px;
-		white-space: nowrap;
+		@include textOverflowWithDots(100%);
 	}
 	input {
 		border: none;
@@ -130,9 +130,9 @@
 			color: white;
 			font-size: 45px;
 			font-weight: 100;
-			white-space: nowrap;
 			margin-top: 0;
 			text-align: left;
+//			@include textOverflowWithDots(100%);
 		}
 	}
 }
@@ -159,6 +159,9 @@
 		p {
 			font-size: 25px;
 			margin-top: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		input {
 			font-size: 25px;

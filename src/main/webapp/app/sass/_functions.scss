@@ -17,6 +17,13 @@
 	}
 }
 
+@mixin textOverflowWithDots($elementWidth) {
+	width: $elementWidth;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 @mixin centerVertically() {
     position: absolute;
     top: 50%;

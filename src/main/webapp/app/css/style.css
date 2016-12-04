@@ -10936,6 +10936,13 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .background {
+    background: none;
+    background-color: #789EA7;
+  }
+}
+
 .base .page {
   height: 100%;
   width: 100%;
@@ -11168,7 +11175,10 @@ body {
   font-size: 30px;
   font-weight: 100;
   margin-top: 20px;
+  width: 100%;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .base .navbar-section input {
@@ -11197,7 +11207,6 @@ body {
   color: white;
   font-size: 45px;
   font-weight: 100;
-  white-space: nowrap;
   margin-top: 0;
   text-align: left;
 }
@@ -11221,6 +11230,9 @@ body {
   .base .navbar-section p {
     font-size: 25px;
     margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .base .navbar-section input {
     font-size: 25px;
@@ -11414,7 +11426,7 @@ body {
 .base .card section ul li {
   float: left;
   margin-right: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .base .card section ul li img {
@@ -11433,6 +11445,13 @@ body {
 
 .base .card--project header {
   background-color: #547076;
+}
+
+.base .card--project header .float--left {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .base .card--project article {
@@ -11632,6 +11651,19 @@ body {
 
 .base a.card-button:hover p {
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .base .card section > img {
+    width: 50px;
+    height: 48px;
+  }
+  .base .card--project article {
+    margin-left: 58px;
+  }
+  .base .card--project ul {
+    margin-left: 58px;
+  }
 }
 
 @media screen and (max-width: 355px) {
