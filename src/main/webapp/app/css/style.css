@@ -11653,6 +11653,13 @@ body {
   }
 }
 
+.base .blockable {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
 .base .cube-spinner {
   margin: 20px auto;
   width: 40px;

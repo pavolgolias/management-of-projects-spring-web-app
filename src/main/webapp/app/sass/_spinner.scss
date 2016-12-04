@@ -6,6 +6,13 @@
     to {-webkit-transform: rotate(360deg);}
 }
 
+.blockable {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+
 .cube-spinner {
 	margin: 20px auto;
 	width: 40px;
