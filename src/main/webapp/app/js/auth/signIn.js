@@ -1,6 +1,15 @@
 /**
  * Created by Patrik on 09/11/2016.
  */
+$(document).ready(function() {
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            signIn();
+        }
+    });
+
+});
 
 function checkIsSignedIn(){
     var token = localStorage.getItem("token");
