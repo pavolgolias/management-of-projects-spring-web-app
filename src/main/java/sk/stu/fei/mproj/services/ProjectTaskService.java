@@ -43,7 +43,7 @@ public class ProjectTaskService {
     }
 
     @RoleSecured
-    public Task getTask(Long projectId, Long taskId) {
+    public Task getTask(Long taskId) {
         return getOrElseThrowEntityNotFoundEx(taskId, taskDao, String.format("Task id=%d not found", taskId));
     }
 
@@ -85,7 +85,7 @@ public class ProjectTaskService {
     public Task updateTask(Long projectId, Long taskId, @NotNull UpdateTaskRequestDto dto) {
         Objects.requireNonNull(dto);
 
-        final Task task = getTask(projectId, taskId);
+        final Task task = getTask(taskId);
         checkUpdateTaskEligibilityOrElseThrowSecurityEx(
                 task,
                 authorizationManager.getCurrentAccount(),
@@ -120,7 +120,7 @@ public class ProjectTaskService {
 
     @RoleSecured
     public void deleteTask(Long projectId, Long taskId) {
-        final Task task = getTask(projectId, taskId);
+        final Task task = getTask(taskId);
 
         checkUpdateTaskEligibilityOrElseThrowSecurityEx(
                 task,
