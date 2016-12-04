@@ -80,7 +80,7 @@ function buildUserElement(userJsonObject,toAssign,admin){
             html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addToAssigned("+userJsonObject.accountId+")'>&plus;</a>";
     }
     //TODO add users avatar
-    html = html + defaultImg;
+    html = html + "<img class='float--left' src='"+userJsonObject.staticAvatarFilename+"' alt='avatar'>";
     html = html + "<article class='float--left'><h4>"
     html = html + userJsonObject.firstName + " " + userJsonObject.lastName;
     html = html + "</h4><p>";

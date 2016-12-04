@@ -25,7 +25,7 @@
 			</div>
 			<div class="col-xs-8">
 				<div class="user-info center--absolute center--horizontal">
-					<img class="float--left" src="images/avatar.png" alt="avatar">
+					<img class="float--left avatar-flag" src="images/avatar.png" alt="avatar">
 					<p id="headerName">Unknow user</p>
 				</div>
 			</div>
@@ -65,8 +65,10 @@
    					Avatar
    				</h3>
    				<span class="float--right">❯</span>
-   				<img class="float--right avatar" src="images/avatar.png" alt="avatar icon">
-   				<div class="float--clear"></div>
+				<a href="#" onclick="displayAvatarPicker()">
+   				<img class="float--right avatar avatar-flag" src="images/avatar.png" alt="avatar icon">
+				</a>
+				<div class="float--clear"></div>
    			</div>
    			<div class="card-row">
    				<h3 class="float--left">
@@ -77,6 +79,9 @@
    				</p>
    				<div class="float--clear"></div>
    			</div>
+			<a class="card-button text-center" href="#" onclick="displayAvatarPicker()">
+				<p>Change Avatar</p>
+			</a>
    			<a class="card-button text-center" href="change_password.html">
 				<p>Change Password</p>
 			</a>
@@ -127,10 +132,65 @@
                </div> ./container-fluid -->
    	
    	<!-- Dialogs -->
+		<div class="dialog--dim hidden">
+		<div class="dialog dialog--picpick">
+			<img src="images/icons/avatars/avatar1.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar2.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar3.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar4.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar5.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar6.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar7.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar8.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar9.png"  alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar10.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar11.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar12.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar13.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar14.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar15.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar16.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar17.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar18.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar19.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar20.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar21.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar22.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar23.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar24.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar25.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar26.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar27.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar28.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar29.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar30.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar31.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar32.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar33.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar34.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar35.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar36.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar37.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar38.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar39.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar40.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar41.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar42.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar43.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar44.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar45.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar46.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar47.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar48.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar49.png" alt="avatar" onclick="changeAvatar(this)">
+			<img src="images/icons/avatars/avatar50.png" alt="avatar" onclick="changeAvatar(this)">
+		</div>
+		<!-- JS usage SHOW: $('.dialog--dim').toggleClass('hidden'); -->
+		</div>
+
 		<div class="dialog hidden">
 			<p id="message">Empty message</p>
 		</div>
-		<div class="dialog--dim hidden"></div><!-- JS usage SHOW:-->
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

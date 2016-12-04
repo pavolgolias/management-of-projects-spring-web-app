@@ -80,7 +80,7 @@ function buildProject(index,projectObject){
 
     html = html + "<header><h4 class='float--left'>";
     if(projectObject.administrators.length>0){
-        html = html +projectObject.administrators[0].firstName+" "+projectObject.administrators[0].lastName;
+        html = html +projectObject.author.firstName+" "+projectObject.author.lastName;
     }
     html =html + "</h4>";
 
@@ -91,7 +91,7 @@ function buildProject(index,projectObject){
     html = html + "<p>" + projectObject.description + "</p></article><ul>";
 
     for(var iconIndex=0; iconIndex < projectObject.administrators.length ; iconIndex ++){
-        html = html + "<li><img src='images/icons/white/user.png' alt='user icon' title='"+ projectObject.administrators[iconIndex].firstName+" "+projectObject.administrators[iconIndex].lastName+"'></li>";
+        html = html + "<li><img src='"+ projectObject.administrators[iconIndex].staticAvatarFilename +"' alt='user icon' title='"+ projectObject.administrators[iconIndex].firstName+" "+projectObject.administrators[iconIndex].lastName+"'></li>";
     }
     html = html + "</ul><div class='float--clear'></div></section></div></div></div>";
     return html;

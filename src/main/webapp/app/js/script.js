@@ -1,10 +1,17 @@
 /**
  * Created by Tomas on 26-Oct-16.
  */
+$( document ).ready(function() {
+
+	var account = localStorage.getItem("account");
+	if(account == null)
+		return;
+
+	$("#side-navbar").find("header img").attr('src',JSON.parse(account).staticAvatarFilename);
+});
 
 // Set dialog event
-$(window).click(function() {
-	$('.dialog').addClass('hidden');
+$('.dialog--dim').click(function() {
 	$('.dialog--dim').addClass('hidden');
 });
 
