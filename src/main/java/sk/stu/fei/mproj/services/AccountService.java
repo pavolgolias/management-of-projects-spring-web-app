@@ -144,6 +144,9 @@ public class AccountService {
             throw new IllegalArgumentException("Password and repeat password must be same.");
         }
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
+        if ( dto.getStaticAvatarFilename() == null ) {
+            account.setStaticAvatarFilename("images/icons/avatars/avatar1.png");
+        }
         accountDao.persist(account);
 
         Map<String, String> model = new HashMap<>();

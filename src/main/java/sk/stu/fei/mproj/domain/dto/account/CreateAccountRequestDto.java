@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotNull;
+
 @ApiModel
 @Getter
 @Setter
@@ -31,4 +33,7 @@ public class CreateAccountRequestDto {
     @ApiModelProperty(value = "Repeat password", required = true)
     @NotBlank
     private String repeatPassword;
+
+    @ApiModelProperty(value = "Account's static avatar path")
+    private String staticAvatarFilename;
 }

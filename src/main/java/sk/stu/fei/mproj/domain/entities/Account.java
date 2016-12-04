@@ -69,6 +69,9 @@ public class Account {
     @Column
     private String avatarFilename;
 
+    @Column
+    private String staticAvatarFilename;
+
     /**
      * Projects where this account is administrator account.
      * This is not owning side of the JPA relation!

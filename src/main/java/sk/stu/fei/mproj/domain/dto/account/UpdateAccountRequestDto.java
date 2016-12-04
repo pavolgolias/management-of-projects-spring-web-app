@@ -18,4 +18,8 @@ public class UpdateAccountRequestDto {
     @ApiModelProperty(value = "Last name", required = true)
     @NotNull
     private String lastName;
+
+    @ApiModelProperty(value = "Account's static avatar path", required = true)
+    @NotNull
+    private String staticAvatarFilename;
 }
