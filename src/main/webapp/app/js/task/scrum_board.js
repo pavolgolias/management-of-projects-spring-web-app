@@ -105,7 +105,7 @@ function buildTask(task) {
     html += "</article>";
     if(task.assignee != null){
         html += "<ul>";
-        html += "<li><img src='images/icons/white/user.png' alt='user icon' title='"+task.assignee.firstName+" "+task.assignee.lastName+"'></li>";
+        html += "<li><img src='"+task.assignee.staticAvatarFilename+"' alt='user icon' title='"+task.assignee.firstName+" "+task.assignee.lastName+"'></li>";
         html += "</ul>";
     }else {
         html += "<ul>";
