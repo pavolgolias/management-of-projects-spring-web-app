@@ -146,6 +146,13 @@
 
 @media all and (max-width: 768px) {
 	
+	.side-navbar {
+		
+		.nav-links {
+			margin-top: 30px;
+		}
+	}
+	
 	.navbar-section {
 		margin-top: 10px;
 		
@@ -159,9 +166,7 @@
 		p {
 			font-size: 25px;
 			margin-top: 0;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			@include textOverflowWithDots(100%);
 		}
 		input {
 			font-size: 25px;

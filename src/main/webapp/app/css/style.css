@@ -10910,7 +10910,7 @@ body {
 }
 
 .card-scrollable {
-  height: 600px;
+  max-height: 600px;
   overflow-y: auto;
 }
 
@@ -11219,6 +11219,9 @@ body {
 }
 
 @media all and (max-width: 768px) {
+  .base .side-navbar .nav-links {
+    margin-top: 30px;
+  }
   .base .navbar-section {
     margin-top: 10px;
   }
@@ -11230,6 +11233,7 @@ body {
   .base .navbar-section p {
     font-size: 25px;
     margin-top: 0;
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
