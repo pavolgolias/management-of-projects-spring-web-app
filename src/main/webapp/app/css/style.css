@@ -11828,6 +11828,7 @@ body {
 
 .base .dialog--picpick {
   width: 760px;
+  max-height: 450px;
 }
 
 .base .dialog--picpick img {
@@ -11853,9 +11854,11 @@ body {
 @media screen and (max-width: 768px) {
   .base .dialog {
     position: absolute;
+    top: 10%;
   }
   .base .dialog--picpick {
     width: 100%;
+    max-height: 450px;
     overflow-y: auto;
   }
 }
