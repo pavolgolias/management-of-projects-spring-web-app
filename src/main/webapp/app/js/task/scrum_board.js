@@ -83,11 +83,11 @@ function buildTask(task) {
     html += "<div data-addui='dropMenu' data-pin='top-right'>";
     if(checkStatus(task, "Todo")){
         html += "<a onclick='move("+task.taskId+",\"InProgress\")'>Move to In Progress</a>";
-        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Completed</a>";
     }
     if(checkStatus(task,"InProgress")){
         html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
-        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Completed</a>";
     }
     if(checkStatus(task,"Done")){
         html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
