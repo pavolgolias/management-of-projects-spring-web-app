@@ -121,18 +121,20 @@
 	.user-info {
 		margin-top: 20px;
 		
-		> img {
-			width: 60px;
-			height: 60px;
-			margin-right: 10px;
-		}
+		
 		p {
 			color: white;
-			font-size: 45px;
+			font-size: 30px;
 			font-weight: 100;
-			margin-top: 0;
+			margin-top: 0px;
 			text-align: left;
-//			@include textOverflowWithDots(100%);
+			@include textOverflowWithDots(100%);
+			
+			> img {
+				width: 40px;
+				height: 40px;
+				margin-right: 20px;
+			}
 		}
 	}
 }
@@ -175,12 +177,13 @@
 		.user-info {
 			margin-top: 0;
 
-			img {
-				width: 24px;
-				height: 24px;
-			}
 			p {
 				font-size: 25px;
+				
+				> img {
+					width: 32px;
+					height: 32px;
+				}
 			}
 		}
 	}
@@ -191,18 +194,11 @@
     .nav-footer {
         display: none;
     }
-}
-
-@media all and (max-width: 600px) {
 	
-    .navbar-section {
+	.navbar-section {
 		
 		.user-info {
 
-			img {
-				width: 24px;
-				height: 24px;
-			}
 			p {
 				display: none;
 			}
