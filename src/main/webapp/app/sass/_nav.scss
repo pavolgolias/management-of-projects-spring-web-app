@@ -194,18 +194,15 @@
     .nav-footer {
         display: none;
     }
-}
+	
+	.navbar-section {
+		
+		.user-info {
 
-//@media all and (max-width: 600px) {
-//	
-//    .navbar-section {
-//		
-//		.user-info {
-//
-//			p {
-//				display: none;
-//			}
-//		}
-//	}
-//}
+			p {
+				display: none;
+			}
+		}
+	}
+}
 
