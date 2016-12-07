@@ -35,6 +35,7 @@ function displayTask(task) {
     console.log(task);
     updateLinks(getUrlParameter("projectId"),getUrlParameter("taskId"));
     $("#taskName").text(task.name);
+	$("#taskNameMobileField").text(task.name);
     $("#projectId").text(getUrlParameter("projectId"));
     $("#taskType").text(task.type);
     $("#taskPriority").text(task.priority);

@@ -32,6 +32,7 @@ function getProjectDetail(projectId){
 
 function displayProject(jsonResult){
     $("#projectName").text(jsonResult.name);
+	$("#projectNameMobileField").text(jsonResult.name);
     $("#projectId").text("#"+jsonResult.projectId);
     $("#projectDescription").text(jsonResult.description);
     $("#updateDate").text((new Date(jsonResult.updatedAt)).toLocaleString());
