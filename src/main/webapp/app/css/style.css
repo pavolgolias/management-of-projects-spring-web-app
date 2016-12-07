@@ -11174,7 +11174,7 @@ body {
   color: white;
   font-size: 30px;
   font-weight: 100;
-  margin-top: 20px;
+  margin-top: 15px;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -11434,8 +11434,8 @@ body {
 }
 
 .base .card section ul li img {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .base .card--no-header section {
