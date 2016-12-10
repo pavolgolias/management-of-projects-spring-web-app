@@ -43,7 +43,7 @@ function getUrlParameter(sParam) {
 function buildForgotPage() {
     var html = "<div class='login-section'>";
     html += "<div class='container-xs'>";
-    html += "<input class='top' id='emailAddress' type='text' placeholder='Insert your eamil here'>";
+    html += "<input class='top' id='emailAddress' type='email' placeholder='your@email.com'>";
     html += "<div class='login-section__btn-group'>";
     html += "<a href='#' class='bottom' onclick='askToRecoverAccount()'>Recover</a>";
     html += "</div>";
