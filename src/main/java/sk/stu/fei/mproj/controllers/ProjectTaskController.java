@@ -9,7 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import sk.stu.fei.mproj.domain.Mapper;
+import sk.stu.fei.mproj.domain.dao.DataPage;
 import sk.stu.fei.mproj.domain.dto.DataResponse;
+import sk.stu.fei.mproj.domain.dto.PageableDataResponse;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.TaskDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
@@ -42,7 +44,7 @@ public class ProjectTaskController {
     @RequestMapping(value = "/{taskId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
     public DataResponse<TaskDto> getTask(@PathVariable Long projectId, @PathVariable Long taskId) {
-        return new DataResponse<>(mapper.toTaskDto(projectTaskService.getTask(projectId, taskId)));
+        return new DataResponse<>(mapper.toTaskDto(projectTaskService.getTask(taskId)));
     }
 
     @ApiOperation(value = "Create a task")
@@ -88,7 +90,7 @@ public class ProjectTaskController {
         return new DataResponse<>();
     }
 
-    @ApiOperation(value = "Get all tasks for project")
+    @ApiOperation(value = "Get specified page of tasks for project")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 401, message = "Unauthorized"),
@@ -96,7 +98,11 @@ public class ProjectTaskController {
     })
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RoleSecured
-    public DataResponse<List<TaskDto>> getAllTasks(@PathVariable Long projectId) {
-        return new DataResponse<>(mapper.toTaskDtoList(projectTaskService.getAllTasks(projectId)));
+    public PageableDataResponse<List<TaskDto>> getTasksPageForProject(
+            @PathVariable Long projectId,
+            @RequestParam(defaultValue = "20", required = false) Long pageSize,
+            @RequestParam(defaultValue = "-1", required = false) Long nextId) {
+        DataPage<List<Task>> tasksPage = projectTaskService.getTasksForProjectPage(projectId, pageSize, nextId);
+        return new PageableDataResponse<>(mapper.toTaskDtoList(tasksPage.getPage()), tasksPage.getPageSize(), tasksPage.getNextId());
     }
 }

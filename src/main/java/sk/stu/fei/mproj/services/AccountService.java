@@ -137,23 +137,24 @@ public class AccountService {
             throw new IllegalArgumentException(String.format("Email=%s is already used by another account.", dto.getEmail()));
         }
         Account account = mapper.toAccount(dto);
-        //TODO set account to inactive later on and create action token for it
-//        account.setActive(false);
-//        setActionToken(account);
-        account.setActive(true);
+        account.setActive(false);
+        setActionToken(account);
         account.setRole(AccountRole.StandardUser);
         if ( !dto.getPassword().equals(dto.getRepeatPassword()) ) {
             throw new IllegalArgumentException("Password and repeat password must be same.");
         }
         account.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
+        if ( dto.getStaticAvatarFilename() == null ) {
+            account.setStaticAvatarFilename("images/icons/avatars/avatar1.png");
+        }
         accountDao.persist(account);
 
         Map<String, String> model = new HashMap<>();
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("activationUrl", applicationProperties.buildFrontendUrl("/activate-account.html?code=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account.html?code=" + account.getActionToken()).toString());
+        model.put("activationUrl", applicationProperties.buildFrontendUrl("/account_management.html?activateAccount=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discardAccount=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account activation", "account-activation", model);
 
         return account;
@@ -256,8 +257,8 @@ public class AccountService {
         model.put("avenirNextRegularFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-Regular.otf").toString());
         model.put("avenirNextItalicFontUrl", applicationProperties.buildFrontendUrl("/fonts/AvenirNextLTPro-UltLtIt.otf").toString());
         model.put("projectsLogoUrl", applicationProperties.buildFrontendUrl("/images/logos/logo_black_new.png").toString());
-        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/recover-account.html?code=" + account.getActionToken()).toString());
-        model.put("discardUrl", applicationProperties.buildFrontendUrl("/discard-account-recovery.html?code=" + account.getActionToken()).toString());
+        model.put("recoverUrl", applicationProperties.buildFrontendUrl("/account_management.html?recoverAccount=" + account.getActionToken()).toString());
+        model.put("discardUrl", applicationProperties.buildFrontendUrl("/account_management.html?discardAccountRecovery=" + account.getActionToken()).toString());
         mailService.sendHtmlEmail(account.getEmail(), "Projects: Account recovery", "account-recovery", model);
     }
 

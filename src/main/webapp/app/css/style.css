@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -10911,7 +10910,7 @@ body {
 }
 
 .card-scrollable {
-  height: 600px;
+  max-height: 600px;
   overflow-y: auto;
 }
 
@@ -10937,6 +10936,13 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .background {
+    background: none;
+    background-color: #789EA7;
+  }
+}
+
 .base .page {
   height: 100%;
   width: 100%;
@@ -10955,7 +10961,7 @@ body {
 }
 
 .base .login-section img {
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 }
 
 .base .login-section input {
@@ -11001,6 +11007,11 @@ body {
   border-top-right-radius: 5px;
 }
 
+.base .login-section input.bottom {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 .base .login-section input.email {
   background-image: url(../images/icons/white/mail.png);
   background-size: 24px 24px;
@@ -11013,7 +11024,7 @@ body {
 
 .base .login-section__btn-group {
   width: 100%;
-  clear: both;
+  margin-bottom: 10px;
 }
 
 .base .login-section__btn-group a {
@@ -11029,15 +11040,32 @@ body {
 }
 
 .base .login-section__btn-group .left {
-  float: left;
   width: 50%;
   border-bottom-left-radius: 5px;
+  float: left;
 }
 
 .base .login-section__btn-group .right {
-  float: right;
   width: 49.5%;
   border-bottom-right-radius: 5px;
+  float: right;
+}
+
+.base .login-section__btn-group .bottom {
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  float: left;
+}
+
+.base .login-section__text--bottom {
+  font-size: 20px;
+  color: white;
+  font-weight: 100;
+}
+
+.base .login-section__text--bottom:hover {
+  border-bottom: 1px solid white;
 }
 
 .base .side-navbar {
@@ -11136,18 +11164,21 @@ body {
 }
 
 .base .navbar-section a img {
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   margin-top: 20px;
 }
 
 .base .navbar-section p {
   color: white;
-  font-size: 55px;
+  font-size: 30px;
   font-weight: 100;
-  margin-top: 10px;
+  margin-top: 15px;
+  width: 100%;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .base .navbar-section input {
@@ -11166,19 +11197,22 @@ body {
   margin-top: 20px;
 }
 
-.base .navbar-section .user-info > img {
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
-}
-
 .base .navbar-section .user-info p {
   color: white;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: 100;
-  white-space: nowrap;
-  margin-top: 0;
+  margin-top: 0px;
   text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.base .navbar-section .user-info p > img {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
 }
 
 .base .nav-footer {
@@ -11189,44 +11223,44 @@ body {
 }
 
 @media all and (max-width: 768px) {
+  .base .side-navbar .nav-links {
+    margin-top: 30px;
+  }
   .base .navbar-section {
     margin-top: 10px;
   }
   .base .navbar-section a img {
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
     margin-top: 5px;
   }
   .base .navbar-section p {
-    font-size: 35px;
+    font-size: 25px;
     margin-top: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .base .navbar-section input {
-    font-size: 35px;
+    font-size: 25px;
     margin-top: 0;
   }
   .base .navbar-section .user-info {
     margin-top: 0;
   }
-  .base .navbar-section .user-info img {
-    width: 48px;
-    height: 48px;
-  }
   .base .navbar-section .user-info p {
-    font-size: 35px;
+    font-size: 25px;
+  }
+  .base .navbar-section .user-info p > img {
+    width: 32px;
+    height: 32px;
   }
 }
 
-@media all and (max-height: 720px) {
+@media all and (max-height: 600px) {
   .base .nav-footer {
     display: none;
-  }
-}
-
-@media all and (max-width: 600px) {
-  .base .navbar-section .user-info img {
-    width: 48px;
-    height: 48px;
   }
   .base .navbar-section .user-info p {
     display: none;
@@ -11235,7 +11269,7 @@ body {
 
 .base .tab-section {
   border: none;
-  margin-bottom: 100px;
+  margin-bottom: 64px;
 }
 
 .base .tab-section li.active a {
@@ -11248,7 +11282,7 @@ body {
   width: 100%;
   text-align: center;
   color: #547076;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .base .tab-section li a:hover {
@@ -11315,6 +11349,12 @@ body {
 
 .base .tabs li.active a {
   background-color: rgba(24, 50, 56, 0.7) !important;
+}
+
+@media all and (max-width: 768px) {
+  .base .tab-section li a {
+    font-size: 15px;
+  }
 }
 
 .base .card {
@@ -11387,12 +11427,12 @@ body {
 .base .card section ul li {
   float: left;
   margin-right: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .base .card section ul li img {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .base .card--no-header section {
@@ -11406,6 +11446,13 @@ body {
 
 .base .card--project header {
   background-color: #547076;
+}
+
+.base .card--project header .float--left {
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .base .card--project article {
@@ -11607,6 +11654,19 @@ body {
   color: white;
 }
 
+@media screen and (max-width: 768px) {
+  .base .card section > img {
+    width: 50px;
+    height: 48px;
+  }
+  .base .card--project article {
+    margin-left: 58px;
+  }
+  .base .card--project ul {
+    margin-left: 58px;
+  }
+}
+
 @media screen and (max-width: 355px) {
   .base .card-row--user article {
     margin-top: 0 !important;
@@ -11626,35 +11686,18 @@ body {
   }
 }
 
-.base .spinner {
-  min-width: 72px;
-  min-height: 72px;
-}
-
-.base .spinner:before {
-  content: 'Loading…';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 48px;
-  height: 48px;
-  margin-top: -30px;
-  margin-left: -30px;
-}
-
-.base .spinner:not(:required):before {
-  content: '';
-  border-radius: 50%;
-  border-top: 7px solid #183238;
-  animation: spinner .8s linear infinite;
-  -webkit-animation: spinner .8s linear infinite;
+.base .blockable {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }
 
 .base .cube-spinner {
   margin: 20px auto;
   width: 40px;
   height: 40px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -11782,6 +11825,7 @@ body {
 
 .base .dialog--picpick {
   width: 760px;
+  max-height: 450px;
 }
 
 .base .dialog--picpick img {
@@ -11807,9 +11851,11 @@ body {
 @media screen and (max-width: 768px) {
   .base .dialog {
     position: absolute;
+    top: 10%;
   }
   .base .dialog--picpick {
     width: 100%;
+    max-height: 450px;
     overflow-y: auto;
   }
 }
@@ -11925,7 +11971,7 @@ body {
   background-color: rgba(66, 157, 168, 0.2);
   border-radius: 4px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
-  width: 300px;
+  width: 30%;
   float: right;
   margin-top: 4px;
 }

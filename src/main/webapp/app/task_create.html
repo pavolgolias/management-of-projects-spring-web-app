@@ -9,6 +9,9 @@
     <meta name="author" content="">
 
     <title>Mproj Task Edit</title>
+    
+    <!-- Load title icon -->
+	<link rel="shortcut icon" href="images/logos/favicon1.png" sizes="128x128"/>
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
@@ -40,7 +43,6 @@
 					<option>ChangeRequest</option>
 					<option>Task</option>
 					<option selected>Bug</option>
-					<option>Test</option>
 				</select>
    				<div class="float--clear"></div>
    			</div>
@@ -64,7 +66,15 @@
 					21.11.2016
    				</p>
    				<div class="float--clear"></div>
-   			</div>  
+   			</div>
+			<div class="card-row">
+				<h3 class="float--left">
+					Estimated time
+				</h3>
+				<span class="float--right">h</span>
+				<input id="taskTimeEstimate" class="float--right" type="text" value="0">
+				<div class="float--clear"></div>
+			</div>
    			<div class="card-row">
    				<h3 class="float--left">
    					ETA
@@ -72,7 +82,7 @@
    				<input class="float--right datepicker" id="task_eta" value="20.11.2016">
    				<div class="float--clear"></div>
    			</div>
-   		    <div class="card card--default card--bug">
+   		    <div class="card card--default card--default">
                 <header>
 					<h4 class="float--left">
 						Task Description
@@ -165,7 +175,7 @@
 			
 			<!-- Generated content -->
 			<a class="card-button text-center hidden" href="#">
-				<img src="images/icons/xs/Add%20User%20Male.png" alt="user icon">
+				icon
 			</a>
    		</div>
    	</div> <!-- ./container-fluid -->

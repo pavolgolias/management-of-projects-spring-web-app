@@ -23,4 +23,7 @@ public class AccountBaseDto {
 
     @ApiModelProperty(value = "Account's avatar filename")
     private String avatarFilename;
+
+    @ApiModelProperty(value = "Account's static avatar path", required = true)
+    private String staticAvatarFilename;
 }

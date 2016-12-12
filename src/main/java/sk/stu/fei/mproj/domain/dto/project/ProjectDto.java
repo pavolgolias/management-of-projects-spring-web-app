@@ -31,4 +31,7 @@ public class ProjectDto {
 
     @ApiModelProperty(value = "Last update timestamp")
     private Date updatedAt;
+
+    @ApiModelProperty(value = "Project author", required = true)
+    private AccountBaseDto author;
 }

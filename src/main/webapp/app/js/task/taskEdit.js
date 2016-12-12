@@ -53,7 +53,7 @@ function displayTask(task) {
     $("#taskProgress").val(task.progress);//nefunguje zatial
     $("#taskCreatedAt").text((new Date(task.author.createdAt)).toLocaleString());
     $("#taskLastUpdate").text((new Date(task.updatedAt)).toLocaleString()); // needs to be changed after it is addted to DTO
-    $("#taskETA").text((new Date(task.aimedCompletionDate)).toLocaleString());
+    $("#taskETA").val((new Date(task.aimedCompletionDate)).toLocaleString());
     $("#taskDescription").val(task.description);
 }
 
@@ -85,9 +85,15 @@ $("#saveTask").click(function () {
     var task_status = $('#taskStatus').val();
     var task_type = $('#taskType').val();
     var time_to_add = $('#timeToAdd').val();
+    var task_ETA = $("#taskETA").val();
     var task_timeEstimatedForTaskInMillis = taskDetail.timeEstimatedForTaskInMillis;
     var task_timeSpentOnTaskInMillis = taskDetail.timeSpentOnTaskInMillis + toMilis(time_to_add);
 
+    if(task_ETA == ((new Date(taskDetail.aimedCompletionDate)).toLocaleString())){
+        task_ETA = taskDetail.aimedCompletionDate;
+    }else{
+        task_ETA = stringToDate($('#taskETA').val(),"dd.MM.yyyy",".");
+    }
 
 
     if(task_name == '') {
@@ -103,7 +109,7 @@ $("#saveTask").click(function () {
         url: "/api/projects/"+projectId+"/tasks/"+taskId,
         type: "PUT",
         data: JSON.stringify({
-            aimedCompletionDate: taskDetail.aimedCompletionDate,
+            aimedCompletionDate: task_ETA,
             assigneeId: assignee_id,
             description: task_decscription,
             name: task_name,
@@ -148,7 +154,7 @@ function updateLinks(projectId, taskId) {
     $("#backTaskDetail").attr("href","task_detail.html?projectId="+projectId+"&taskId="+taskId);
 }
 
-var getUrlParameter = function getUrlParameter(sParam) {
+function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -194,6 +200,20 @@ function displayAssignedUserForTask(jsonTaskObject,selector){
         $(selector).append(buildUserElement(jsonTaskObject.assignee, true));
         assignee = jsonTaskObject.assignee;
     }
+}
+
+function stringToDate(_date,_format,_delimiter) {
+    var formatLowerCase=_format.toLowerCase();
+    var formatItems=formatLowerCase.split(_delimiter);
+    var dateItems=_date.split(_delimiter);
+    var monthIndex=formatItems.indexOf("mm");
+    var dayIndex=formatItems.indexOf("dd");
+    var yearIndex=formatItems.indexOf("yyyy");
+    var month=parseInt(dateItems[monthIndex]);
+    month-=1;
+    var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+
+    return formatedDate;
 }
 
 function displayAvailableUsersForTask(jsonProjectObject, selector){

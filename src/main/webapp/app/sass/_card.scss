@@ -2,7 +2,6 @@
 	width: 100%;
 	color: white;
 	margin-bottom: 30px;
-//    min-width: 300px;
 	
 	header {
 		height: 30px;
@@ -61,11 +60,11 @@
 			li {
 				float: left;
 				margin-right: $m_default;
-				margin-bottom: $m_default;
+				margin-bottom: $m_more;
 				
 				img {
-					width: 48px;
-					height: 48px;
+					width: 32px;
+					height: 32px;
 				}
 			}
 		}
@@ -88,6 +87,10 @@
 		
 		header {
 			background-color: $gray-blue;
+			
+			.float--left {
+				@include textOverflowWithDots(50%);
+			}
 		}
 		article {
 			margin-left: 110px;
@@ -283,6 +286,30 @@ a.card-button {
 		
 		p {
 			color: white;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+	.card {
+		
+		section {
+			
+			> img {
+				width: 50px;
+				height: 48px;
+			}
+		}
+		
+		&--project {
+			
+			article {
+				margin-left: 58px;
+			}
+			ul {
+				margin-left: 58px;
+			}
 		}
 	}
 }

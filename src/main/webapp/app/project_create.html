@@ -9,6 +9,9 @@
     <meta name="author" content="">
 
     <title>Mproj Project Create</title>
+    
+    <!-- Load title icon -->
+	<link rel="shortcut icon" href="images/logos/favicon1.png" sizes="128x128"/>
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
@@ -24,7 +27,7 @@
 				</a>
 			</div>
 			<div class="col-xs-8 text-center">
-				<p>Create your own project</p>
+				<p>Create project</p>
 			</div>
 		</div><!-- ./container-fluid -->
 	</nav><!-- ./navbar-section -->
@@ -67,13 +70,11 @@
 			</a>
    		</div>
 
-
 		<div class="col-md-6">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#assigneeTab" role="tab" data-toggle="tab" style="color:#5e5e5e">Assignee</a></li>
-				<li><a href="#adminTab" role="tab" data-toggle="tab" style="color:#5e5e5e">Admins</a></li>
-
-			</ul>
+			<ul class="nav nav-tabs tabs">
+            	<li class="active left"><a href="#assigneeTab" role="tab" data-toggle="tab">Assignee</a></li>
+            	<li class="right"><a href="#adminTab" role="tab" data-toggle="tab">Admins</a></li>
+        	</ul>
 			<div class="card-row">
 				<img class="float--left size30" src="images/icons/white/search.png" alt="user icon">
 				<input class="float--right" type="text" id="searchUserInput" onkeyup="searchForUser()"
@@ -85,6 +86,7 @@
 		<div class="tab-content">
 
 			<div id="assigneeTab" role="tabpanel" class="tab-pane active">
+			
 				<div  class="col-md-3">
 					<div class="card-row card-row--heading">
 						<h3 class="float--left">
@@ -116,9 +118,10 @@
 				</div>
 
 				<div id="assignedUsers" class="col-md-3 card-scrollable">
-
-				</div>
-			</div>
+					<!-- Generated content -->
+				</div><!-- ./card-scrollable -->
+				
+			</div><!-- ./tab-pane -->
 
 			<div id="adminTab"  role="tabpanel" class="tab-pane">
 				<div  class="col-md-3">
@@ -139,8 +142,8 @@
 				</div>
 
 				<div id="suggestedAdmins" class="col-md-3 card-scrollable">
-
-				</div>
+					<!-- Dynamic content -->
+				</div><!-- ./card-scrollable -->
 
 				<div class="col-md-3 invisible">
 					<div class="card-row card-row--heading">
@@ -152,10 +155,10 @@
 				</div>
 
 				<div id="admins" class="col-md-3 card-scrollable">
-
-				</div>
-
-			</div>
+					<!-- Generated content -->
+				</div><!-- ./card-scrollable -->
+				
+			</div><!-- ./tab-pane -->
 		</div>
    	</div> <!-- ./container-fluid -->	
 

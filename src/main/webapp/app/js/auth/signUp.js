@@ -2,6 +2,19 @@
  * Created by Patrik on 10/11/2016.
  */
 
+$(document).ready(function() {
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            signUp();
+        }
+    });
+
+    if(localStorage.getItem("account") != null)
+        $("#userAvatar").attr('src',JSON.parse(localStorage.getItem("account")).staticAvatarFilename);
+
+});
+
 function resetSignUp(){
     $("#exampleInputName").val('');
     $("#exampleInputSurname").val('');
@@ -55,7 +68,13 @@ function signUp(){
         }),
         contentType:"application/json; charset=utf-8",
         success: function(data){
-            window.location.replace("index.html");
+            showMessage("You were registered! Activation email was sent to your email address!");
+            setTimeout(function() {
+                showMessage("You will be redirected to login page in 3 seconds.");
+            }, 3000);
+            setTimeout(function() {
+                window.location.replace("index.html");
+            }, 6000);
         },
         error: function(xhr){
             showMessage("Error "+xhr.status+"! Unable to sign in!");

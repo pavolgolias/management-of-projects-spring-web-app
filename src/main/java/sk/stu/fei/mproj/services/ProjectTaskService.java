@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.stu.fei.mproj.domain.Mapper;
-import sk.stu.fei.mproj.domain.dao.AccountDao;
-import sk.stu.fei.mproj.domain.dao.DaoBase;
-import sk.stu.fei.mproj.domain.dao.ProjectDao;
-import sk.stu.fei.mproj.domain.dao.TaskDao;
+import sk.stu.fei.mproj.domain.dao.*;
 import sk.stu.fei.mproj.domain.dto.task.CreateTaskRequestDto;
 import sk.stu.fei.mproj.domain.dto.task.UpdateTaskRequestDto;
 import sk.stu.fei.mproj.domain.entities.Account;
@@ -43,7 +40,7 @@ public class ProjectTaskService {
     }
 
     @RoleSecured
-    public Task getTask(Long projectId, Long taskId) {
+    public Task getTask(Long taskId) {
         return getOrElseThrowEntityNotFoundEx(taskId, taskDao, String.format("Task id=%d not found", taskId));
     }
 
@@ -85,7 +82,7 @@ public class ProjectTaskService {
     public Task updateTask(Long projectId, Long taskId, @NotNull UpdateTaskRequestDto dto) {
         Objects.requireNonNull(dto);
 
-        final Task task = getTask(projectId, taskId);
+        final Task task = getTask(taskId);
         checkUpdateTaskEligibilityOrElseThrowSecurityEx(
                 task,
                 authorizationManager.getCurrentAccount(),
@@ -120,7 +117,7 @@ public class ProjectTaskService {
 
     @RoleSecured
     public void deleteTask(Long projectId, Long taskId) {
-        final Task task = getTask(projectId, taskId);
+        final Task task = getTask(taskId);
 
         checkUpdateTaskEligibilityOrElseThrowSecurityEx(
                 task,
@@ -132,9 +129,15 @@ public class ProjectTaskService {
     }
 
     @RoleSecured
-    public List<Task> getAllTasks(Long projectId) {
+    public DataPage<List<Task>> getTasksForProjectPage(Long projectId, Long pageSize, Long startId) {
         final Project project = getOrElseThrowEntityNotFoundEx(projectId, projectDao, String.format("Project with id=%d was not found", projectId));
-        return taskDao.findAllTasksByProject(project);
+        return taskDao.findTasksByProjectPage(project, pageSize, startId);
+    }
+
+    @RoleSecured
+    public DataPage<List<Task>> getAssignedTasksForAccountPage(Long accountId, Long pageSize, Long startId) {
+        final Account account = getOrElseThrowEntityNotFoundEx(accountId, accountDao, String.format("Account id=%d not found", accountId));
+        return taskDao.findTasksAssignedForAccountPage(account, pageSize, startId);
     }
 
     private <T, ID> T getOrElseThrowEntityNotFoundEx(ID id, DaoBase<T, ID> dao, String exceptionMessage) {

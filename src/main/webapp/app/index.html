@@ -9,6 +9,9 @@
     <meta name="author" content="">
 
     <title>Mproj app</title>
+    
+    <!-- Load title icon -->
+    <link rel="shortcut icon" href="images/logos/favicon1.png" sizes="128x128"/>
 
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
@@ -22,9 +25,11 @@
 			<input class="top email" type="email" id="exampleInputEmail1" placeholder="E-mail">
 			<input class="psw" type="password" id="exampleInputPassword1" placeholder="Password">
 			<div class="login-section__btn-group">
-				<a href="registration.html" class="left">Sign up</a>
-				<a href="#" onclick="signIn()" class="right">Sign in</a>
+				<a href="registration.html" class="left float--left">Sign up</a>
+				<a href="#" onclick="signIn()" class="right float--right">Sign in</a>
+				<div class="float--clear"></div>
 			</div>
+            <a class="login-section__text--bottom" href="account_management.html?forgotPass=true">Forgot Password</a>
 		</div><!-- ./container-xs -->
     </div><!-- ./login-section -->
     

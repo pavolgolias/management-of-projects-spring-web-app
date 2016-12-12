@@ -1,7 +1,15 @@
 /**
  * Created by Patrik on 09/11/2016.
  */
+$(document).ready(function() {
 
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            signIn();
+        }
+    });
+
+});
 
 function checkIsSignedIn(){
     var token = localStorage.getItem("token");
@@ -53,7 +61,8 @@ function getToken(email,pass){
                 window.location.replace("projects.html");
         },
         error: function(xhr){
-            showMessage("Error "+xhr.status+"! Unable to log in!");
+            console.log(JSON.parse(xhr.responseText).message);
+            showMessage("Error "+xhr.status+"! "+JSON.parse(xhr.responseText).message);
         }
 
 

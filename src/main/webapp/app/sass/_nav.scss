@@ -94,18 +94,18 @@
 	a {
 		
 		img {
-			width: 64px;
-			height: 64px;
+			width: 32px;
+			height: 32px;
 			cursor: pointer;
 			margin-top: 20px;
 		}
 	}
 	p {
 		color: white;
-		font-size: 55px;
+		font-size: 30px;
 		font-weight: 100;
-		margin-top: 10px;
-		white-space: nowrap;
+		margin-top: 15px;
+		@include textOverflowWithDots(100%);
 	}
 	input {
 		border: none;
@@ -121,18 +121,20 @@
 	.user-info {
 		margin-top: 20px;
 		
-		> img {
-			width: 60px;
-			height: 60px;
-			margin-right: 10px;
-		}
+		
 		p {
 			color: white;
-			font-size: 45px;
+			font-size: 30px;
 			font-weight: 100;
-			white-space: nowrap;
-			margin-top: 0;
+			margin-top: 0px;
 			text-align: left;
+			@include textOverflowWithDots(100%);
+			
+			> img {
+				width: 40px;
+				height: 40px;
+				margin-right: 20px;
+			}
 		}
 	}
 }
@@ -146,55 +148,57 @@
 
 @media all and (max-width: 768px) {
 	
+	.side-navbar {
+		
+		.nav-links {
+			margin-top: 30px;
+		}
+	}
+	
 	.navbar-section {
 		margin-top: 10px;
 		
 		a {
 			img {
-				width: 48px;
-				height: 48px;
+				width: 24px;
+				height: 24px;
 				margin-top: 5px;	
 			}
 		}
 		p {
-			font-size: 35px;
+			font-size: 25px;
 			margin-top: 0;
+			@include textOverflowWithDots(100%);
 		}
 		input {
-			font-size: 35px;
+			font-size: 25px;
 			margin-top: 0;
 		}
 		.user-info {
 			margin-top: 0;
 
-			img {
-				width: 48px;
-				height: 48px;
-			}
 			p {
-				font-size: 35px;
+				font-size: 25px;
+				
+				> img {
+					width: 32px;
+					height: 32px;
+				}
 			}
 		}
 	}
 }
 
-@media all and (max-height: 720px) {
+@media all and (max-height: 600px) {
 	
     .nav-footer {
         display: none;
     }
-}
-
-@media all and (max-width: 600px) {
 	
-    .navbar-section {
+	.navbar-section {
 		
 		.user-info {
 
-			img {
-				width: 48px;
-				height: 48px;
-			}
 			p {
 				display: none;
 			}

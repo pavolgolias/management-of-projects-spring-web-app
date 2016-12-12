@@ -83,11 +83,11 @@ function buildTask(task) {
     html += "<div data-addui='dropMenu' data-pin='top-right'>";
     if(checkStatus(task, "Todo")){
         html += "<a onclick='move("+task.taskId+",\"InProgress\")'>Move to In Progress</a>";
-        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Completed</a>";
     }
     if(checkStatus(task,"InProgress")){
         html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
-        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Done</a>";
+        html += "<a onclick='move("+task.taskId+",\"Done\")'>Move to Completed</a>";
     }
     if(checkStatus(task,"Done")){
         html += "<a onclick='move("+task.taskId+",\"Todo\")'>Move to To Do</a>";
@@ -105,11 +105,11 @@ function buildTask(task) {
     html += "</article>";
     if(task.assignee != null){
         html += "<ul>";
-        html += "<li><img src='images/icons/white/user.png' alt='user icon' title='"+task.assignee.firstName+" "+task.assignee.lastName+"'></li>";
+        html += "<li><img src='"+task.assignee.staticAvatarFilename+"' alt='user icon' title='"+task.assignee.firstName+" "+task.assignee.lastName+"'></li>";
         html += "</ul>";
     }else {
         html += "<ul>";
-        html += "<li><img src='images/icons/white/lock.png' alt='user icon'></li>";
+        html += "<li><img src='images/icons/white/user-add.png' alt='user icon'></li>";
         html += "</ul>";
     }
 

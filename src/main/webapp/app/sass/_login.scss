@@ -8,7 +8,7 @@
 	
 	
 	img {
-		margin-bottom: 120px;
+		margin-bottom: 80px;
 	}
 	input {
 		width: 100%;
@@ -45,7 +45,11 @@
 		&.top {
 			border-top-left-radius: $p_default;
 			border-top-right-radius: $p_default;
-		}	
+		}
+        &.bottom {
+			border-bottom-left-radius: $p_default;
+			border-bottom-right-radius: $p_default;
+		}
 		&.email {
 			background-image: url(../images/icons/white/mail.png);
             background-size: 24px 24px;
@@ -59,12 +63,11 @@
 	}
 	&__btn-group {
 		width: 100%;
-		clear: both;
+		margin-bottom: 10px;
 		
 		a {
 			padding: $p_default;
 			background-color: $primary--op_middle; 
-//			opacity: $op_button; 
 			font-size: 20px;
 			font-weight: 100;
 			color: white;
@@ -74,14 +77,32 @@
 			}
 		}
 		.left {
-			float: left;
 			width: 50%;
 			border-bottom-left-radius: $p_default;
+            float:left;
 		}
 		.right {
-			float: right;
 			width: 49.5%;
 			border-bottom-right-radius: $p_default;
+            float:right;
+		}
+         .bottom {
+            width: 100%;
+			border-bottom-left-radius: $p_default;
+			border-bottom-right-radius: $p_default;
+            float:left;
+		}
+	}
+	&__text {
+		
+		&--bottom {
+			font-size: 20px;
+			color: white;
+			font-weight: 100;
+			
+			&:hover {
+				border-bottom: 1px solid white;
+			}
 		}
 	}
 }

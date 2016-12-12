@@ -32,6 +32,7 @@ function getProjectDetail(projectId){
 
 function displayProject(jsonResult){
     $("#projectName").text(jsonResult.name);
+	$("#projectNameMobileField").text(jsonResult.name);
     $("#projectId").text("#"+jsonResult.projectId);
     $("#projectDescription").text(jsonResult.description);
     $("#updateDate").text((new Date(jsonResult.updatedAt)).toLocaleString());
@@ -75,7 +76,7 @@ function buildUser(user, isAdmin) {
     console.log(user);
     var html="<div class='card-row card-row--user'>";
     //html += "<img class='float float--left' src='"user.avatarFilename"' alt='user icon'>";
-    html += "<img class='float float--left' src='images/avatar.png' alt='user icon'>";
+    html += "<img class='float float--left' src='"+user.staticAvatarFilename+"' alt='user icon'>";
     html += "<article class='float--left'>";
     html += "<h4>"+user.firstName+" "+user.lastName+"</h4>";
     if(isAdmin)
