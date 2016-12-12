@@ -10,6 +10,9 @@ $(document).ready(function() {
         }
     });
 
+    if(localStorage.getItem("account") != null)
+        $("#userAvatar").attr('src',JSON.parse(localStorage.getItem("account")).staticAvatarFilename);
+
 });
 
 function resetSignUp(){

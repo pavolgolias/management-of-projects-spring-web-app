@@ -15,8 +15,8 @@ $(document).ready(function () {
         updateLinks(projectId);
         getProjectDetail(projectId);
     }
-    //$('#task_created').val(new Date());
-
+    var date = new Date();
+    $('#task_created').text(date.getDate() + '.' + (date.getMonth() + 1) + '.' +  date.getFullYear());
 })
 
 function updateLinks(projectId){
@@ -223,7 +223,7 @@ function buildUserElement(userJsonObject,toAssign){
         html = "<div id='account"+userJsonObject.accountId+"' class='card-row card-row--user assigned'><a class='float--right' onclick='addAssignee("+userJsonObject.accountId+")'>&plus;</a>";
 
     //TODO add users avatar
-    html = html + defaultImg;
+    html = html + "<img class='float float--left' src='"+userJsonObject.staticAvatarFilename+"' alt='user icon'>";
     html = html + "<article class='float--left'><h4>"
     html = html + userJsonObject.firstName + " " + userJsonObject.lastName;
     html = html + "</h4><p>";
