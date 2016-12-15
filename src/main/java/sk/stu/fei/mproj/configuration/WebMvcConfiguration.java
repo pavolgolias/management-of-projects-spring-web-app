@@ -45,12 +45,12 @@ public class WebMvcConfiguration extends WebMvcAutoConfiguration {
                         .maxAge(3600);
             }
 
-            @Override
-            public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/app/css/**", "/app/fonts/**", "/app/images/**", "/app/js/**")
-                        .addResourceLocations("/app/css/", "/app/fonts/", "/app/images/", "/app/js/")
-                        .setCachePeriod(31556926);
-            }
+//            @Override
+//            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//                registry.addResourceHandler("/static/app/css/**", "/static/app/fonts/**", "/static/app/images/**", "/static/app/js/**")
+//                        .addResourceLocations("/static/app/css/", "/static/app/fonts/", "/static/app/images/", "/static/app/js/")
+//                        .setCachePeriod(31556926);
+//            }
         };
     }
 
