@@ -9,7 +9,6 @@
     <version>1.1.0</version>
 
     <packaging>war</packaging>
-    <!--<packaging>jar</packaging>-->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -68,11 +67,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <!-- databases and orm -->
-        <!--<dependency>-->
-            <!--<groupId>org.javassist</groupId>-->
-            <!--<artifactId>javassist</artifactId>-->
-            <!--<version>3.17.1-GA</version> &lt;!&ndash; downgrade javassist to fix deployment error on openshift server &ndash;&gt;-->
-        <!--</dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -164,13 +158,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<version>2.6</version>-->
-                <!--<configuration>-->
-                    <!--<warName>ROOT</warName>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
         </plugins>
     </build>
 
