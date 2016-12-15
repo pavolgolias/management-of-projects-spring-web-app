@@ -1,0 +1,25 @@
+# Application properties
+application.backend-url=http://mproj-andrejkosar.rhcloud.com/api
+application.frontend-url=http://mproj-andrejkosar.rhcloud.com/app
+application.enable-mail-sending=true
+application.enable-file-upload=true
+application.file-upload-root-folder=${OPENSHIFT_DATA_DIR}/upload-folder
+application.file-upload-root-folder-init-strategy=create
+
+# JPA
+spring.jpa.hibernate.ddl-auto=validate
+
+# DataSource
+spring.datasource.url=jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/mproj
+spring.datasource.username=${OPENSHIFT_MYSQL_DB_USERNAME}
+spring.datasource.password=${OPENSHIFT_MYSQL_DB_PASSWORD}
+
+# JWT
+jwt.token.secret=ipyygI5WIU5MLtpxHU1xvm7ik4bSUncoxE6ENQrcnD0
+jwt.token.expiration=604800
+
+# Email
+spring.mail.host=smtp.gmail.com
+spring.mail.username=mproj.projects@gmail.com
+spring.mail.password=l4SyLAyhpuMA
+spring.mail.test-connection=true

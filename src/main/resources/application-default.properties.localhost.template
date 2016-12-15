@@ -1,0 +1,32 @@
+# Application properties
+application.backend-url=http://localhost:8080/api
+application.frontend-url=http://localhost:8080/app
+application.enable-mail-sending=true
+application.enable-file-upload=true
+application.file-upload-root-folder=/home/andrej/Desktop/tmp
+application.file-upload-root-folder-init-strategy=create-delete
+
+# JPA
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# DataSource
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/mproj
+spring.datasource.username=mproj
+spring.datasource.password=yaHY4h5E
+
+# JWT
+jwt.token.secret=cVYwUVhnVzhaczBlUnZKa3dDQW9zYkR3SVZXd1FPMFVqNDFzNlFJZDFTZw==
+#jwt.token.expiration=10
+
+# Logging
+logging.level.org.springframework.web=ERROR
+logging.level.org.hibernate=ERROR
+logging.level.io.swagger.models.parameters.AbstractSerializableParameter=ERROR
+
+# Email
+spring.mail.host=smtp.gmail.com
+spring.mail.port=465
+spring.mail.username=mproj.projects@gmail.com
+spring.mail.password=l4SyLAyhpuMA
+spring.mail.test-connection=true
+spring.mail.properties.mail.smtp.ssl.enable=true

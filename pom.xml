@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sk.stu.fei.mproj</groupId>
-    <artifactId>web-app</artifactId>
-    <version>1.0.0.BETA</version>
+    <artifactId>projects</artifactId>
+    <version>1.1.0</version>
 
     <packaging>war</packaging>
     <!--<packaging>jar</packaging>-->
