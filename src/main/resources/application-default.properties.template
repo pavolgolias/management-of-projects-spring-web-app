@@ -1,0 +1,27 @@
+# Application properties
+application.backend-url=http://localhost:8080/api
+application.frontend-url=http://localhost:8080/app
+application.enable-mail-sending=true
+application.enable-file-upload=true
+application.file-upload-root-folder=mproj_app_tmp_files
+application.file-upload-root-folder-init-strategy=create-delete
+
+# JPA
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# JWT
+jwt.token.secret=cVYwUVhnVzhaczBlUnZKa3dDQW9zYkR3SVZXd1FPMFVqNDFzNlFJZDFTZw==
+#jwt.token.expiration=10
+
+# Logging
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate=ERROR
+logging.level.io.swagger.models.parameters.AbstractSerializableParameter=ERROR
+
+# Email
+spring.mail.host=smtp.gmail.com
+spring.mail.port=465
+spring.mail.username=mproj.projects@gmail.com
+spring.mail.password=l4SyLAyhpuMA
+spring.mail.test-connection=true
+spring.mail.properties.mail.smtp.ssl.enable=true
